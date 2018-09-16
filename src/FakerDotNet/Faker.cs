@@ -2,21 +2,11 @@
 
 namespace FakerDotNet
 {
-    public interface IFaker
+    public static class Faker
     {
-        INameFaker Name { get; }
-        IRandomFaker Random { get; }
-    }
-    
-    internal class Faker : IFaker
-    {
-        public INameFaker Name { get; }
-        public IRandomFaker Random { get; }
+        private static readonly IFakerContainer Container = new FakerContainer();
 
-        public Faker()
-        {
-            Name = new NameFaker(this);
-            Random = new RandomFaker();
-        }
+        public static INameFaker Name { get; } = Container.Name;
+        public static IRandomFaker Random { get; } = Container.Random;
     }
 }

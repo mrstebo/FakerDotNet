@@ -17,11 +17,11 @@ namespace FakerDotNet.Fakers
     {
         private static readonly NameData Data = new NameData();
         
-        private readonly IFaker _faker;
+        private readonly IFakerContainer _fakerContainer;
 
-        public NameFaker(IFaker faker)
+        public NameFaker(IFakerContainer fakerContainer)
         {
-            _faker = faker;
+            _fakerContainer = fakerContainer;
         }
         
         public string Name()
@@ -36,30 +36,30 @@ namespace FakerDotNet.Fakers
 
         public string FirstName()
         {
-            return _faker.Random.Element(Data.FirstNames);
+            return _fakerContainer.Random.Element(Data.FirstNames);
         }
 
         public string LastName()
         {
-            return _faker.Random.Element(Data.LastNames);
+            return _fakerContainer.Random.Element(Data.LastNames);
         }
 
         public string Prefix()
         {
-            return _faker.Random.Element(Data.Prefixes);
+            return _fakerContainer.Random.Element(Data.Prefixes);
         }
 
         public string Suffix()
         {
-            return _faker.Random.Element(Data.Suffixes);
+            return _fakerContainer.Random.Element(Data.Suffixes);
         }
 
         public string Title()
         {
             return string.Join(" ",
-                _faker.Random.Element(Data.TitleDescriptors),
-                _faker.Random.Element(Data.TitleLevels),
-                _faker.Random.Element(Data.TitleJobs));
+                _fakerContainer.Random.Element(Data.TitleDescriptors),
+                _fakerContainer.Random.Element(Data.TitleLevels),
+                _fakerContainer.Random.Element(Data.TitleJobs));
         }
     }
 }

@@ -7,24 +7,16 @@ namespace FakerDotNet.Tests
     [Parallelizable]
     public class FakerTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            _faker = new Faker();
-        }
-
-        private IFaker _faker;
-
         [Test]
         public void Name_returns_INameFaker()
         {
-            Assert.IsInstanceOf<INameFaker>(_faker.Name);
+            Assert.IsInstanceOf<INameFaker>(Faker.Name);
         }
 
         [Test]
         public void Random_returns_IRandomFaker()
         {
-            Assert.IsInstanceOf<IRandomFaker>(_faker.Random);
+            Assert.IsInstanceOf<IRandomFaker>(Faker.Random);
         }
     }
 }

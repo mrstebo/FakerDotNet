@@ -32,5 +32,13 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.Contains(_randomFaker.Element(collection), collection);
         }
+
+        [Test]
+        public void Element_with_string_returns_a_single_character()
+        {
+            const string word = "Typewriter";
+
+            Assert.Contains(_randomFaker.Element(word), word.ToCharArray());
+        }
     }
 }

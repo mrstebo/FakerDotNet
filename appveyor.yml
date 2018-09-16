@@ -1,0 +1,58 @@
+version: '{build}'
+image: Visual Studio 2017
+configuration: Release
+pull_requests:
+  do_not_increment_build_number: true
+
+nuget:
+  account_feed: false
+  project_feed: false
+  disable_publish_on_pr: true
+
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: vETv5DkQGqHNKitDtA5zhh5bwTDxLv7u//a1sA83zP3gU1xQsu7MAxpNIDMQPQ4k
+
+cache:
+  - packages -> **\packages.config
+
+install:
+  - ps: choco install gitversion.portable --pre
+
+assembly_info:
+  patch: true
+
+before_build:
+  - nuget restore FakerDotNet.sln
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+
+build:
+  project: FakerDotNet.sln
+
+after_build:
+  - cmd: nuget pack FakerDotNet.nuspec -Version "%GitVersion_NuGetVersion%" -Prop "target=%CONFIGURATION%"
+
+after_test:
+  - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory tools
+  - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
+  - nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
+  - ps: >-
+      .\tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]* -[*.Tests]*" -target:"tools\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe" -targetargs:"/domain:single tests\FakerDotNet.Tests\bin\$env:CONFIGURATION\FakerDotNet.Tests.dll" -output:opencoverCoverage.xml
+
+      $coveralls = (Resolve-Path "tools/coveralls.net.*/tools/csmacnz.coveralls.exe").ToString()
+
+      & $coveralls --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --useRelativePaths --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
+
+      artifacts:
+  - path: '*.nupkg'
+    name: NuGet
+
+deploy:
+  - provider: Environment
+    name: PreRelease NuGet Feed
+    on:
+      branch: master
+  - provider: Environment
+    name: Public NuGet Feed
+    on:
+      appveyor_repo_tag: true

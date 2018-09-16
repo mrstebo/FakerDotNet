@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerDotNet.Tests", "tests\FakerDotNet.Tests\FakerDotNet.Tests.csproj", "{67A603D4-7264-4984-858E-DF2401AE1743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerDotNet", "src\FakerDotNet\FakerDotNet.csproj", "{E0ADAC4D-6727-4105-BB70-23F28926E89B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{79411E0D-34BD-41BC-A35C-ADF5481AF29C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0505914B-4FDD-4F83-AD5C-A609344917C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67A603D4-7264-4984-858E-DF2401AE1743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A603D4-7264-4984-858E-DF2401AE1743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A603D4-7264-4984-858E-DF2401AE1743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A603D4-7264-4984-858E-DF2401AE1743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0ADAC4D-6727-4105-BB70-23F28926E89B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0ADAC4D-6727-4105-BB70-23F28926E89B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0ADAC4D-6727-4105-BB70-23F28926E89B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0ADAC4D-6727-4105-BB70-23F28926E89B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67A603D4-7264-4984-858E-DF2401AE1743} = {0505914B-4FDD-4F83-AD5C-A609344917C7}
+		{E0ADAC4D-6727-4105-BB70-23F28926E89B} = {79411E0D-34BD-41BC-A35C-ADF5481AF29C}
+	EndGlobalSection
+EndGlobal

@@ -1,3 +1,4 @@
+using System;
 using FakeItEasy;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
@@ -30,11 +31,33 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void F_with_not_found_faker_does_not_convert_it()
+        public void F_handles_duplicate_placeholders()
+        {
+            const string format = "{Name.FirstName} {Name.FirstName}";
+
+            A.CallTo(() => _fakerContainer.Name.FirstName()).ReturnsNextFromSequence("Test1", "Test2");
+
+            Assert.AreEqual("Test1 Test2", _fakeFaker.F(format));
+        }
+
+        [Test]
+        public void F_with_invalid_faker_throws_FormatException()
         {
             const string format = "{Unknown.Test}";
-            
-            Assert.AreEqual(format, _fakeFaker.F(format));
+
+            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
+
+            Assert.AreEqual("Invalid module: Unknown", ex.Message);
+        }
+
+        [Test]
+        public void F_with_invalid_method_throws_FormatException()
+        {
+            const string format = "{Name.BadMethod}";
+
+            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
+
+            Assert.AreEqual("Invalid method: Name.BadMethod", ex.Message);
         }
     }
 }

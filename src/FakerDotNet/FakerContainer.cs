@@ -7,6 +7,7 @@ namespace FakerDotNet
         IAppFaker App { get; }
         IFakeFaker Fake { get; }
         INameFaker Name { get; }
+        INumberFaker Number { get; }
         IRandomFaker Random { get; }
     }
 
@@ -15,6 +16,7 @@ namespace FakerDotNet
         public IAppFaker App { get; }
         public IFakeFaker Fake { get; }
         public INameFaker Name { get; }
+        public INumberFaker Number { get; }
         public IRandomFaker Random { get; }
 
         public FakerContainer()
@@ -22,6 +24,7 @@ namespace FakerDotNet
             App = new AppFaker(this);
             Fake = new FakeFaker(this);
             Name = new NameFaker(this);
+            Number = new NumberFaker();
             Random = new RandomFaker();
         }
     }

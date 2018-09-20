@@ -14,3 +14,4 @@ Faker.Name.Prefix()           //=> "Mr."
 Faker.Name.Suffix()           //=> "IV"
 
 Faker.Name.Title()            //=> "Legacy Creative Director"
+```

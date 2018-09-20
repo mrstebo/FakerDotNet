@@ -20,6 +20,8 @@ namespace FakerDotNet.Fakers
 
         public string F(string format)
         {
+            if (string.IsNullOrEmpty(format)) throw new FormatException("A string must be specified");
+            
             var result = format;
             Match match;
             while ((match = Regex.Match(result, @"\{(\w+).(\w+)\}")).Success)

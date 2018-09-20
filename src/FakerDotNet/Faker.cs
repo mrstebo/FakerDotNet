@@ -6,6 +6,7 @@ namespace FakerDotNet
     {
         private static readonly IFakerContainer Container = new FakerContainer();
 
+        public static IAppFaker App { get; } = Container.App;
         public static INameFaker Name { get; } = Container.Name;
         public static IRandomFaker Random { get; } = Container.Random;
     }

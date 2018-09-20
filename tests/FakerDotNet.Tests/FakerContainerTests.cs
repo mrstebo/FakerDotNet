@@ -16,6 +16,12 @@ namespace FakerDotNet.Tests
         private IFakerContainer _fakerContainer;
 
         [Test]
+        public void App_returns_IAppFaker()
+        {
+            Assert.IsInstanceOf<IAppFaker>(_fakerContainer.App);
+        }
+
+        [Test]
         public void Name_returns_INameFaker()
         {
             Assert.IsInstanceOf<INameFaker>(_fakerContainer.Name);

@@ -8,6 +8,12 @@ namespace FakerDotNet.Tests
     public class FakerTests
     {
         [Test]
+        public void App_returns_IAppFaker()
+        {
+            Assert.IsInstanceOf<IAppFaker>(Faker.App);
+        }
+
+        [Test]
         public void Name_returns_INameFaker()
         {
             Assert.IsInstanceOf<INameFaker>(Faker.Name);

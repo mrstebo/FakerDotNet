@@ -10,11 +10,11 @@ namespace FakerDotNet.Fakers
         string Version();
         string Author();
     }
-    
+
     internal class AppFaker : IAppFaker
     {
         private static readonly AppData Data = new AppData();
-        
+
         private readonly IFakerContainer _fakerContainer;
 
         public AppFaker(IFakerContainer fakerContainer)

@@ -12,7 +12,7 @@ namespace FakerDotNet.Tests.Fakers
     public class AppFakerTests
     {
         private static readonly AppData Data = new AppData();
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -28,7 +28,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Names)))
                 .Returns("My App");
-            
+
             Assert.AreEqual("My App", _appFaker.Name());
         }
 
@@ -36,12 +36,12 @@ namespace FakerDotNet.Tests.Fakers
         public void Version_returns_a_formatted_version()
         {
             var numbers = Enumerable.Range(0, 9);
-            
+
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Versions)))
                 .Returns("0.#.#");
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<int>>.That.IsSameSequenceAs(numbers)))
                 .ReturnsNextFromSequence(1, 2);
-            
+
             Assert.AreEqual("0.1.2", _appFaker.Version());
         }
 
@@ -50,7 +50,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Name.FirstName()).Returns("John");
             A.CallTo(() => _fakerContainer.Name.LastName()).Returns("Smith");
-            
+
             Assert.AreEqual("John Smith", _appFaker.Author());
         }
     }

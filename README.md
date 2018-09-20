@@ -10,6 +10,7 @@ Contents
 
 - [Installing](#installing)
 - [Usage](#usage)
+  - [Faker.Fake](doc/fake.md)
   - [Faker.Name](doc/name.md)
   - [Faker.Random](doc/random.md)
 

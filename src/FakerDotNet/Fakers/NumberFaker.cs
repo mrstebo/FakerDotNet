@@ -7,6 +7,7 @@ namespace FakerDotNet.Fakers
     public interface INumberFaker
     {
         long Number(int digits = 10);
+        decimal Decimal(int leftDigits = 5, int rightDigits = 2);
     }
 
     internal class NumberFaker : INumberFaker
@@ -31,6 +32,11 @@ namespace FakerDotNet.Fakers
             sb.Append(string.Join("", Enumerable.Range(1, digits - 1).Select(_ => _randomWrapper.Next(0, 9))));
 
             return long.Parse(sb.ToString());
+        }
+
+        public decimal Decimal(int leftDigits = 5, int rightDigits = 2)
+        {
+            return decimal.Parse($"{Number(leftDigits)}.{Number(rightDigits)}");
         }
     }
 }

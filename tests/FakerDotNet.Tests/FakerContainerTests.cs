@@ -32,7 +32,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<INameFaker>(_fakerContainer.Name);
         }
-        
+
         [Test]
         public void Number_returns_INumberFaker()
         {

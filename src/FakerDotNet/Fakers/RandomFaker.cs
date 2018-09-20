@@ -12,7 +12,7 @@ namespace FakerDotNet.Fakers
     internal class RandomFaker : IRandomFaker
     {
         private static readonly Random RNG = new Random();
-        
+
         public T Element<T>(IEnumerable<T> collection)
         {
             // ReSharper disable PossibleMultipleEnumeration

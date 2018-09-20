@@ -22,7 +22,7 @@ namespace FakerDotNet.Fakers
         {
             var result = format;
             Match match;
-            while ((match = Regex.Match(result, @"\{(\w+.\w+)\}")).Success)
+            while ((match = Regex.Match(result, @"\{(\w+).(\w+)\}")).Success)
             {
                 var matchData = ExtractMatchDataFrom(match);
                 var faker = GetFaker(matchData.faker);
@@ -52,9 +52,8 @@ namespace FakerDotNet.Fakers
 
         private static (string faker, string method) ExtractMatchDataFrom(Match match)
         {
-            var classAndMethod = match.Groups[1].Value;
-            var className = classAndMethod.Split('.')[0];
-            var methodName = classAndMethod.Split('.')[1];
+            var className = match.Groups[1].Value;
+            var methodName = match.Groups[2].Value;
 
             return (className, methodName);
         }

@@ -8,7 +8,7 @@ namespace FakerDotNet.Fakers
     {
         string F(string format);
     }
-    
+
     internal class FakeFaker : IFakeFaker
     {
         private readonly IFakerContainer _fakerContainer;

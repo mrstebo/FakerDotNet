@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Text;
 using FakerDotNet.Wrappers;
@@ -8,6 +9,7 @@ namespace FakerDotNet.Fakers
     {
         long Number(int digits = 10);
         decimal Decimal(int leftDigits = 5, int rightDigits = 2);
+        double Normal(int mean = 1, int standardDeviation = 1);
     }
 
     internal class NumberFaker : INumberFaker
@@ -37,6 +39,14 @@ namespace FakerDotNet.Fakers
         public decimal Decimal(int leftDigits = 5, int rightDigits = 2)
         {
             return decimal.Parse($"{Number(leftDigits)}.{Number(rightDigits)}");
+        }
+
+        public double Normal(int mean = 1, int standardDeviation = 1)
+        {
+            var theta = 2 * Math.PI * _randomWrapper.NextDouble();
+            var rho = Math.Sqrt(-2 * Math.Log(1 - +_randomWrapper.NextDouble()));
+            var scale = standardDeviation * rho;
+            return mean + scale * Math.Cos(theta);
         }
     }
 }

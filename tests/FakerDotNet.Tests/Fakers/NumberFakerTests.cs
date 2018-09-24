@@ -47,6 +47,17 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        [TestCase(new[] {0.2D, 0.2D}, 1.206437947373626D)]
+        [TestCase(new[] {0.4D, 0.2D}, 0.45953843720808552D)]
+        [TestCase(new[] {0.5321D, 0.9432D}, -1.3465363119945137D)]
+        public void Normal_returns_a_double(double[] randomDoubles, double expected)
+        {
+            A.CallTo(() => _randomWrapper.NextDouble()).ReturnsNextFromSequence(randomDoubles);
+
+            Assert.AreEqual(expected, _numberFaker.Normal());
+        }
+
+        [Test]
         public void Number_returns_a_number_with_ten_digits_by_default()
         {
             A.CallTo(() => _randomWrapper.Next(1, 9)).Returns(1);

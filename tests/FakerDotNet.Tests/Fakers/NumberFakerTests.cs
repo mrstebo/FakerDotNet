@@ -1,5 +1,6 @@
+using System;
+using System.Linq;
 using System.Text.RegularExpressions;
-using FakeItEasy;
 using FakerDotNet.Fakers;
 using FakerDotNet.Tests.Helpers;
 using FakerDotNet.Wrappers;
@@ -14,7 +15,7 @@ namespace FakerDotNet.Tests.Fakers
         [SetUp]
         public void SetUp()
         {
-            _randomWrapper = A.Fake<RandomWrapper>(options => options.Implements<IRandomWrapper>().CallsBaseMethods());
+            _randomWrapper = new RandomWrapper();
             _numberFaker = new NumberFaker(_randomWrapper);
         }
 
@@ -36,28 +37,34 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Decimal_returns_number_with_five_left_digits_and_two_right_digits_by_default()
         {
-            A.CallTo(() => _randomWrapper.Next(1, 9)).Returns(1);
-            A.CallTo(() => _randomWrapper.Next(0, 9)).Returns(9);
+            100.Times(() =>
+            {
+                var result = _numberFaker.Decimal();
 
-            Assert.AreEqual(19999.19, _numberFaker.Decimal());
+                Assert.That(Regex.IsMatch(result, @"^\d{5}\.\d{2}$"));
+            });
         }
 
         [Test]
         public void Decimal_with_left_digits_returns_decimal_with_specified_number_of_left_digits()
         {
-            A.CallTo(() => _randomWrapper.Next(1, 9)).Returns(1);
-            A.CallTo(() => _randomWrapper.Next(0, 9)).Returns(9);
+            100.Times(() =>
+            {
+                var result = _numberFaker.Decimal(3);
 
-            Assert.AreEqual(199.19, _numberFaker.Decimal(3));
+                Assert.That(Regex.IsMatch(result, @"^\d{3}\.\d{2}$"));
+            });
         }
 
         [Test]
         public void Decimal_with_right_digits_returns_decimal_with_specified_number_of_right_digits()
         {
-            A.CallTo(() => _randomWrapper.Next(1, 9)).Returns(1);
-            A.CallTo(() => _randomWrapper.Next(0, 9)).Returns(9);
+            100.Times(() =>
+            {
+                var result = _numberFaker.Decimal(5, 6);
 
-            Assert.AreEqual(19999.199999, _numberFaker.Decimal(5, 6));
+                Assert.That(Regex.IsMatch(result, @"^\d{5}\.\d{6}$"));
+            });
         }
 
         [Test]
@@ -67,8 +74,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Digit();
 
-                Assert.GreaterOrEqual(result, 0);
-                Assert.LessOrEqual(result, 9);
+                Assert.That(Regex.IsMatch(result, @"^[0-9]$"));
             });
         }
 
@@ -99,47 +105,73 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        [TestCase(new[] {0.2D, 0.2D}, 1.206437947373626D)]
-        [TestCase(new[] {0.4D, 0.2D}, 0.45953843720808552D)]
-        [TestCase(new[] {0.5321D, 0.9432D}, -1.3465363119945137D)]
-        public void Normal_returns_a_double(double[] randomDoubles, double expected)
+        public void Negative_returns_negative_number()
         {
-            A.CallTo(() => _randomWrapper.NextDouble()).ReturnsNextFromSequence(randomDoubles);
+            100.Times(() =>
+            {
+                var result = _numberFaker.Negative();
 
-            Assert.AreEqual(expected, _numberFaker.Normal());
+                Assert.GreaterOrEqual(result, -5000D);
+                Assert.LessOrEqual(result, -1D);
+            });
+        }
+
+        [Test]
+        public void NonZeroDigit_returns_a_non_zero_digit()
+        {
+            100.Times(() =>
+            {
+                var result = _numberFaker.Digit();
+
+                Assert.That(Regex.IsMatch(result, @"^[0-9]$"));
+            });
+        }
+
+        [Test]
+        public void Normal_returns_a_double_within_a_delta_range()
+        {
+            const int iterations = 10000;
+            var values = iterations.Times(() => _numberFaker.Normal(150, 100)).ToArray();
+            var mean = values.Sum() / iterations;
+            var variance = values.Aggregate(0D, (r, v) => r + Math.Pow(v - mean, 2) / (iterations - 1));
+            var standardDeviation = Math.Sqrt(variance);
+
+            Assert.AreEqual(150, mean, 5.0);
+            Assert.AreEqual(100, standardDeviation, 3.0);
         }
 
         [Test]
         public void Number_returns_a_number_with_ten_digits_by_default()
         {
-            A.CallTo(() => _randomWrapper.Next(1, 9)).Returns(1);
-            A.CallTo(() => _randomWrapper.Next(0, 9)).Returns(0);
+            100.Times(() =>
+            {
+                var result = _numberFaker.Number();
 
-            Assert.AreEqual(1000000000, _numberFaker.Number());
+                Assert.That(Regex.IsMatch(result, @"^[1-9]\d{9}$"), $"Result did not match: {result}");
+            });
         }
 
         [Test]
-        [TestCase(1, 0)]
-        [TestCase(2, 10)]
-        [TestCase(5, 10000)]
-        [TestCase(8, 10000000)]
-        public void Number_with_digits_returns_number_with_specified_number_of_digits(int digits, long expected)
-        {
-            A.CallTo(() => _randomWrapper.Next(1, 9)).Returns(1);
-            A.CallTo(() => _randomWrapper.Next(0, 9)).Returns(0);
-
-            Assert.AreEqual(expected, _numberFaker.Number(digits));
-        }
-
-        [Test]
-        public void Within_returns_number_within_range()
+        [TestCase(5)]
+        [TestCase(20)]
+        public void Number_with_multiple_digits_never_starts_with_zero(int digit)
         {
             100.Times(() =>
             {
-                var result = _numberFaker.Within(new Range<double>(-100, 100));
+                var result = _numberFaker.Number(digit);
 
-                Assert.GreaterOrEqual(result, -100);
-                Assert.LessOrEqual(result, 100);
+                Assert.That(Regex.IsMatch(result, $@"^[1-9]\d{{{digit - 1}}}$"), $"Result did not match: {result}");
+            });
+        }
+
+        [Test]
+        public void Number_with_single_digit_can_be_from_zero_to_nine()
+        {
+            100.Times(() =>
+            {
+                var result = _numberFaker.Number(1);
+
+                Assert.That(Regex.IsMatch(result, @"^[0-9]$"));
             });
         }
 
@@ -152,6 +184,18 @@ namespace FakerDotNet.Tests.Fakers
 
                 Assert.GreaterOrEqual(result, 1D);
                 Assert.LessOrEqual(result, 5000D);
+            });
+        }
+
+        [Test]
+        public void Within_returns_number_within_range()
+        {
+            100.Times(() =>
+            {
+                var result = _numberFaker.Within(new Range<double>(-100, 100));
+
+                Assert.GreaterOrEqual(result, -100);
+                Assert.LessOrEqual(result, 100);
             });
         }
     }

@@ -155,13 +155,13 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         [TestCase(5)]
         [TestCase(20)]
-        public void Number_with_multiple_digits_never_starts_with_zero(int digit)
+        public void Number_with_multiple_digits_never_starts_with_zero(int digits)
         {
             100.Times(() =>
             {
-                var result = _numberFaker.Number(digit);
+                var result = _numberFaker.Number(digits);
 
-                Assert.That(Regex.IsMatch(result, $@"^[1-9]\d{{{digit - 1}}}$"), $"Result did not match: {result}");
+                Assert.That(Regex.IsMatch(result, $@"^[1-9]\d{{{digits - 1}}}$"), $"Result did not match: {result}");
             });
         }
 

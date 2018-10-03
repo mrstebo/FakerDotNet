@@ -121,9 +121,10 @@ namespace FakerDotNet.Tests.Fakers
         {
             100.Times(() =>
             {
-                var result = _numberFaker.Digit();
+                var result = _numberFaker.NonZeroDigit();
 
-                Assert.That(Regex.IsMatch(result, @"^[0-9]$"));
+                Assert.AreNotEqual("0", result);
+                Assert.That(Regex.IsMatch(result, @"^[1-9]$"));
             });
         }
 

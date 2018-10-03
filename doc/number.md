@@ -13,8 +13,6 @@ Faker.Number.Hexadecimal(3) //=> "e74"
 
 Faker.Number.Between(1, 10) //=> 7
 
-Faker.Number.BetweenF(1.00, 10.00) //=> 7.662513545699108
-
 Faker.Number.Positive() //=> 235.59238499107653
 
 Faker.Number.Negative() //=> -4480.042585669558

@@ -41,7 +41,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Decimal();
 
-                Assert.That(Regex.IsMatch(result, @"^\d{5}\.\d{2}$"));
+                Assert.That(Regex.IsMatch(result, @"^\d{5}\.\d{2}$"), $"Result did not match: {result}");
             });
         }
 
@@ -52,7 +52,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Decimal(3);
 
-                Assert.That(Regex.IsMatch(result, @"^\d{3}\.\d{2}$"));
+                Assert.That(Regex.IsMatch(result, @"^\d{3}\.\d{2}$"), $"Result did not match: {result}");
             });
         }
 
@@ -63,7 +63,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Decimal(5, 6);
 
-                Assert.That(Regex.IsMatch(result, @"^\d{5}\.\d{6}$"));
+                Assert.That(Regex.IsMatch(result, @"^\d{5}\.\d{6}$"), $"Result did not match: {result}");
             });
         }
 
@@ -74,7 +74,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Digit();
 
-                Assert.That(Regex.IsMatch(result, @"^[0-9]$"));
+                Assert.That(Regex.IsMatch(result, @"^[0-9]$"), $"Result did not match: {result}");
             });
         }
 
@@ -85,7 +85,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Hexadecimal();
 
-                Assert.That(Regex.IsMatch(result, @"^[a-f0-9]{6}$"));
+                Assert.That(Regex.IsMatch(result, @"^[a-f0-9]{6}$"), $"Result did not match: {result}");
             });
         }
 
@@ -100,7 +100,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Hexadecimal(digits);
 
-                Assert.That(Regex.IsMatch(result, $@"^[a-f0-9]{{{digits}}}$"));
+                Assert.That(Regex.IsMatch(result, $@"^[a-f0-9]{{{digits}}}$"), $"Result did not match: {result}");
             });
         }
 
@@ -124,7 +124,7 @@ namespace FakerDotNet.Tests.Fakers
                 var result = _numberFaker.NonZeroDigit();
 
                 Assert.AreNotEqual("0", result);
-                Assert.That(Regex.IsMatch(result, @"^[1-9]$"));
+                Assert.That(Regex.IsMatch(result, @"^[1-9]$"), $"Result did not match: {result}");
             });
         }
 
@@ -172,7 +172,7 @@ namespace FakerDotNet.Tests.Fakers
             {
                 var result = _numberFaker.Number(1);
 
-                Assert.That(Regex.IsMatch(result, @"^[0-9]$"));
+                Assert.That(Regex.IsMatch(result, @"^[0-9]$"), $"Result did not match: {result}");
             });
         }
 

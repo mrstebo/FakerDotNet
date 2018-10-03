@@ -8,6 +8,7 @@ namespace FakerDotNet.Fakers
     public interface INumberFaker
     {
         string Number(int digits = 10);
+        string LeadingZeroNumber(int digits = 10);
         string Decimal(int leftDigits = 5, int rightDigits = 2);
         double Normal(int mean = 1, int standardDeviation = 1);
         string Hexadecimal(int digits = 6);
@@ -37,10 +38,19 @@ namespace FakerDotNet.Fakers
         {
             var sb = new StringBuilder();
 
-            sb.Append(_randomWrapper.Next(digits > 1 ? 1 : 0, 9));
-            sb.Append(string.Join("", Enumerable.Range(1, digits - 1).Select(_ => _randomWrapper.Next(0, 9))));
+            if (digits > 1)
+            {
+                sb.Append(NonZeroDigit());
+                digits--;
+            }
+            sb.Append(LeadingZeroNumber(digits));
 
             return sb.ToString();
+        }
+
+        public string LeadingZeroNumber(int digits = 10)
+        {
+            return string.Join("", Enumerable.Range(0, digits).Select(_ => _randomWrapper.Next(0, 9)));
         }
 
         public string Decimal(int leftDigits = 5, int rightDigits = 2)

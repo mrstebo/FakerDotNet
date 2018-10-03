@@ -3,6 +3,8 @@
 ```js
 Faker.Number.Number(10) //=> "1968353479"
 
+Faker.Number.LeadingZeroNumber(10) //=> "0669336915"
+
 Faker.Number.Decimal(2) //=> "11.88"
 
 Faker.Number.Decimal(2, 3) //=> "18.843"

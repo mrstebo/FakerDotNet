@@ -105,6 +105,42 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        public void LeadingZeroNumber_returns_number_with_ten_digits_by_default()
+        {
+            var zeros = 0;
+            
+            100.Times(() =>
+            {
+                var result = _numberFaker.LeadingZeroNumber();
+
+                if (result.StartsWith("0")) zeros++;
+                
+                Assert.That(Regex.IsMatch(result, @"^\d{10}$"), $"Result did not match: {result}");
+            });
+            
+            Assert.Greater(zeros, 0);
+        }
+        
+        [Test]
+        [TestCase(5)]
+        [TestCase(20)]
+        public void LeadingZeroNumber_returns_number_with_specified_number_of_digits(int digits)
+        {
+            var zeros = 0;
+            
+            100.Times(() =>
+            {
+                var result = _numberFaker.LeadingZeroNumber(digits);
+                
+                if (result.StartsWith("0")) zeros++;
+
+                Assert.That(Regex.IsMatch(result, $@"^\d{{{digits}}}$"), $"Result did not match: {result}");
+            });
+
+            Assert.Greater(zeros, 0);
+        }
+
+        [Test]
         public void Negative_returns_negative_number()
         {
             100.Times(() =>

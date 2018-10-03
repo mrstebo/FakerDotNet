@@ -20,17 +20,6 @@ namespace FakerDotNet.Tests.Fakers
         private IFakeFaker _fakeFaker;
 
         [Test]
-        public void F_returns_filled_in_string()
-        {
-            const string format = "{Name.FirstName} {Name.LastName}";
-            
-            A.CallTo(() => _fakerContainer.Name.FirstName()).Returns("John");
-            A.CallTo(() => _fakerContainer.Name.LastName()).Returns("Smith");
-            
-            Assert.AreEqual("John Smith", _fakeFaker.F(format));
-        }
-
-        [Test]
         public void F_handles_duplicate_placeholders()
         {
             const string format = "{Name.FirstName} {Name.FirstName}";
@@ -41,20 +30,23 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void F_with_null_throws_FormatException()
+        public void F_returns_filled_in_string()
         {
-            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(null));
-            
-            Assert.AreEqual("A string must be specified", ex.Message);
+            const string format = "{Name.FirstName} {Name.LastName}";
+
+            A.CallTo(() => _fakerContainer.Name.FirstName()).Returns("John");
+            A.CallTo(() => _fakerContainer.Name.LastName()).Returns("Smith");
+
+            Assert.AreEqual("John Smith", _fakeFaker.F(format));
         }
 
         [Test]
         public void F_with_empty_string_throws_FormatException()
         {
             const string format = "";
-            
+
             var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
-            
+
             Assert.AreEqual("A string must be specified", ex.Message);
         }
 
@@ -76,6 +68,14 @@ namespace FakerDotNet.Tests.Fakers
             var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
 
             Assert.AreEqual("Invalid method: Name.BadMethod", ex.Message);
+        }
+
+        [Test]
+        public void F_with_null_throws_FormatException()
+        {
+            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(null));
+
+            Assert.AreEqual("A string must be specified", ex.Message);
         }
     }
 }

@@ -13,6 +13,7 @@ Contents
   - [Faker.App](doc/app.md)
   - [Faker.Fake](doc/fake.md)
   - [Faker.Name](doc/name.md)
+  - [Faker.Number](doc/number.md)
   - [Faker.Random](doc/random.md)
 
 ## Installing

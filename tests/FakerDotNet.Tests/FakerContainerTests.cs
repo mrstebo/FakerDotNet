@@ -34,6 +34,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Number_returns_INumberFaker()
+        {
+            Assert.IsInstanceOf<INumberFaker>(_fakerContainer.Number);
+        }
+
+        [Test]
         public void Random_returns_IRandomFaker()
         {
             Assert.IsInstanceOf<IRandomFaker>(_fakerContainer.Random);

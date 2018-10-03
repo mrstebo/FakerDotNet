@@ -16,14 +16,14 @@ namespace FakerDotNet.Fakers
     internal class NameFaker : INameFaker
     {
         private static readonly NameData Data = new NameData();
-        
+
         private readonly IFakerContainer _fakerContainer;
 
         public NameFaker(IFakerContainer fakerContainer)
         {
             _fakerContainer = fakerContainer;
         }
-        
+
         public string Name()
         {
             return $"{FirstName()} {LastName()}";

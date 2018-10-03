@@ -9,6 +9,7 @@ namespace FakerDotNet
         public static IAppFaker App { get; } = Container.App;
         public static IFakeFaker Fake { get; } = Container.Fake;
         public static INameFaker Name { get; } = Container.Name;
+        public static INumberFaker Number { get; } = Container.Number;
         public static IRandomFaker Random { get; } = Container.Random;
     }
 }

@@ -11,6 +11,7 @@ Contents
 - [Installing](#installing)
 - [Usage](#usage)
   - [Faker.App](doc/app.md)
+  - [Faker.Book](doc/book.md)
   - [Faker.Fake](doc/fake.md)
   - [Faker.Name](doc/name.md)
   - [Faker.Number](doc/number.md)

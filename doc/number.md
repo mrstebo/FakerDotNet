@@ -1,6 +1,6 @@
 # Faker.Number
 
-```js
+```cs
 Faker.Number.Number(10) //=> "1968353479"
 
 Faker.Number.LeadingZeroNumber(10) //=> "0669336915"

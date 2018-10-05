@@ -1,4 +1,4 @@
-# Faker::Boolean
+# Faker.Boolean
 
 Faker.Boolean.Boolean() //=> true
 

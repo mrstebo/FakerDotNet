@@ -32,6 +32,12 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IBooleanFaker>(_fakerContainer.Boolean);
         }
+        
+        [Test]
+        public void Date_returns_IDateFaker()
+        {
+            Assert.IsInstanceOf<IDateFaker>(_fakerContainer.Date);
+        }
 
         [Test]
         public void Fake_returns_IFakeFaker()

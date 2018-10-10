@@ -1,4 +1,4 @@
-# Faker::Book
+# Faker.Book
 
 ```cs
 Faker.Book.Title() //=> "The Odd Sister"

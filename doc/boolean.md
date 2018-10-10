@@ -1,4 +1,4 @@
-# Faker::Boolean
+# Faker.Boolean
 
 ```cs
 Faker.Boolean.Boolean() //=> true

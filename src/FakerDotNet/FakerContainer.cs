@@ -7,6 +7,7 @@ namespace FakerDotNet
         IAppFaker App { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
+        IDateFaker Date { get; }
         IFakeFaker Fake { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
@@ -20,6 +21,7 @@ namespace FakerDotNet
             App = new AppFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
+            Date = new DateFaker();
             Fake = new FakeFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
@@ -29,6 +31,7 @@ namespace FakerDotNet
         public IAppFaker App { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }
+        public IDateFaker Date { get; }
         public IFakeFaker Fake { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }

@@ -45,16 +45,17 @@ namespace FakerDotNet.Fakers
 
         public DateTime BetweenExcept(DateTime from, DateTime to, DateTime except)
         {
-            for (var i = 0; i < 100; i++)
+            if (from.Equals(to) && to.Equals(except))
+                throw new ArgumentException("From date, to date and excepted date must not be the same");
+            
+            DateTime result;
+            
+            do
             {
-                var result = from.AddDays(_randomWrapper.Next(0, to.Subtract(from).Days));
+                result = from.Date.AddDays(_randomWrapper.Next(0, to.Subtract(from).Days));
+            } while (result.Equals(except.Date));
 
-                if (result.Equals(except)) continue;
-
-                return result;
-            }
-
-            throw new ArgumentException("Failed to get date", nameof(except));
+            return result;
         }
 
         public DateTime Forward(int days = 365)

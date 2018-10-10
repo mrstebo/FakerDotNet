@@ -111,7 +111,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void BetweenExcept_throws_ArgumentException_if_it_cannot_return_a_date()
+        public void BetweenExcept_throws_ArgumentException_if_from_to_and_except_are_equal()
         {
             var from = new DateTime(2017, 1, 1);
             var to = new DateTime(2017, 1, 1);
@@ -119,7 +119,7 @@ namespace FakerDotNet.Tests.Fakers
 
             var ex = Assert.Throws<ArgumentException>(() => _dateFaker.BetweenExcept(from, to, except));
 
-            Assert.AreEqual("Failed to get date\nParameter name: except", ex.Message);
+            Assert.AreEqual("From date, to date and excepted date must not be the same", ex.Message);
         }
 
         [Test]

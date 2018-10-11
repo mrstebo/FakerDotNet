@@ -6,8 +6,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
 [![Coverage Status](https://coveralls.io/repos/github/mrstebo/FakerDotNet/badge.svg?branch=master)](https://coveralls.io/github/mrstebo/FakerDotNet?branch=master)
 [![NuGet Version](https://img.shields.io/nuget/v/FakerDotNet.svg)](https://www.nuget.org/packages/FakerDotNet/)
 
-Contents
---------
+## Contents
 
 - [Installing](#installing)
 - [Usage](#usage)
@@ -27,6 +26,7 @@ Contents
   - [Faker.Number](doc/number.md)
   - [Faker.Pokemon](doc/pokemon.md)
   - [Faker.Random](doc/random.md)
+  - [Faker.RickAndMorty](doc/rick_and_morty.md)
   - [Faker.RockBand](doc/rockband.md)
   - [Faker.Superhero](doc/superhero.md)
   - [Faker.Team](doc/team.md)

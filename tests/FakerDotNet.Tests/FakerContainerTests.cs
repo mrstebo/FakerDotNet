@@ -62,5 +62,11 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IRandomFaker>(_fakerContainer.Random);
         }
+
+        [Test]
+        public void Time_returns_ITimeFaker()
+        {
+            Assert.IsInstanceOf<ITimeFaker>(_fakerContainer.Time);
+        }
     }
 }

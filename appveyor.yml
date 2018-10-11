@@ -9,10 +9,6 @@ nuget:
   project_feed: false
   disable_publish_on_pr: true
 
-environment:
-  COVERALLS_REPO_TOKEN:
-    secure: vETv5DkQGqHNKitDtA5zhh5bwTDxLv7u//a1sA83zP3gU1xQsu7MAxpNIDMQPQ4k
-
 cache:
   - packages -> **\packages.config
 

@@ -68,5 +68,11 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<ITimeFaker>(_fakerContainer.Time);
         }
+
+        [Test]
+        public void Zelda_returns_IZeldaFaker()
+        {
+            Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
+        }
     }
 }

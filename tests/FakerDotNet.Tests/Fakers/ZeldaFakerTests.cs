@@ -24,41 +24,37 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Game_returns_a_game()
         {
-            string gameTitle = "Ocarina of Time";
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Games)))
-                .Returns(gameTitle);
+                .Returns("Ocarina of Time");
 
-            Assert.AreEqual(gameTitle, _zeldaFaker.Game());
+            Assert.AreEqual("Ocarina of Time", _zeldaFaker.Game());
         }
 
         [Test]
         public void Character_returns_a_character()
         {
-            string character = "Guru-Guru";
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
-                .Returns(character);
+                .Returns("Guru-Guru");
 
-            Assert.AreEqual(character, _zeldaFaker.Character());
+            Assert.AreEqual("Guru-Guru", _zeldaFaker.Character());
         }
 
         [Test]
         public void Location_returns_a_location()
         {
-            string location = "Tarrey Town";
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Locations)))
-                .Returns(location);
+                .Returns("Tarrey Town");
 
-            Assert.AreEqual(location, _zeldaFaker.Location());
+            Assert.AreEqual("Tarrey Town", _zeldaFaker.Location());
         }
 
         [Test]
         public void Item_returns_an_item()
         {
-            string item = "Master Sword";
             A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Items)))
-                .Returns(item);
+                .Returns("Master Sword");
 
-            Assert.AreEqual(item, _zeldaFaker.Item());
+            Assert.AreEqual("Master Sword", _zeldaFaker.Item());
         }
     }
 }

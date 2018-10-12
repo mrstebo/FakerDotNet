@@ -1,7 +1,4 @@
 ﻿using FakerDotNet.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FakerDotNet.Fakers
 {
@@ -18,14 +15,29 @@ namespace FakerDotNet.Fakers
         private static readonly ZeldaData Data = new ZeldaData();
         private readonly IFakerContainer _fakerContainer;
 
-        public ZeldaFaker(IFakerContainer faker) => this._fakerContainer = faker;
+        public ZeldaFaker(IFakerContainer faker)
+        {
+            this._fakerContainer = faker;
+        }
 
-        public string Character() => _fakerContainer.Random.Element(Data.Characters);
+        public string Character()
+        {
+            return _fakerContainer.Random.Element(Data.Characters);
+        }
 
-        public string Game() => _fakerContainer.Random.Element(Data.Games);
+        public string Game()
+        {
+            return _fakerContainer.Random.Element(Data.Games);
+        }
 
-        public string Item() => _fakerContainer.Random.Element(Data.Items);
+        public string Item()
+        {
+            return _fakerContainer.Random.Element(Data.Items);
+        }
 
-        public string Location() => _fakerContainer.Random.Element(Data.Locations);
+        public string Location()
+        {
+            return _fakerContainer.Random.Element(Data.Locations);
+        }
     }
 }

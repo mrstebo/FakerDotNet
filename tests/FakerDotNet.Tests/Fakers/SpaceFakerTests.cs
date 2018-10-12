@@ -48,6 +48,16 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        public void Galaxy_returns_a_galaxy()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Galaxies)))
+                .Returns(Data.Galaxies.First());
+
+            Assert.AreEqual(Data.Galaxies.First(), _spaceFaker.Galaxy());
+        }
+
+        [Test]
         public void Nebula_returns_a_nebula()
         {
             A.CallTo(() => _fakerContainer.Random.Element(

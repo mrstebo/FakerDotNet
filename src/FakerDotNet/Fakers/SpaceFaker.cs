@@ -38,11 +38,6 @@ namespace FakerDotNet.Fakers
             return _fakerContainer.Random.Element(Data.Planets);
         }
 
-        public string Author()
-        {
-            return $"{_fakerContainer.Name.FirstName()} {_fakerContainer.Name.LastName()}";
-        }
-
         public string Moon()
         {
             return _fakerContainer.Random.Element(Data.Moons);

@@ -19,6 +19,7 @@ Contents
   - [Faker.Name](doc/name.md)
   - [Faker.Number](doc/number.md)
   - [Faker.Random](doc/random.md)
+  - [Faker.Space](doc/space.md)
   - [Faker.Time](doc/time.md)
 
 ## Installing

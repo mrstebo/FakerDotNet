@@ -10,16 +10,17 @@ namespace FakerDotNet.Tests.Fakers
     [Parallelizable]
     public class ZeldaFakerTests
     {
-        private IFakerContainer _fakerContainer;
-        private ZeldaFaker _zeldaFaker;
-        private static readonly ZeldaData Data = new ZeldaData();
-
         [SetUp]
         public void SetUp()
         {
             _fakerContainer = A.Fake<IFakerContainer>();
             _zeldaFaker = new ZeldaFaker(_fakerContainer);
         }
+
+        private static readonly ZeldaData Data = new ZeldaData();
+
+        private IFakerContainer _fakerContainer;
+        private ZeldaFaker _zeldaFaker;
 
         [Test]
         public void Game_returns_a_game()

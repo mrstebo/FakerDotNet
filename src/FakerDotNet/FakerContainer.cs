@@ -12,6 +12,7 @@ namespace FakerDotNet
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IRandomFaker Random { get; }
+        ISpaceFaker Space { get; }
         ITimeFaker Time { get; }
     }
 
@@ -28,6 +29,7 @@ namespace FakerDotNet
             Number = new NumberFaker();
             Random = new RandomFaker();
             Time = new TimeFaker();
+            Space = new SpaceFaker();
         }
 
         public IAppFaker App { get; }
@@ -38,6 +40,7 @@ namespace FakerDotNet
         public INameFaker Name { get; }
         public INumberFaker Number { get; }
         public IRandomFaker Random { get; }
+        public ISpaceFaker Space { get; }
         public ITimeFaker Time { get; }
     }
 }

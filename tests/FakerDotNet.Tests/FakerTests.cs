@@ -60,5 +60,11 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<ITimeFaker>(Faker.Time);
         }
+
+        [Test]
+        public void Friends_returns_IFriendsFaker()
+        {
+            Assert.IsInstanceOf<IFriendsFaker>(Faker.Friends);
+        }
     }
 }

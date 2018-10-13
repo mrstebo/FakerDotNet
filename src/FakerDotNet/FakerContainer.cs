@@ -13,6 +13,7 @@ namespace FakerDotNet
         INumberFaker Number { get; }
         IRandomFaker Random { get; }
         ITimeFaker Time { get; }
+        IFriendsFaker Friends { get; }
     }
 
     internal class FakerContainer : IFakerContainer
@@ -28,6 +29,7 @@ namespace FakerDotNet
             Number = new NumberFaker();
             Random = new RandomFaker();
             Time = new TimeFaker();
+            Friends = new FriendsFaker(this);
         }
 
         public IAppFaker App { get; }
@@ -39,5 +41,6 @@ namespace FakerDotNet
         public INumberFaker Number { get; }
         public IRandomFaker Random { get; }
         public ITimeFaker Time { get; }
+        public IFriendsFaker Friends { get; }
     }
 }

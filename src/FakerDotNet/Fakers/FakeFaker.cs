@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -35,6 +36,14 @@ namespace FakerDotNet.Fakers
 
             return result;
         }
+        
+        private static (string faker, string method) ExtractMatchDataFrom(Match match)
+        {
+            var className = match.Groups[1].Value;
+            var methodName = match.Groups[2].Value;
+
+            return (className, methodName);
+        }
 
         private PropertyInfo GetFaker(string name)
         {
@@ -51,15 +60,16 @@ namespace FakerDotNet.Fakers
 
             if (method == null) throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
 
-            return Convert.ToString(method.Invoke(propertyInfo.GetValue(_fakerContainer, null), new object[] { }));
+            var parameters = method.GetParameters().Select(DefaultValue).ToArray();
+
+            return Convert.ToString(method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters));
         }
 
-        private static (string faker, string method) ExtractMatchDataFrom(Match match)
+        private static object DefaultValue(ParameterInfo parameterInfo)
         {
-            var className = match.Groups[1].Value;
-            var methodName = match.Groups[2].Value;
-
-            return (className, methodName);
+            return parameterInfo.ParameterType.IsValueType
+                ? Activator.CreateInstance(parameterInfo.ParameterType)
+                : null;
         }
     }
 }

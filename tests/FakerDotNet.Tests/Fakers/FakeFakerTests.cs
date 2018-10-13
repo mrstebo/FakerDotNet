@@ -41,6 +41,17 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        public void F_is_not_case_sensitive()
+        {
+            const string format = "{Name.firstName} {name.lastname}";
+
+            A.CallTo(() => _fakerContainer.Name.FirstName()).Returns("John");
+            A.CallTo(() => _fakerContainer.Name.LastName()).Returns("Smith");
+
+            Assert.AreEqual("John Smith", _fakeFaker.F(format));
+        }
+
+        [Test]
         public void F_with_empty_string_throws_FormatException()
         {
             const string format = "";

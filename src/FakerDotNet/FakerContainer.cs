@@ -14,6 +14,7 @@ namespace FakerDotNet
         IRandomFaker Random { get; }
         ITimeFaker Time { get; }
         IFriendsFaker Friends { get; }
+        IZeldaFaker Zelda { get; }
     }
 
     internal class FakerContainer : IFakerContainer
@@ -30,6 +31,7 @@ namespace FakerDotNet
             Random = new RandomFaker();
             Time = new TimeFaker();
             Friends = new FriendsFaker(this);
+            Zelda = new ZeldaFaker(this);
         }
 
         public IAppFaker App { get; }
@@ -42,5 +44,6 @@ namespace FakerDotNet
         public IRandomFaker Random { get; }
         public ITimeFaker Time { get; }
         public IFriendsFaker Friends { get; }
+        public IZeldaFaker Zelda { get; }
     }
 }

@@ -41,9 +41,9 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Locations)))
-                .Returns("Ross' Second Apartment");
+                .Returns("15 Yemen Road, Yemen");
 
-            Assert.AreEqual("Ross' Second Apartment", _friendsFaker.Location());
+            Assert.AreEqual("15 Yemen Road, Yemen", _friendsFaker.Location());
         }
 
         [Test]
@@ -51,9 +51,9 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Quotes)))
-                .Returns("SEVEN!");
+                .Returns("Forty-two to twenty-one! Like the turkey, Ross is done!");
 
-            Assert.AreEqual("SEVEN!", _friendsFaker.Quote());
+            Assert.AreEqual("Forty-two to twenty-one! Like the turkey, Ross is done!", _friendsFaker.Quote());
         }
     }
 }

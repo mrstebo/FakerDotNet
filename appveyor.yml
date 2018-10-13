@@ -13,7 +13,7 @@ cache:
   - packages -> **\packages.config
 
 install:
-  - ps: choco install gitversion.portable --pre
+  - ps: choco install gitversion.portable
 
 assembly_info:
   patch: true

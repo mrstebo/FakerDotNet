@@ -38,14 +38,16 @@ namespace FakerDotNet.Fakers
 
         private PropertyInfo GetFaker(string name)
         {
-            var propertyInfo = _fakerContainer.GetType().GetProperty(name);
+            var propertyInfo = _fakerContainer.GetType()
+                .GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
             return propertyInfo ?? throw new FormatException($"Invalid module: {name}");
         }
 
         private string GetValue(PropertyInfo propertyInfo, string methodName)
         {
-            var method = propertyInfo.PropertyType.GetMethod(methodName);
+            var method = propertyInfo.PropertyType
+                .GetMethod(methodName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
             if (method == null) throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
 

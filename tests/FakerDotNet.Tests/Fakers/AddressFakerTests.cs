@@ -39,7 +39,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Cities)))
-                .Returns("{cityPrefix} {Name.firstName}{citySuffix}");
+                .Returns("{CityPrefix} {Name.FirstName}{CitySuffix}");
             A.CallTo(() => _fakerContainer.Address.CityPrefix())
                 .Returns("test1");
             A.CallTo(() => _fakerContainer.Name.FirstName())
@@ -65,7 +65,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<string>>.That.IsSameSequenceAs(Data.StreetNames)))
-                .Returns("{cityPrefix} {Name.firstName}{citySuffix}");
+                .Returns("{CityPrefix} {Name.FirstName}{CitySuffix}");
             A.CallTo(() => _fakerContainer.Address.CityPrefix())
                 .Returns("test1");
             A.CallTo(() => _fakerContainer.Name.FirstName())
@@ -92,7 +92,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<string>>.That.IsSameSequenceAs(Data.StreetAddresses)))
-                .Returns("{cityPrefix} {Name.firstName}{citySuffix}");
+                .Returns("{CityPrefix} {Name.FirstName}{CitySuffix}");
             A.CallTo(() => _fakerContainer.Address.CityPrefix())
                 .Returns("test1");
             A.CallTo(() => _fakerContainer.Name.FirstName())
@@ -119,7 +119,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<string>>.That.IsSameSequenceAs(Data.SecondaryAddressPrefixes)))
-                .Returns("{cityPrefix} {Name.firstName}{citySuffix}");
+                .Returns("{CityPrefix} {Name.FirstName}{CitySuffix}");
             A.CallTo(() => _fakerContainer.Address.CityPrefix())
                 .Returns("test1");
             A.CallTo(() => _fakerContainer.Name.FirstName())

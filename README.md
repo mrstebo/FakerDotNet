@@ -20,6 +20,7 @@ Contents
   - [Faker.Number](doc/number.md)
   - [Faker.Random](doc/random.md)
   - [Faker.Time](doc/time.md)
+  - [Faker.Zelda](doc/zelda.md)
 
 ## Installing
 

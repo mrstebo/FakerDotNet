@@ -16,5 +16,6 @@ namespace FakerDotNet
         public static IRandomFaker Random { get; } = Container.Random;
         public static ITimeFaker Time { get; } = Container.Time;
         public static IFriendsFaker Friends { get; } = Container.Friends;
+        public static IZeldaFaker Zelda { get; } = Container.Zelda;
     }
 }

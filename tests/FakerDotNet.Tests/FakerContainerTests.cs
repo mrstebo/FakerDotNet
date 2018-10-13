@@ -70,6 +70,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Zelda_returns_IZeldaFaker()
+        {
+            Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
+        }
+
+        [Test]
         public void Friends_returns_IFriendsFaker()
         {
             Assert.IsInstanceOf<IFriendsFaker>(_fakerContainer.Friends);

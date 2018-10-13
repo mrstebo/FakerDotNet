@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -49,7 +50,9 @@ namespace FakerDotNet.Fakers
 
             if (method == null) throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
 
-            return Convert.ToString(method.Invoke(propertyInfo.GetValue(_fakerContainer, null), new object[] { }));
+            var parameters = Enumerable.Range(0, method.GetParameters().Length).Select(_ => (object) null).ToArray();
+
+            return Convert.ToString(method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters));
         }
 
         private static (string faker, string method) ExtractMatchDataFrom(Match match)

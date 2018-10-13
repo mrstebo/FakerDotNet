@@ -15,5 +15,6 @@ namespace FakerDotNet
         public static INumberFaker Number { get; } = Container.Number;
         public static IRandomFaker Random { get; } = Container.Random;
         public static ITimeFaker Time { get; } = Container.Time;
+        public static IBeerFaker Beer { get; } = Container.Beer;
     }
 }

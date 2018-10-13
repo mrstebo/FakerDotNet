@@ -21,6 +21,9 @@ Contents
   - [Faker.Random](doc/random.md)
   - [Faker.Time](doc/time.md)
   - [Faker.Zelda](doc/zelda.md)
+- [Contributing](#contributing)
+- [Copyright](#copyright)
+- [License](#license)
 
 ## Installing
 
@@ -34,3 +37,23 @@ Install-Package FakerDotNet
 var firstName = Faker.Name.FirstName(); // John
 var lastName = Faker.Name.LastName(); // Smith
 ```
+
+## Contributing
+
+There are many ways you can contribute to FakerDotNet. Like most open-source software projects, contributing code is just one of many outlets where you can help improve. Some of the things that you could help out with in FakerDotNet are:
+
+- Documentation
+- Bug reports
+- Bug fixes
+- Feature requests
+- Feature implementations
+- Test coverage
+- Code quality
+
+## Copyright
+
+Copyright © 2018 Steven Atkinson and contributors
+
+## License
+
+FakerDotNet is licensed under MIT. Refer to [LICENSE](LICENSE) for more information.

@@ -44,6 +44,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Friends_returns_IFriendsFaker()
+        {
+            Assert.IsInstanceOf<IFriendsFaker>(Faker.Friends);
+        }
+
+        [Test]
         public void Name_returns_INameFaker()
         {
             Assert.IsInstanceOf<INameFaker>(Faker.Name);

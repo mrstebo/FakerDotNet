@@ -10,6 +10,7 @@ namespace FakerDotNet
         IBooleanFaker Boolean { get; }
         IDateFaker Date { get; }
         IFakeFaker Fake { get; }
+        IFriendsFaker Friends { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IRandomFaker Random { get; }
@@ -27,6 +28,7 @@ namespace FakerDotNet
             Boolean = new BooleanFaker();
             Date = new DateFaker();
             Fake = new FakeFaker(this);
+            Friends = new FriendsFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Random = new RandomFaker();
@@ -40,6 +42,7 @@ namespace FakerDotNet
         public IBooleanFaker Boolean { get; }
         public IDateFaker Date { get; }
         public IFakeFaker Fake { get; }
+        public IFriendsFaker Friends { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }
         public IRandomFaker Random { get; }

@@ -21,7 +21,6 @@ namespace FakerDotNet.Fakers
         private static readonly BeerData Data = new BeerData();
 
         private readonly IFakerContainer _fakerContainer;
-        private static readonly NumberFaker NumberFaker = new NumberFaker();
 
         public BeerFaker(IFakerContainer fakerContainer)
         {
@@ -60,23 +59,20 @@ namespace FakerDotNet.Fakers
 
         public string Ibu()
         {
-            var tmp = _fakerContainer.Number.Between(10, 100); // always returns 0. why?
-            var tmp2 = NumberFaker.Between(10, 100);
-            return $"{Math.Round(tmp2)} IBU";
+            var ibuNum = _fakerContainer.Number.Between(10, 100);
+            return $"{Math.Round(ibuNum)} IBU";
         }
 
         public string Alcohol()
         {
-            var tmp = _fakerContainer.Number.Between(2, 10); // always returns 0. why?
-            var tmp2 = NumberFaker.Between(2, 10);
-            return $"{Math.Round(tmp2, 1)}%";
+            var alcoholNum = _fakerContainer.Number.Between(2, 10);
+            return $"{Math.Round(alcoholNum, 1)}%";
         }
 
         public string Blg()
         {
-            var tmp = _fakerContainer.Number.Between(5, 20); // always returns 0. why?
-            var tmp2 = NumberFaker.Between(5, 20);
-            return $"{Math.Round(tmp2, 1)}°Blg";
+            var blgNum = _fakerContainer.Number.Between(5, 20);
+            return $"{Math.Round(blgNum, 1)}°Blg";
 
         }
     }

@@ -86,6 +86,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Ibu_is_valid()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(10, 100)).Returns(15.43D);
             String ibuString = _beerFaker.Ibu();
 
             Assert.IsTrue(ibuString.EndsWith(" IBU"));
@@ -100,6 +101,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Alcohol_is_valid()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(2, 10)).Returns(8.73D);
             String alcoholString = _beerFaker.Alcohol();
 
             Assert.IsTrue(alcoholString.EndsWith("%"));
@@ -114,6 +116,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Blg_is_valid()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(5, 20)).Returns(18.79D);
             String blgString = _beerFaker.Blg();
 
             Assert.IsTrue(blgString.EndsWith("°Blg"));

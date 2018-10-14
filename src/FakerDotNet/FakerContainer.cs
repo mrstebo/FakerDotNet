@@ -10,11 +10,11 @@ namespace FakerDotNet
         IBooleanFaker Boolean { get; }
         IDateFaker Date { get; }
         IFakeFaker Fake { get; }
+        IFriendsFaker Friends { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IRandomFaker Random { get; }
         ITimeFaker Time { get; }
-        IFriendsFaker Friends { get; }
         IZeldaFaker Zelda { get; }
     }
 
@@ -28,11 +28,11 @@ namespace FakerDotNet
             Boolean = new BooleanFaker();
             Date = new DateFaker();
             Fake = new FakeFaker(this);
+            Friends = new FriendsFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Random = new RandomFaker();
             Time = new TimeFaker();
-            Friends = new FriendsFaker(this);
             Zelda = new ZeldaFaker(this);
         }
 
@@ -42,11 +42,11 @@ namespace FakerDotNet
         public IBooleanFaker Boolean { get; }
         public IDateFaker Date { get; }
         public IFakeFaker Fake { get; }
+        public IFriendsFaker Friends { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }
         public IRandomFaker Random { get; }
         public ITimeFaker Time { get; }
-        public IFriendsFaker Friends { get; }
         public IZeldaFaker Zelda { get; }
     }
 }

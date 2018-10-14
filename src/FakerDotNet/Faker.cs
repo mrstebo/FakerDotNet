@@ -12,11 +12,11 @@ namespace FakerDotNet
         public static IBooleanFaker Boolean { get; } = Container.Boolean;
         public static IDateFaker Date { get; } = Container.Date;
         public static IFakeFaker Fake { get; } = Container.Fake;
+        public static IFriendsFaker Friends { get; } = Container.Friends;
         public static INameFaker Name { get; } = Container.Name;
         public static INumberFaker Number { get; } = Container.Number;
         public static IRandomFaker Random { get; } = Container.Random;
         public static ITimeFaker Time { get; } = Container.Time;
-        public static IFriendsFaker Friends { get; } = Container.Friends;
         public static IZeldaFaker Zelda { get; } = Container.Zelda;
     }
 }

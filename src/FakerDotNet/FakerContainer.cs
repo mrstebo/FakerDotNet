@@ -4,6 +4,7 @@ namespace FakerDotNet
 {
     internal interface IFakerContainer
     {
+        IAddressFaker Address { get; }
         IAppFaker App { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
@@ -21,6 +22,7 @@ namespace FakerDotNet
     {
         public FakerContainer()
         {
+            Address = new AddressFaker(this);
             App = new AppFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
@@ -34,6 +36,7 @@ namespace FakerDotNet
             Zelda = new ZeldaFaker(this);
         }
 
+        public IAddressFaker Address { get; }
         public IAppFaker App { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }

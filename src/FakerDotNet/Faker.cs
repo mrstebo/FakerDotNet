@@ -7,6 +7,7 @@ namespace FakerDotNet
         private static readonly IFakerContainer Container = new FakerContainer();
 
         public static IAppFaker App { get; } = Container.App;
+        public static IBeerFaker Beer { get; } = Container.Beer;
         public static IBookFaker Book { get; } = Container.Book;
         public static IBooleanFaker Boolean { get; } = Container.Boolean;
         public static IDateFaker Date { get; } = Container.Date;
@@ -15,6 +16,5 @@ namespace FakerDotNet
         public static INumberFaker Number { get; } = Container.Number;
         public static IRandomFaker Random { get; } = Container.Random;
         public static ITimeFaker Time { get; } = Container.Time;
-        public static IBeerFaker Beer { get; } = Container.Beer;
     }
 }

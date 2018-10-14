@@ -16,6 +16,12 @@ namespace FakerDotNet.Tests
         private IFakerContainer _fakerContainer;
 
         [Test]
+        public void Address_returns_IAddressFaker()
+        {
+            Assert.IsInstanceOf<IAddressFaker>(_fakerContainer.Address);
+        }
+
+        [Test]
         public void App_returns_IAppFaker()
         {
             Assert.IsInstanceOf<IAppFaker>(_fakerContainer.App);
@@ -67,6 +73,12 @@ namespace FakerDotNet.Tests
         public void Time_returns_ITimeFaker()
         {
             Assert.IsInstanceOf<ITimeFaker>(_fakerContainer.Time);
+        }
+
+        [Test]
+        public void Zelda_returns_IZeldaFaker()
+        {
+            Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
         }
     }
 }

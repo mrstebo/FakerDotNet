@@ -304,7 +304,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Number.Between(0, 180)).Returns(31.82743772556281);
             
-            Assert.AreEqual("-58.1725622744", _addressFaker.Latitude());
+            Assert.AreEqual((-58.1725622744).ToString("#.##########"), _addressFaker.Latitude());
         }
 
         [Test]
@@ -312,7 +312,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Number.Between(0, 360)).Returns(23.344516179048668);
             
-            Assert.AreEqual("-156.655483821", _addressFaker.Longitude());
+            Assert.AreEqual((-156.655483821).ToString("#.##########"), _addressFaker.Longitude());
         }
 
         [Test]

@@ -18,19 +18,19 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IAppFaker>(Faker.App);
         }
-        
+
         [Test]
         public void Book_returns_IBookFaker()
         {
             Assert.IsInstanceOf<IBookFaker>(Faker.Book);
         }
-        
+
         [Test]
         public void Boolean_returns_IBooleanFaker()
         {
             Assert.IsInstanceOf<IBooleanFaker>(Faker.Boolean);
         }
-        
+
         [Test]
         public void Date_returns_IDateFaker()
         {
@@ -41,6 +41,12 @@ namespace FakerDotNet.Tests
         public void Fake_returns_IFakeFaker()
         {
             Assert.IsInstanceOf<IFakeFaker>(Faker.Fake);
+        }
+
+        [Test]
+        public void Lorem_returns_ILoremFaker()
+        {
+            Assert.IsInstanceOf<ILoremFaker>(Faker.Lorem);
         }
 
         [Test]
@@ -60,7 +66,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IRandomFaker>(Faker.Random);
         }
-        
+
         [Test]
         public void Time_returns_ITimeFaker()
         {

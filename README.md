@@ -17,6 +17,7 @@ Contents
   - [Faker.Boolean](doc/boolean.md)
   - [Faker.Date](doc/date.md)
   - [Faker.Fake](doc/fake.md)
+  - [Faker.Lorem](doc/lorem.md)
   - [Faker.Name](doc/name.md)
   - [Faker.Number](doc/number.md)
   - [Faker.Random](doc/random.md)

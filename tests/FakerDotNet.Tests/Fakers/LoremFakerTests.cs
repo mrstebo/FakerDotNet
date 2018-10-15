@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using FakeItEasy;
 using FakerDotNet.Data;
@@ -170,7 +169,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Sentences_returns_a_string_of_sentences()
+        public void Sentences_returns_a_collection_of_sentences()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
                 .ReturnsNextFromSequence(
@@ -189,9 +188,9 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Sentences_returns_a_string_with_the_specified_number_of_sentences()
+        public void Sentences_returns_a_collection_with_the_specified_number_of_sentences()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 2))
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"});
@@ -226,75 +225,152 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Sentences_returns_an_empty_string_when_number_of_sentences_is_less_than_one()
+        public void Sentences_returns_an_empty_collection_when_number_of_sentences_is_less_than_one()
         {
-            Assert.Fail();
+            CollectionAssert.IsEmpty(_loremFaker.Sentences(-1));
         }
         
         [Test]
         public void Paragraph_returns_a_string_of_sentences()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+                .ReturnsNextFromSequence(
+                    new[] {"big", "bad", "boo"},
+                    new[] {"small", "tiny", "micro"},
+                    new[] {"alright", "sometimes", "maybe"});
+            A.CallTo(() => _fakerContainer.Number.Between(0, 6))
+                .Returns(0);
+
+            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", _loremFaker.Paragraph());
         }
 
         [Test]
-        public void Paragraph_returns_a_paragraph_with_the_specified_number_of_words()
+        public void Paragraph_returns_a_paragraph_with_the_specified_number_of_sentences()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+                .ReturnsNextFromSequence(
+                    new[] {"big", "bad", "boo"},
+                    new[] {"small", "tiny", "micro"});
+            A.CallTo(() => _fakerContainer.Number.Between(0, 6))
+                .Returns(0);
+
+            Assert.AreEqual("Big bad boo. Small tiny micro.", _loremFaker.Paragraph(2));
         }
 
         [Test]
         public void Paragraph_returns_supplemental_words_when_specified()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 3))
+                .ReturnsNextFromSequence(
+                    new[] {"big", "bad", "boo"},
+                    new[] {"small", "tiny", "micro"},
+                    new[] {"alright", "sometimes", "maybe"});
+            A.CallTo(() => _fakerContainer.Number.Between(0, 6))
+                .Returns(0);
+            
+            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", _loremFaker.Paragraph(3, true));
         }
 
         [Test]
         public void Paragraph_includes_random_sentences_when_specified()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+                .ReturnsNextFromSequence(
+                    new[] {"big", "bad", "boo"},
+                    new[] {"small", "tiny", "micro"},
+                    new[] {"alright", "sometimes", "maybe"});
+            A.CallTo(() => _fakerContainer.Number.Between(0, 6))
+                .Returns(0);
+            A.CallTo(() => _fakerContainer.Number.Between(0, 5))
+                .Returns(1);
+
+            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", 
+                _loremFaker.Paragraph(2, false, 5));
         }
 
         [Test]
         public void Paragraph_returns_an_empty_string_when_number_of_sentences_is_less_than_one()
         {
-            Assert.Fail();
+            Assert.AreEqual("", _loremFaker.Paragraph(-1));
         }
 
         [Test]
-        public void Paragraphs_returns_a_string_of_paragraphs()
+        public void Paragraphs_returns_a_collection_of_paragraphs()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+                .ReturnsNextFromSequence(
+                    new[] {"one", "x", "y"},
+                    new[] {"two", "x", "y"},
+                    new[] {"three", "x", "y"},
+                    new[] {"four", "x", "y"},
+                    new[] {"five", "x", "y"},
+                    new[] {"six", "x", "y"},
+                    new[] {"seven", "x", "y"},
+                    new[] {"eight", "x", "y"},
+                    new[] {"nine", "x", "y"});
+            A.CallTo(() => _fakerContainer.Number.Between(A<double>.Ignored, A<double>.Ignored))
+                .Returns(0);
+
+            CollectionAssert.AreEqual(new[]
+            {
+                "One x y. Two x y. Three x y.",
+                "Four x y. Five x y. Six x y.",
+                "Seven x y. Eight x y. Nine x y."
+            }, _loremFaker.Paragraphs());
         }
 
         [Test]
-        public void Paragraphs_returns_a_string_with_the_specified_number_of_paragraphs()
+        public void Paragraphs_returns_a_collection_with_the_specified_number_of_paragraphs()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+                .ReturnsNextFromSequence(
+                    new[] {"one", "x", "y"},
+                    new[] {"two", "x", "y"},
+                    new[] {"three", "x", "y"},
+                    new[] {"four", "x", "y"},
+                    new[] {"five", "x", "y"},
+                    new[] {"six", "x", "y"});
+            A.CallTo(() => _fakerContainer.Number.Between(A<double>.Ignored, A<double>.Ignored))
+                .Returns(0);
+
+            CollectionAssert.AreEqual(new[]
+            {
+                "One x y. Two x y. Three x y.",
+                "Four x y. Five x y. Six x y."
+            }, _loremFaker.Paragraphs(2));
         }
         
         [Test]
         public void Paragraphs_returns_supplemental_words_when_specified()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 3))
+                .ReturnsNextFromSequence(
+                    new[] {"one", "x", "y"},
+                    new[] {"two", "x", "y"},
+                    new[] {"three", "x", "y"},
+                    new[] {"four", "x", "y"},
+                    new[] {"five", "x", "y"},
+                    new[] {"six", "x", "y"},
+                    new[] {"seven", "x", "y"},
+                    new[] {"eight", "x", "y"},
+                    new[] {"nine", "x", "y"});
+            A.CallTo(() => _fakerContainer.Number.Between(A<double>.Ignored, A<double>.Ignored))
+                .Returns(0);
+
+            CollectionAssert.AreEqual(new[]
+            {
+                "One x y. Two x y. Three x y.",
+                "Four x y. Five x y. Six x y.",
+                "Seven x y. Eight x y. Nine x y."
+            }, _loremFaker.Paragraphs(3, true));
         }
         
         [Test]
-        public void Paragraphs_returns_an_empty_string_when_number_of_paragraphs_is_less_than_one()
+        public void Paragraphs_returns_an_empty_collection_when_number_of_paragraphs_is_less_than_one()
         {
-            Assert.Fail();
-        }
-
-        [Test]
-        public void ParagraphByChar_returns_a_paragraph()
-        {
-            Assert.Fail();
-        }
-
-        [Test]
-        public void ParagraphByChar_returns_a_paragraph_with_the_specified_number_of_characters()
-        {
-            Assert.Fail();
+            CollectionAssert.IsEmpty(_loremFaker.Paragraphs(-1));
         }
     }
 }

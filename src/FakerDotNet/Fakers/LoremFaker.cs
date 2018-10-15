@@ -70,7 +70,9 @@ namespace FakerDotNet.Fakers
 
         public IEnumerable<string> Sentences(int count = 3, bool supplemental = false)
         {
-            return Enumerable.Range(0, count).Select(_ => Sentence(3, supplemental));
+            return count > 0
+                ? Enumerable.Range(0, count).Select(_ => Sentence(3, supplemental))
+                : Enumerable.Empty<string>();
         }
 
         public string Paragraph(int sentences = 3, bool supplemental = false, int randomSentencesToAdd = 3)
@@ -81,7 +83,9 @@ namespace FakerDotNet.Fakers
 
         public IEnumerable<string> Paragraphs(int count = 3, bool supplemental = false)
         {
-            return Enumerable.Range(0, count).Select(_ => Paragraph(3, supplemental));
+            return count > 0
+                ? Enumerable.Range(0, count).Select(_ => Paragraph(3, supplemental))
+                : Enumerable.Empty<string>();
         }
 
         public string Question()

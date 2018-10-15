@@ -20,7 +20,6 @@ namespace FakerDotNet.Fakers
             _fakerContainer = fakerContainer;
         }
 
-
         public string Name()
         {
             return _fakerContainer.Random.Element(Data.Names);

@@ -32,11 +32,8 @@ namespace FakerDotNet
             Number = new NumberFaker();
             Random = new RandomFaker();
             Time = new TimeFaker();
-<<<<<<< HEAD
             Vehicle = new VehicleFaker(this);
-=======
             Zelda = new ZeldaFaker(this);
->>>>>>> master
         }
 
         public IAddressFaker Address { get; }
@@ -49,10 +46,7 @@ namespace FakerDotNet
         public INumberFaker Number { get; }
         public IRandomFaker Random { get; }
         public ITimeFaker Time { get; }
-<<<<<<< HEAD
         public IVehicleFaker Vehicle { get; }
-=======
         public IZeldaFaker Zelda { get; }
->>>>>>> master
     }
 }

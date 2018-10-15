@@ -56,5 +56,30 @@ namespace FakerDotNet.Tests.Fakers
             Assert.False(vin.Any(c => c == 'I' || c == 'Q' || c == 'O'));
             Assert.IsTrue(Regex.Match(vin, @"^[A-Z0-9]{8}[X0-9][A-Z0-9]{8}", RegexOptions.IgnoreCase).Success, $"Vin was: {vin}");
         }
+
+        [Test] 
+        public void Model_returns_a_model()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Makes)))
+                .Returns("Audi");
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Make_Models["Audi"])))
+                .Returns("A8");
+
+            Assert.AreEqual("A8", _vehicleFaker.Model());
+
+        }
+
+        [Test]
+        public void Model_returns_a_model_for_make()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Make_Models["Toyota"])))
+                .Returns("Prius");
+
+            Assert.AreEqual("Prius", _vehicleFaker.Model("Toyota"));
+
+        }
     }
 }

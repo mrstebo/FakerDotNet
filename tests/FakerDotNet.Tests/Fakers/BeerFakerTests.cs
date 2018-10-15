@@ -2,7 +2,6 @@ using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace FakerDotNet.Tests.Fakers
@@ -87,45 +86,22 @@ namespace FakerDotNet.Tests.Fakers
         public void Ibu_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(10, 100)).Returns(15.43D);
-            String ibuString = _beerFaker.Ibu();
-
-            Assert.IsTrue(ibuString.EndsWith(" IBU"));
-
-            double dub;
-            double.TryParse(ibuString.Substring(0, ibuString.Length - 4), out dub);
-
-            Assert.LessOrEqual(dub, 100);
-            Assert.GreaterOrEqual(dub, 10);
+            Assert.AreEqual("15 IBU", _beerFaker.Ibu());
         }
 
         [Test]
         public void Alcohol_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 10)).Returns(8.73D);
-            String alcoholString = _beerFaker.Alcohol();
-
-            Assert.IsTrue(alcoholString.EndsWith("%"));
-
-            double dub;
-            double.TryParse(alcoholString.Substring(0, alcoholString.Length - 1), out dub);
-
-            Assert.LessOrEqual(dub, 10);
-            Assert.GreaterOrEqual(dub, 2);
+            Assert.AreEqual("8,7%", _beerFaker.Alcohol());
         }
 
         [Test]
         public void Blg_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(5, 20)).Returns(18.79D);
-            String blgString = _beerFaker.Blg();
+            Assert.AreEqual("18,8°Blg", _beerFaker.Blg());
 
-            Assert.IsTrue(blgString.EndsWith("°Blg"));
-
-            double dub;
-            double.TryParse(blgString.Substring(0, blgString.Length - 4), out dub);
-
-            Assert.LessOrEqual(dub, 20);
-            Assert.GreaterOrEqual(dub, 5);
         }
     }
 }

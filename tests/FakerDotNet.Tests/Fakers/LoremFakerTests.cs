@@ -19,8 +19,6 @@ namespace FakerDotNet.Tests.Fakers
             _loremFaker = new LoremFaker(_fakerContainer);
         }
 
-        private static readonly LoremData Data = new LoremData();
-
         private IFakerContainer _fakerContainer;
         private ILoremFaker _loremFaker;
 
@@ -36,11 +34,10 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Words_returns_an_array_of_words()
         {
-            var words = new[] {"word1", "word2", "word3"}.AsEnumerable();
+            var words = new[] {"word1", "word2", "word3"};
             
-            A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Words), 3))
-                .ReturnsNextFromSequence(words);
+            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+                .ReturnsNextFromSequence(words.AsEnumerable());
 
             CollectionAssert.AreEqual(words, _loremFaker.Words());
         }

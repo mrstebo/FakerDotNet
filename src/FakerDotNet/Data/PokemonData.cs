@@ -4,7 +4,7 @@ namespace FakerDotNet.Data
 {
     internal class PokemonData
     {
-        public IEnumerable<string> Names => new[]
+        internal IEnumerable<string> Names => new[]
         {
             "Bulbasaur",
             "Ivysaur",
@@ -159,7 +159,7 @@ namespace FakerDotNet.Data
             "Mew"
         };
 
-        public IEnumerable<string> Locations => new[]
+        internal IEnumerable<string> Locations => new[]
         {
             "Accumula Town",
             "Ambrette Town",
@@ -261,7 +261,7 @@ namespace FakerDotNet.Data
             "White Forest"
         };
 
-        public IEnumerable<string> Moves => new[]
+        internal IEnumerable<string> Moves => new[]
         {
             "Absorb",
             "Acid",

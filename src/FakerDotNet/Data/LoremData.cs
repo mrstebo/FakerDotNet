@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class LoremData
+    internal static class LoremData
     {
-        public IEnumerable<string> Characters = new[]
+        public static IEnumerable<string> Characters = new[]
         {
             "a",
             "b",
@@ -33,8 +33,15 @@ namespace FakerDotNet.Data
             "y",
             "z"
         };
+
+        public static IEnumerable<byte[]> Multibytes = new[]
+        {
+            new byte[] {240, 159, 152, 128},
+            new byte[] {240, 159, 152, 161},
+            new byte[] {226, 157, 164}
+        };
         
-        public IEnumerable<string> Words = new[]
+        public static IEnumerable<string> Words = new[]
         {
             "alias",
             "consequatur",
@@ -287,7 +294,7 @@ namespace FakerDotNet.Data
             "repellat"
         };
 
-        public IEnumerable<string> Supplemental = new[]
+        public static IEnumerable<string> Supplemental = new[]
         {
             "abbas",
             "abduco",

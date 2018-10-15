@@ -1,3 +1,4 @@
+using FakeItEasy;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
 
@@ -59,6 +60,12 @@ namespace FakerDotNet.Tests
         public void Number_returns_INumberFaker()
         {
             Assert.IsInstanceOf<INumberFaker>(Faker.Number);
+        }
+
+        [Test]
+        public void Pokemon_returns_IPokemonFaker()
+        {
+            Assert.IsInstanceOf<IPokemonFaker>(Faker.Pokemon);
         }
 
         [Test]

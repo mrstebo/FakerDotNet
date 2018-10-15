@@ -17,9 +17,6 @@ namespace FakerDotNet.Fakers
         IEnumerable<string> Sentences(int count = 3, bool supplemental = false);
         string Paragraph(int sentences = 3, bool supplemental = false, int randomSentencesToAdd = 3);
         IEnumerable<string> Paragraphs(int count = 3, bool supplemental = false);
-        string Question();
-        IEnumerable<string> Questions();
-        string ParagraphByChars();
     }
     
     internal class LoremFaker : ILoremFaker
@@ -86,21 +83,6 @@ namespace FakerDotNet.Fakers
             return count > 0
                 ? Enumerable.Range(0, count).Select(_ => Paragraph(3, supplemental))
                 : Enumerable.Empty<string>();
-        }
-
-        public string Question()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<string> Questions()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string ParagraphByChars()
-        {
-            throw new System.NotImplementedException();
         }
 
         private static string Capitalize(string text)

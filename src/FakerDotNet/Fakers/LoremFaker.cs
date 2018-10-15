@@ -7,16 +7,16 @@ namespace FakerDotNet.Fakers
     public interface ILoremFaker
     {
         string Word();
-        IEnumerable<string> Words(int num = 3, bool supplemental = false);
+        IEnumerable<string> Words(int count = 3, bool supplemental = false);
         string Multibyte();
         string Character();
-        string Characters();
+        string Characters(int count = 255);
         string Sentence();
-        string Sentences();
+        IEnumerable<string> Sentences();
         string Paragraph();
-        string Paragraphs();
+        IEnumerable<string> Paragraphs();
         string Question();
-        string Questions();
+        IEnumerable<string> Questions();
         string ParagraphByChars();
     }
     
@@ -36,12 +36,12 @@ namespace FakerDotNet.Fakers
             return _fakerContainer.Random.Element(Data.Words);
         }
 
-        public IEnumerable<string> Words(int num = 3, bool supplemental = false)
+        public IEnumerable<string> Words(int count = 3, bool supplemental = false)
         {
             var wordList = supplemental
                 ? Data.Words.Concat(Data.Supplemental)
                 : Data.Words;
-            return _fakerContainer.Random.Assortment(wordList, num);
+            return _fakerContainer.Random.Assortment(wordList, count);
         }
 
         public string Multibyte()
@@ -51,12 +51,14 @@ namespace FakerDotNet.Fakers
 
         public string Character()
         {
-            throw new System.NotImplementedException();
+            return _fakerContainer.Random.Element(Data.Characters);
         }
 
-        public string Characters()
+        public string Characters(int count = 255)
         {
-            throw new System.NotImplementedException();
+            return count > 0
+                ? string.Join("", Enumerable.Range(0, count).Select(_ => Character()))
+                : "";
         }
 
         public string Sentence()
@@ -64,7 +66,7 @@ namespace FakerDotNet.Fakers
             throw new System.NotImplementedException();
         }
 
-        public string Sentences()
+        public IEnumerable<string> Sentences()
         {
             throw new System.NotImplementedException();
         }
@@ -74,7 +76,7 @@ namespace FakerDotNet.Fakers
             throw new System.NotImplementedException();
         }
 
-        public string Paragraphs()
+        public IEnumerable<string> Paragraphs()
         {
             throw new System.NotImplementedException();
         }
@@ -84,7 +86,7 @@ namespace FakerDotNet.Fakers
             throw new System.NotImplementedException();
         }
 
-        public string Questions()
+        public IEnumerable<string> Questions()
         {
             throw new System.NotImplementedException();
         }

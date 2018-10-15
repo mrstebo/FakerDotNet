@@ -65,21 +65,46 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Characters_returns_a_string_of_characters()
+        public void Character_returns_a_character()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
+                .Returns("x");
+            
+            Assert.AreEqual("x", _loremFaker.Character());
         }
 
         [Test]
-        public void Characters_returns_a_string_with_the_specified_number_of_characters()
+        public void Characters_returns_a_string_of_characters()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
+                .Returns("x");
+
+            var expected = string.Join("", Enumerable.Range(0, 255).Select(_ => "x"));
+            
+            Assert.AreEqual(expected, _loremFaker.Characters());
+        }
+
+        [Test]
+        [TestCase(5)]
+        [TestCase(17)]
+        [TestCase(1423)]
+        public void Characters_returns_a_string_with_the_specified_number_of_characters(int count)
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
+                .Returns("x");
+
+            var expected = string.Join("", Enumerable.Range(0, count).Select(_ => "x"));
+            
+            Assert.AreEqual(expected, _loremFaker.Characters(count));
         }
 
         [Test]
         public void Characters_returns_an_empty_string_when_number_of_characters_is_less_than_one()
         {
-            Assert.Fail();
+            Assert.AreEqual("", _loremFaker.Characters(-1));
         }
 
         [Test]

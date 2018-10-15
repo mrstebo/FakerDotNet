@@ -87,5 +87,10 @@ namespace FakerDotNet.Tests
             Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
         }
 
+        [Test]
+        public void LordOfTheRings_returns_ILordOfTheRings()
+        {
+            Assert.IsInstanceOf<ILordOfTheRingsFaker>(_fakerContainer.LordOfTheRings);
+        }
     }
 }

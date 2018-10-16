@@ -4,7 +4,7 @@ namespace FakerDotNet.Data
 {
     internal static class LoremData
     {
-        public static IEnumerable<string> Characters = new[]
+        public static readonly IEnumerable<string> Characters = new[]
         {
             "a",
             "b",
@@ -34,14 +34,14 @@ namespace FakerDotNet.Data
             "z"
         };
 
-        public static IEnumerable<byte[]> Multibytes = new[]
+        public static readonly IEnumerable<byte[]> Multibytes = new[]
         {
             new byte[] {240, 159, 152, 128},
             new byte[] {240, 159, 152, 161},
             new byte[] {226, 157, 164}
         };
         
-        public static IEnumerable<string> Words = new[]
+        public static readonly IEnumerable<string> Words = new[]
         {
             "alias",
             "consequatur",
@@ -294,7 +294,7 @@ namespace FakerDotNet.Data
             "repellat"
         };
 
-        public static IEnumerable<string> Supplemental = new[]
+        public static readonly IEnumerable<string> Supplemental = new[]
         {
             "abbas",
             "abduco",

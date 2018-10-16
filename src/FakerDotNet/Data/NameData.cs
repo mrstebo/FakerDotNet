@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class NameData
+    internal static class NameData
     {
-        public IEnumerable<string> FirstNames => new[]
+        public static readonly IEnumerable<string> FirstNames = new[]
         {
             "Aaliyah",
             "Aaron",
@@ -3016,7 +3016,7 @@ namespace FakerDotNet.Data
             "Zula"
         };
 
-        public IEnumerable<string> LastNames => new[]
+        public static readonly IEnumerable<string> LastNames = new[]
         {
             "Abbott",
             "Abernathy",
@@ -3494,7 +3494,7 @@ namespace FakerDotNet.Data
             "Zulauf"
         };
 
-        public IEnumerable<string> Prefixes => new[]
+        public static readonly IEnumerable<string> Prefixes = new[]
         {
             "Mr.",
             "Mrs.",
@@ -3503,7 +3503,7 @@ namespace FakerDotNet.Data
             "Dr."
         };
 
-        public IEnumerable<string> Suffixes => new[]
+        public static readonly IEnumerable<string> Suffixes = new[]
         {
             "Jr.",
             "Sr.",
@@ -3518,7 +3518,7 @@ namespace FakerDotNet.Data
             "DVM"
         };
 
-        public IEnumerable<string> TitleDescriptors => new[]
+        public static readonly IEnumerable<string> TitleDescriptors = new[]
         {
             "Lead",
             "Senior",
@@ -3544,7 +3544,7 @@ namespace FakerDotNet.Data
             "Principal"
         };
 
-        public IEnumerable<string> TitleLevels => new[]
+        public static readonly IEnumerable<string> TitleLevels = new[]
         {
             "Solutions",
             "Program",
@@ -3585,7 +3585,7 @@ namespace FakerDotNet.Data
             "Metrics"
         };
 
-        public IEnumerable<string> TitleJobs => new[]
+        public static readonly IEnumerable<string> TitleJobs = new[]
         {
             "Supervisor",
             "Associate",

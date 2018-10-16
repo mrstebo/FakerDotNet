@@ -7,6 +7,7 @@ namespace FakerDotNet.Fakers
     public interface IRandomFaker
     {
         T Element<T>(IEnumerable<T> collection);
+        IEnumerable<T> Elements<T>(IEnumerable<T> collection, int count);
     }
 
     internal class RandomFaker : IRandomFaker
@@ -20,6 +21,11 @@ namespace FakerDotNet.Fakers
 
             return collection.ElementAtOrDefault(index);
             // ReSharper restore PossibleMultipleEnumeration
+        }
+
+        public IEnumerable<T> Elements<T>(IEnumerable<T> collection, int count)
+        {
+            return collection.OrderBy(x => RNG.Next()).Take(count); 
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FakerDotNet.Data;
+using FakerDotNet.Wrappers;
 using System.Collections.Generic;
 
 namespace FakerDotNet.Fakers
@@ -11,6 +12,19 @@ namespace FakerDotNet.Fakers
         string Model();
         string Model(string make);
         string MakeAndModel();
+        string Color();
+        string Transmission();
+        string DriveType();
+        string FuelType();
+        string VehicleStyle();
+        string CarType();
+        IEnumerable<string> CarOptions();
+        IEnumerable<string> StandardSpecs();
+        int Doors();
+        int DoorCount();
+        int EngineSize();
+        int Engine();
+        int Year();
     }
 
     internal class VehicleFaker : IVehicleFaker
@@ -20,10 +34,17 @@ namespace FakerDotNet.Fakers
         private Dictionary<char, int> vinDigitValues = new Dictionary<char, int>() { { 'A', 1 }, { 'B', 2 }, { 'C', 3 }, { 'D', 4 }, { 'E', 5 }, { 'F', 6 }, { 'G', 7 }, { 'H', 8 }, { 'J', 1 }, { 'K', 2 }, { 'L', 3 }, { 'M', 4 }, { 'N', 5 }, { 'P', 7 }, { 'R', 9 }, { 'S', 2 }, { 'T', 3 }, { 'U', 4 }, { 'V', 5 }, { 'W', 6 }, { 'X', 7 }, { 'Y', 8 }, { 'Z', 9 }, { '1', 1 }, { '2', 2 }, { '3', 3 }, { '4', 4 }, { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 }, { '0', 0 } };
 
         private readonly IFakerContainer _fakerContainer;
+        private readonly IRandomWrapper _randomWrapper;
 
-        public VehicleFaker(IFakerContainer fakerContainer)
+        public VehicleFaker(IFakerContainer _fakerContainer)
+            : this(_fakerContainer, new RandomWrapper())
+        {
+        }
+
+        public VehicleFaker(IFakerContainer fakerContainer, IRandomWrapper randomWrapper)
         {
             this._fakerContainer = fakerContainer;
+            this._randomWrapper = randomWrapper;
         }
 
         public string Make()
@@ -59,6 +80,7 @@ namespace FakerDotNet.Fakers
         {
             return Model(_fakerContainer.Random.Element(Data.Makes));
         }
+
         public string Model(string make)
         {
             return _fakerContainer.Random.Element(Data.Make_Models[make]);
@@ -71,7 +93,72 @@ namespace FakerDotNet.Fakers
             return $"{make} {model}";
         }
 
-        public string GetChecksum(string vin)
+        public string Color()
+        {
+            return _fakerContainer.Random.Element(Data.Colors);
+        }
+
+        public string Transmission()
+        {
+            return _fakerContainer.Random.Element(Data.Transmissions);
+        }
+
+        public string DriveType()
+        {
+            return _fakerContainer.Random.Element(Data.DriveTypes);
+        }
+
+        public string FuelType()
+        {
+            return _fakerContainer.Random.Element(Data.FuelTypes);
+        }
+
+        public string VehicleStyle()
+        {
+            return _fakerContainer.Random.Element(Data.VehicleStyles);
+        }
+
+        public string CarType()
+        {
+            return _fakerContainer.Random.Element(Data.CarTypes);
+        }
+
+        public IEnumerable<string> CarOptions()
+        {
+            return _fakerContainer.Random.Elements(Data.CarOptions, _randomWrapper.Next(5, 10));
+        }
+
+        public IEnumerable<string> StandardSpecs()
+        {
+            return _fakerContainer.Random.Elements(Data.StandardSpecs, _randomWrapper.Next(5, 10));
+        }
+
+        public int Doors()
+        {
+            return _randomWrapper.Next(1, 4);
+        }
+
+        public int DoorCount()
+        {
+            return Doors();
+        }
+
+        public int EngineSize()
+        {
+            return _fakerContainer.Random.Element(Data.EngineSize);
+        }
+
+        public int Engine()
+        {
+            return EngineSize();
+        }
+
+        public int Year()
+        {
+            return _fakerContainer.Time.Backward(_randomWrapper.Next(365, 5475), TimePeriod.All).Year;
+        }
+
+        private string GetChecksum(string vin)
         {
             int checkSumTotal = 0;
             var vinArray = vin.ToCharArray();

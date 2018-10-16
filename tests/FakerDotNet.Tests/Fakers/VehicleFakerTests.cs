@@ -1,6 +1,7 @@
 ﻿using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
+using FakerDotNet.Wrappers;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,15 @@ namespace FakerDotNet.Tests.Fakers
         public void SetUp()
         {
             _fakerContainer = A.Fake<IFakerContainer>();
-            _vehicleFaker = new VehicleFaker(_fakerContainer);
+            _randomWrapper = A.Fake<IRandomWrapper>();
+            _vehicleFaker = new VehicleFaker(_fakerContainer, _randomWrapper);
         }
 
         private static readonly VehicleData Data = new VehicleData();
 
         private IFakerContainer _fakerContainer;
         private IVehicleFaker _vehicleFaker;
+        private IRandomWrapper _randomWrapper;
 
         [Test]
         public void Make_returns_a_make()
@@ -80,6 +83,153 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.AreEqual("Prius", _vehicleFaker.Model("Toyota"));
 
+        }
+
+        [Test]
+        public void MakeAndModel_returns_a_make_and_model() {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Makes)))
+                .Returns("Dodge");
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Make_Models["Dodge"])))
+                .Returns("Charger");
+
+            Assert.AreEqual("Dodge Charger", _vehicleFaker.MakeAndModel());
+        }
+
+        [Test]
+        public void Color_returns_a_color()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Colors)))
+               .Returns("Red");
+
+            Assert.AreEqual("Red", _vehicleFaker.Color());
+        }
+
+        [Test]
+        public void Trasmission_returns_a_transmission()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Transmissions)))
+               .Returns("Automanual");
+
+            Assert.AreEqual("Automanual", _vehicleFaker.Transmission());
+        }
+
+        [Test]
+        public void DriveType_returns_a_drivetype()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.DriveTypes)))
+               .Returns("4x2/2-wheel drive");
+
+            Assert.AreEqual("4x2/2-wheel drive", _vehicleFaker.DriveType());
+        }
+
+        [Test]
+        public void FuelType_returns_a_fueltype()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.FuelTypes)))
+               .Returns("Diesel");
+
+            Assert.AreEqual("Diesel", _vehicleFaker.FuelType());
+        }
+
+        [Test]
+        public void VehicleStyles_returns_a_vehiclestyle()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.VehicleStyles)))
+               .Returns("ESi");
+
+            Assert.AreEqual("ESi", _vehicleFaker.VehicleStyle());
+        }
+
+        [Test]
+        public void CarTypes_returns_a_cartype()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.CarTypes)))
+               .Returns("Sedan");
+
+            Assert.AreEqual("Sedan", _vehicleFaker.CarType());
+        }
+
+
+        [Test]
+        public void CarOptions_returns_some_caroptions()
+        {
+            A.CallTo(() => _randomWrapper.Next(5, 10))
+               .Returns(10);
+
+            A.CallTo(() => _fakerContainer.Random.Elements(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.CarOptions), 10))
+               .Returns(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" });
+
+            Assert.AreEqual(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" }, _vehicleFaker.CarOptions());
+        }
+
+        [Test]
+        public void StandarSpecs_returns_some_standardspecs()
+        {
+            A.CallTo(() => _randomWrapper.Next(5, 10))
+               .Returns(8);
+
+            A.CallTo(() => _fakerContainer.Random.Elements(
+                   A<IEnumerable<string>>.That.IsSameSequenceAs(Data.StandardSpecs), 8))
+               .Returns(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" });
+
+            Assert.AreEqual(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" }, _vehicleFaker.StandardSpecs());
+        }
+
+        [Test]
+        public void Doors_returns_a_door()
+        {
+            A.CallTo(() => _randomWrapper.Next(1, 4))
+               .Returns(1);
+
+            Assert.AreEqual(1, _vehicleFaker.Doors());
+        }
+
+        [Test]
+        public void DoorCount_returns_a_doorcount()
+        {
+            A.CallTo(() => _randomWrapper.Next(1, 4))
+               .Returns(3);
+
+            Assert.AreEqual(3, _vehicleFaker.DoorCount());
+        }
+
+        [Test]
+        public void EngineSize_returns_an_enginesize()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<int>>.That.IsSameSequenceAs(Data.EngineSize)))
+               .Returns(6);
+
+            Assert.AreEqual(6, _vehicleFaker.EngineSize());
+        }
+
+        [Test]
+        public void Engine_returns_an_engine()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                   A<IEnumerable<int>>.That.IsSameSequenceAs(Data.EngineSize)))
+               .Returns(4);
+
+            Assert.AreEqual(4, _vehicleFaker.EngineSize());
+        }
+
+        [Test]
+        public void Year_returns_a_year()
+        {
+            A.CallTo(() => _randomWrapper.Next(365, 5475)).Returns(3650);
+            A.CallTo(() => _fakerContainer.Time.Backward(3650, TimePeriod.All))
+              .Returns(DateTime.Now.AddYears(-10));
+
+            Assert.AreEqual(DateTime.Now.AddYears(-10).Year, _vehicleFaker.Year());
         }
     }
 }

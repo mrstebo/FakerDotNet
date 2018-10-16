@@ -40,5 +40,21 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.Contains(_randomFaker.Element(word), word.ToCharArray());
         }
+
+        [Test]
+        public void Elements_take_one_returns_one_of_the_elements()
+        {
+            var collection = new[] { 1, 2, 3, 4, 5 };
+
+            Assert.AreEqual(1, _randomFaker.Elements(collection, 1).Intersect(collection).Count());
+        }
+
+        [Test]
+        public void Elements_take_five_returns_five_of_the_elements()
+        {
+            var collection = new[] { 1, 2, 3, 4, 5 , 6, 7, 8, 9, 10};
+
+            Assert.AreEqual(5, _randomFaker.Elements(collection, 5).Intersect(collection).Count());
+        }
     }
 }

@@ -11,8 +11,6 @@ namespace FakerDotNet.Fakers
     
     internal class PokemonFaker : IPokemonFaker
     {
-        private static readonly PokemonData Data = new PokemonData();
-        
         private readonly IFakerContainer _fakerContainer;
 
         public PokemonFaker(IFakerContainer fakerContainer)
@@ -22,17 +20,17 @@ namespace FakerDotNet.Fakers
 
         public string Name()
         {
-            return _fakerContainer.Random.Element(Data.Names);
+            return _fakerContainer.Random.Element(PokemonData.Names);
         }
 
         public string Location()
         {
-            return _fakerContainer.Random.Element(Data.Locations);
+            return _fakerContainer.Random.Element(PokemonData.Locations);
         }
 
         public string Move()
         {
-            return _fakerContainer.Random.Element(Data.Moves);
+            return _fakerContainer.Random.Element(PokemonData.Moves);
         }
     }
 }

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class PokemonData
+    internal static class PokemonData
     {
-        internal IEnumerable<string> Names => new[]
+        public static readonly IEnumerable<string> Names = new[]
         {
             "Bulbasaur",
             "Ivysaur",
@@ -159,7 +159,7 @@ namespace FakerDotNet.Data
             "Mew"
         };
 
-        internal IEnumerable<string> Locations => new[]
+        public static readonly IEnumerable<string> Locations = new[]
         {
             "Accumula Town",
             "Ambrette Town",
@@ -261,7 +261,7 @@ namespace FakerDotNet.Data
             "White Forest"
         };
 
-        internal IEnumerable<string> Moves => new[]
+        public static readonly IEnumerable<string> Moves = new[]
         {
             "Absorb",
             "Acid",

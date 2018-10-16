@@ -1,3 +1,4 @@
+using FakeItEasy;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
 
@@ -18,19 +19,19 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IAppFaker>(Faker.App);
         }
-        
+
         [Test]
         public void Book_returns_IBookFaker()
         {
             Assert.IsInstanceOf<IBookFaker>(Faker.Book);
         }
-        
+
         [Test]
         public void Boolean_returns_IBooleanFaker()
         {
             Assert.IsInstanceOf<IBooleanFaker>(Faker.Boolean);
         }
-        
+
         [Test]
         public void Date_returns_IDateFaker()
         {
@@ -50,6 +51,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Lorem_returns_ILoremFaker()
+        {
+            Assert.IsInstanceOf<ILoremFaker>(Faker.Lorem);
+        }
+
+        [Test]
         public void Name_returns_INameFaker()
         {
             Assert.IsInstanceOf<INameFaker>(Faker.Name);
@@ -62,11 +69,17 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Pokemon_returns_IPokemonFaker()
+        {
+            Assert.IsInstanceOf<IPokemonFaker>(Faker.Pokemon);
+        }
+
+        [Test]
         public void Random_returns_IRandomFaker()
         {
             Assert.IsInstanceOf<IRandomFaker>(Faker.Random);
         }
-        
+
         [Test]
         public void Time_returns_ITimeFaker()
         {

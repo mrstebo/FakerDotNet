@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class AppData
+    internal static class AppData
     {
-        public IEnumerable<string> Names => new[]
+        public static readonly IEnumerable<string> Names = new[]
         {
             "Redhold",
             "Treeflex",
@@ -90,7 +90,7 @@ namespace FakerDotNet.Data
             "Flexidy"
         };
 
-        public IEnumerable<string> Versions => new[]
+        public static readonly IEnumerable<string> Versions = new[]
         {
             "0.#.#",
             "0.##",

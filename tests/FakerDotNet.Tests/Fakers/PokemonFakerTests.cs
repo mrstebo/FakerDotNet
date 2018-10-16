@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
@@ -17,16 +16,13 @@ namespace FakerDotNet.Tests.Fakers
             _pokemonFaker = new PokemonFaker(_fakerContainer);
         }
         
-        private static readonly PokemonData Data = new PokemonData();
-
         private IFakerContainer _fakerContainer;
         private IPokemonFaker _pokemonFaker;
 
         [Test]
         public void Name_returns_a_Pokemon_name()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Names)))
+            A.CallTo(() => _fakerContainer.Random.Element(PokemonData.Names))
                 .Returns("Pikachu");
             
             Assert.AreEqual("Pikachu", _pokemonFaker.Name());
@@ -35,8 +31,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Location_returns_a_Pokemon_location()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Locations)))
+            A.CallTo(() => _fakerContainer.Random.Element(PokemonData.Locations))
                 .Returns("Pallet Town");
             
             Assert.AreEqual("Pallet Town", _pokemonFaker.Location());
@@ -45,8 +40,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Move_returns_a_Pokemon_move()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Moves)))
+            A.CallTo(() => _fakerContainer.Random.Element(PokemonData.Moves))
                 .Returns("Thunder Shock");
             
             Assert.AreEqual("Thunder Shock", _pokemonFaker.Move());

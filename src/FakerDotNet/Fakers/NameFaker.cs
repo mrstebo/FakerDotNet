@@ -15,8 +15,6 @@ namespace FakerDotNet.Fakers
 
     internal class NameFaker : INameFaker
     {
-        private static readonly NameData Data = new NameData();
-
         private readonly IFakerContainer _fakerContainer;
 
         public NameFaker(IFakerContainer fakerContainer)
@@ -36,30 +34,30 @@ namespace FakerDotNet.Fakers
 
         public string FirstName()
         {
-            return _fakerContainer.Random.Element(Data.FirstNames);
+            return _fakerContainer.Random.Element(NameData.FirstNames);
         }
 
         public string LastName()
         {
-            return _fakerContainer.Random.Element(Data.LastNames);
+            return _fakerContainer.Random.Element(NameData.LastNames);
         }
 
         public string Prefix()
         {
-            return _fakerContainer.Random.Element(Data.Prefixes);
+            return _fakerContainer.Random.Element(NameData.Prefixes);
         }
 
         public string Suffix()
         {
-            return _fakerContainer.Random.Element(Data.Suffixes);
+            return _fakerContainer.Random.Element(NameData.Suffixes);
         }
 
         public string Title()
         {
             return string.Join(" ",
-                _fakerContainer.Random.Element(Data.TitleDescriptors),
-                _fakerContainer.Random.Element(Data.TitleLevels),
-                _fakerContainer.Random.Element(Data.TitleJobs));
+                _fakerContainer.Random.Element(NameData.TitleDescriptors),
+                _fakerContainer.Random.Element(NameData.TitleLevels),
+                _fakerContainer.Random.Element(NameData.TitleJobs));
         }
     }
 }

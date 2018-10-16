@@ -134,12 +134,12 @@ namespace FakerDotNet.Fakers
 
         public string Latitude()
         {
-            return $"{_fakerContainer.Number.Between(0, 180) - 90:#.##########}";
+            return $"{_fakerContainer.Number.Between(0, 180) - 90}";
         }
 
         public string Longitude()
         {
-            return $"{(_fakerContainer.Number.Between(0, 360) - 180):#.##########}";
+            return $"{_fakerContainer.Number.Between(0, 360) - 180}";
         }
 
         public string FullAddress()

@@ -11,6 +11,7 @@ namespace FakerDotNet
         IDateFaker Date { get; }
         IFakeFaker Fake { get; }
         IFriendsFaker Friends { get; }
+        ILoremFaker Lorem { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IRandomFaker Random { get; }
@@ -29,6 +30,7 @@ namespace FakerDotNet
             Date = new DateFaker();
             Fake = new FakeFaker(this);
             Friends = new FriendsFaker(this);
+            Lorem = new LoremFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Random = new RandomFaker();
@@ -43,6 +45,7 @@ namespace FakerDotNet
         public IDateFaker Date { get; }
         public IFakeFaker Fake { get; }
         public IFriendsFaker Friends { get; }
+        public ILoremFaker Lorem { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }
         public IRandomFaker Random { get; }

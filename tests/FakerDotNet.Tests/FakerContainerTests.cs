@@ -76,6 +76,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Pokemon_returns_IPokemonFaker()
+        {
+            Assert.IsInstanceOf<IPokemonFaker>(_fakerContainer.Pokemon);
+        }
+
+        [Test]
         public void Random_returns_IRandomFaker()
         {
             Assert.IsInstanceOf<IRandomFaker>(_fakerContainer.Random);

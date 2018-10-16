@@ -17,15 +17,13 @@ namespace FakerDotNet.Tests.Fakers
             _zeldaFaker = new ZeldaFaker(_fakerContainer);
         }
 
-        private static readonly ZeldaData Data = new ZeldaData();
-
         private IFakerContainer _fakerContainer;
         private ZeldaFaker _zeldaFaker;
 
         [Test]
         public void Game_returns_a_game()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Games)))
+            A.CallTo(() => _fakerContainer.Random.Element(ZeldaData.Games))
                 .Returns("Ocarina of Time");
 
             Assert.AreEqual("Ocarina of Time", _zeldaFaker.Game());
@@ -34,7 +32,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Character_returns_a_character()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
+            A.CallTo(() => _fakerContainer.Random.Element(ZeldaData.Characters))
                 .Returns("Guru-Guru");
 
             Assert.AreEqual("Guru-Guru", _zeldaFaker.Character());
@@ -43,7 +41,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Location_returns_a_location()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Locations)))
+            A.CallTo(() => _fakerContainer.Random.Element(ZeldaData.Locations))
                 .Returns("Tarrey Town");
 
             Assert.AreEqual("Tarrey Town", _zeldaFaker.Location());
@@ -52,7 +50,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Item_returns_an_item()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Items)))
+            A.CallTo(() => _fakerContainer.Random.Element(ZeldaData.Items))
                 .Returns("Master Sword");
 
             Assert.AreEqual("Master Sword", _zeldaFaker.Item());

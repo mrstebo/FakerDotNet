@@ -274,19 +274,39 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Latitude_returns_a_latitude()
+        [SetCulture("en-GB")]
+        public void Latitude_returns_a_latitude_when_culture_is_en_GB()
         {
             A.CallTo(() => _fakerContainer.Number.Between(0, 180)).Returns(31.82743772556281);
             
-            Assert.AreEqual((-58.1725622744).ToString("#.##########"), _addressFaker.Latitude());
+            Assert.AreEqual("-58.1725622744372", _addressFaker.Latitude());
+        }
+        
+        [Test]
+        [SetCulture("de-DE")]
+        public void Latitude_returns_a_latitude_when_culture_is_de_DE()
+        {
+            A.CallTo(() => _fakerContainer.Number.Between(0, 180)).Returns(31.82743772556281);
+            
+            Assert.AreEqual("-58,1725622744372", _addressFaker.Latitude());
         }
 
         [Test]
-        public void Longitude_returns_a_longitude()
+        [SetCulture("en-GB")]
+        public void Longitude_returns_a_longitude_when_culture_is_en_GB()
         {
             A.CallTo(() => _fakerContainer.Number.Between(0, 360)).Returns(23.344516179048668);
             
-            Assert.AreEqual((-156.655483821).ToString("#.##########"), _addressFaker.Longitude());
+            Assert.AreEqual("-156.655483820951", _addressFaker.Longitude());
+        }
+        
+        [Test]
+        [SetCulture("de-DE")]
+        public void Longitude_returns_a_longitude_when_culture_is_de_DE()
+        {
+            A.CallTo(() => _fakerContainer.Number.Between(0, 360)).Returns(23.344516179048668);
+            
+            Assert.AreEqual("-156,655483820951", _addressFaker.Longitude());
         }
 
         [Test]

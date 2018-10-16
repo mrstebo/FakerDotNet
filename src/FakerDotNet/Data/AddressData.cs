@@ -4,7 +4,7 @@ namespace FakerDotNet.Data
 {
     internal static class AddressData
     {
-        public static IEnumerable<string> CityPrefixes = new[]
+        public static readonly IEnumerable<string> CityPrefixes = new[]
         {
             "North",
             "East",
@@ -15,7 +15,7 @@ namespace FakerDotNet.Data
             "Port"
         };
 
-        public static IEnumerable<string> CitySuffixes = new[]
+        public static readonly IEnumerable<string> CitySuffixes = new[]
         {
             "town",
             "ton",
@@ -38,7 +38,7 @@ namespace FakerDotNet.Data
             "shire"
         };
 
-        public static IEnumerable<string> Countries = new[]
+        public static readonly IEnumerable<string> Countries = new[]
         {
             "Afghanistan",
             "Albania",
@@ -287,7 +287,7 @@ namespace FakerDotNet.Data
             "Zimbabwe"
         };
 
-        public static IEnumerable<string> CountryCodes = new[]
+        public static readonly IEnumerable<string> CountryCodes = new[]
         {
             "AD",
             "AE",
@@ -541,7 +541,7 @@ namespace FakerDotNet.Data
             "ZW"
         };
 
-        public static IEnumerable<string> LongCountryCodes = new[]
+        public static readonly IEnumerable<string> LongCountryCodes = new[]
         {
             "ABW",
             "AFG",
@@ -794,14 +794,14 @@ namespace FakerDotNet.Data
             "ZWE"
         };
         
-        public static IEnumerable<string> BuildingNumbers = new[]
+        public static readonly IEnumerable<string> BuildingNumbers = new[]
         {
             "#####",
             "####",
             "###"
         };
         
-        public static IEnumerable<string> CommunityPrefixes = new[]
+        public static readonly IEnumerable<string> CommunityPrefixes = new[]
         {
             "Park",
             "Summer",
@@ -814,7 +814,7 @@ namespace FakerDotNet.Data
             "Willow"
         };
 
-        public static IEnumerable<string> CommunitySuffixes = new[]
+        public static readonly IEnumerable<string> CommunitySuffixes = new[]
         {
             "Village",
             "Creek",
@@ -830,7 +830,7 @@ namespace FakerDotNet.Data
             "Heights"
         };
 
-        public static IEnumerable<string> StreetSuffixes = new[]
+        public static readonly IEnumerable<string> StreetSuffixes = new[]
         {
             "Alley",
             "Avenue",
@@ -1059,19 +1059,19 @@ namespace FakerDotNet.Data
             "Wells"
         };
 
-        public static IEnumerable<string> SecondaryAddressPrefixes = new[]
+        public static readonly IEnumerable<string> SecondaryAddressPrefixes = new[]
         {
             "Apt. ###",
             "Suite ###"
         };
 
-        public static IEnumerable<string> Postcodes = new[]
+        public static readonly IEnumerable<string> Postcodes = new[]
         {
             "#####",
             "#####-####"
         };
 
-        public static IDictionary<string, string> PostcodeByState = new Dictionary<string, string>
+        public static readonly IDictionary<string, string> PostcodeByState = new Dictionary<string, string>
         {
 
             {"AL", "350##"},
@@ -1128,7 +1128,7 @@ namespace FakerDotNet.Data
             {"WY", "831##"}
         };
 
-        public static IEnumerable<string> States = new[]
+        public static readonly IEnumerable<string> States = new[]
         {
             "Alabama",
             "Alaska",
@@ -1182,7 +1182,7 @@ namespace FakerDotNet.Data
             "Wyoming"
         };
 
-        public static IEnumerable<string> StateAbbreviations = new[]
+        public static readonly IEnumerable<string> StateAbbreviations = new[]
         {
             "AL",
             "AK",
@@ -1236,7 +1236,7 @@ namespace FakerDotNet.Data
             "WY"
         };
 
-        public static IEnumerable<string> TimeZones = new[]
+        public static readonly IEnumerable<string> TimeZones = new[]
         {
             "Pacific/Midway",
             "Pacific/Pago_Pago",
@@ -1383,7 +1383,7 @@ namespace FakerDotNet.Data
             "Pacific/Apia"
         };
 
-        public static IEnumerable<string> Cities = new[]
+        public static readonly IEnumerable<string> Cities = new[]
         {
             "{CityPrefix} {Name.FirstName}{CitySuffix}",
             "{CityPrefix} {Name.FirstName}",
@@ -1391,18 +1391,18 @@ namespace FakerDotNet.Data
             "{Name.LastName}{CitySuffix}"
         };
 
-        public static IEnumerable<string> StreetNames = new[]
+        public static readonly IEnumerable<string> StreetNames = new[]
         {
             "{Name.FirstName} {StreetSuffix}",
             "{Name.LastName} {StreetSuffix}"
         };
 
-        public static IEnumerable<string> StreetAddresses = new[]
+        public static readonly IEnumerable<string> StreetAddresses = new[]
         {
             "{BuildingNumber} {StreetName}"
         };
 
-        public static IEnumerable<string> FullAddresses = new[]
+        public static readonly IEnumerable<string> FullAddresses = new[]
         {
             "{StreetAddress}, {City}, {StateAbbr} {ZipCode}",
             "{SecondaryAddress} {StreetAddress}, {City}, {StateAbbr} {ZipCode}"

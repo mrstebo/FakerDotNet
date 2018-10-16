@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;

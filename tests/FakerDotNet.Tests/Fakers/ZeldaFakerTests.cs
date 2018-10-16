@@ -2,7 +2,6 @@
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace FakerDotNet.Tests.Fakers
 {

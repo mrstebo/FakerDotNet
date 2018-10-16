@@ -2,9 +2,9 @@
 
 namespace FakerDotNet.Data
 {
-    internal class FriendsData
+    internal static class FriendsData
     {
-        public IEnumerable<string> Characters => new[]
+        public static readonly IEnumerable<string> Characters = new[]
         {
             "Rachel Green",
             "Joey Tribbiani",
@@ -20,7 +20,7 @@ namespace FakerDotNet.Data
             "Miss Chanandler Bong"
         };
 
-        public IEnumerable<string> Locations => new[]
+        public static readonly IEnumerable<string> Locations = new[]
         {
             "Central Perk",
             "Javu",
@@ -31,7 +31,7 @@ namespace FakerDotNet.Data
             "15 Yemen Road, Yemen"
         };
 
-        public IEnumerable<string> Quotes => new[]
+        public static readonly IEnumerable<string> Quotes = new[]
         {
             "We were on a break!",
             "Forty-two to twenty-one! Like the turkey, Ross is done!",

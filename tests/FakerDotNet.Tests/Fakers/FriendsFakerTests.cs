@@ -21,16 +21,13 @@ namespace FakerDotNet.Tests.Fakers
             _friendsFaker = new FriendsFaker(_fakerContainer);
         }
 
-        private static readonly FriendsData Data = new FriendsData();
-
         private IFakerContainer _fakerContainer;
         private IFriendsFaker _friendsFaker;
 
         [Test]
         public void Character_returns_a_character()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
+            A.CallTo(() => _fakerContainer.Random.Element(FriendsData.Characters))
                 .Returns("Rachel Green");
 
             Assert.AreEqual("Rachel Green", _friendsFaker.Character());
@@ -39,8 +36,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Location_returns_a_location()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Locations)))
+            A.CallTo(() => _fakerContainer.Random.Element(FriendsData.Locations))
                 .Returns("15 Yemen Road, Yemen");
 
             Assert.AreEqual("15 Yemen Road, Yemen", _friendsFaker.Location());
@@ -49,8 +45,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Quote_returns_a_quote()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Quotes)))
+            A.CallTo(() => _fakerContainer.Random.Element(FriendsData.Quotes))
                 .Returns("Forty-two to twenty-one! Like the turkey, Ross is done!");
 
             Assert.AreEqual("Forty-two to twenty-one! Like the turkey, Ross is done!", _friendsFaker.Quote());

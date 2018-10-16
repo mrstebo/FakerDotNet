@@ -1,4 +1,3 @@
-using FakeItEasy;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
 
@@ -30,6 +29,12 @@ namespace FakerDotNet.Tests
         public void Boolean_returns_IBooleanFaker()
         {
             Assert.IsInstanceOf<IBooleanFaker>(Faker.Boolean);
+        }
+
+        [Test]
+        public void Business_returns_IBusinessFaker()
+        {
+            Assert.IsInstanceOf<IBusinessFaker>(Faker.Business);
         }
 
         [Test]

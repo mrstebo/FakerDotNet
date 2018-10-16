@@ -40,6 +40,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Business_returns_IBusinessFaker()
+        {
+            Assert.IsInstanceOf<IBusinessFaker>(_fakerContainer.Business);
+        }
+
+        [Test]
         public void Date_returns_IDateFaker()
         {
             Assert.IsInstanceOf<IDateFaker>(_fakerContainer.Date);

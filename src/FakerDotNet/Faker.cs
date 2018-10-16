@@ -10,6 +10,7 @@ namespace FakerDotNet
         public static IAppFaker App { get; } = Container.App;
         public static IBookFaker Book { get; } = Container.Book;
         public static IBooleanFaker Boolean { get; } = Container.Boolean;
+        public static IBusinessFaker Business { get; } = Container.Business;
         public static IDateFaker Date { get; } = Container.Date;
         public static IFakeFaker Fake { get; } = Container.Fake;
         public static IFriendsFaker Friends { get; } = Container.Friends;

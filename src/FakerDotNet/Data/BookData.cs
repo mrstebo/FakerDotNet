@@ -4,7 +4,7 @@ namespace FakerDotNet.Data
 {
     internal static class BookData
     {
-        public static IEnumerable<string> Titles = new[]
+        public static readonly IEnumerable<string> Titles = new[]
         {
             "Absalom, Absalom!",
             "After Many a Summer Dies the Swan",
@@ -198,7 +198,7 @@ namespace FakerDotNet.Data
             "The Yellow Meads of Asphodel"
         };
 
-        public static IEnumerable<string> Publishers = new[]
+        public static readonly IEnumerable<string> Publishers = new[]
         {
             "Academic Press",
             "Ace Books",
@@ -466,7 +466,7 @@ namespace FakerDotNet.Data
             "Zondervan"
         };
 
-        public static IEnumerable<string> Genres = new[]
+        public static readonly IEnumerable<string> Genres = new[]
         {
             "Classic",
             "Comic/Graphic Novel",

@@ -12,8 +12,6 @@ namespace FakerDotNet.Fakers
     
     internal class BookFaker : IBookFaker
     {
-        private static readonly BookData Data = new BookData();
-
         private readonly IFakerContainer _fakerContainer;
 
         public BookFaker(IFakerContainer fakerContainer)
@@ -23,7 +21,7 @@ namespace FakerDotNet.Fakers
 
         public string Title()
         {
-            return _fakerContainer.Random.Element(Data.Titles);
+            return _fakerContainer.Random.Element(BookData.Titles);
         }
 
         public string Author()
@@ -33,12 +31,12 @@ namespace FakerDotNet.Fakers
 
         public string Publisher()
         {
-            return _fakerContainer.Random.Element(Data.Publishers);
+            return _fakerContainer.Random.Element(BookData.Publishers);
         }
 
         public string Genre()
         {
-            return _fakerContainer.Random.Element(Data.Genres);
+            return _fakerContainer.Random.Element(BookData.Genres);
         }
     }
 }

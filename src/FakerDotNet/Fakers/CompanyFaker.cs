@@ -74,12 +74,17 @@ namespace FakerDotNet.Fakers
 
         public string Ein()
         {
-            throw new NotImplementedException();
+            return string.Join("-",
+                _fakerContainer.Number.Number(2),
+                _fakerContainer.Number.Number(7));
         }
 
         public string DunsNumber()
         {
-            throw new NotImplementedException();
+            return string.Join("-",
+                _fakerContainer.Number.Number(2),
+                _fakerContainer.Number.Number(3),
+                _fakerContainer.Number.Number(4));
         }
 
         public string Logo()

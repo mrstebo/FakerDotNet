@@ -104,13 +104,25 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Ein_returns_an_EIN()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Number.Number(2))
+                .Returns("34");
+            A.CallTo(() => _fakerContainer.Number.Number(7))
+                .Returns("8488813");
+
+            Assert.AreEqual("34-8488813", _companyFaker.Ein());
         }
 
         [Test]
         public void DunsNumber_returns_a_DUNS_number()
         {
-            Assert.Fail();
+            A.CallTo(() => _fakerContainer.Number.Number(2))
+                .Returns("08");
+            A.CallTo(() => _fakerContainer.Number.Number(3))
+                .Returns("341");
+            A.CallTo(() => _fakerContainer.Number.Number(4))
+                .Returns("3736");
+
+            Assert.AreEqual("08-341-3736", _companyFaker.DunsNumber());
         }
 
         [Test]

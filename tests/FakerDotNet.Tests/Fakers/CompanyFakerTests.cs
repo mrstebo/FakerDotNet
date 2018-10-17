@@ -155,79 +155,79 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void SwedishOrganisationNumber_returns_a_swedish_organisation_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("7962578022", _companyFaker.SwedishOrganisationNumber());
         }
 
         [Test]
         public void CzechOrganisationNumber_returns_a_czech_organisation_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("77778171", _companyFaker.CzechOrganisationNumber());
         }
 
         [Test]
         public void FrenchSirenNumber_returns_a_french_siren_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("819489626", _companyFaker.FrenchSirenNumber());
         }
 
         [Test]
         public void FrenchSiretNumber_returns_a_french_siret_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("81948962600013", _companyFaker.FrenchSiretNumber());
         }
 
         [Test]
         public void NorwegianOrganisationNumber_returns_a_norwegian_organisation_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("839071558", _companyFaker.NorwegianOrganisationNumber());
         }
 
         [Test]
         public void AustralianBusinessNumber_returns_an_australian_business_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("81137773602", _companyFaker.AustralianBusinessNumber());
         }
 
         [Test]
         public void SpanishOrganisationNumber_returns_a_spanish_organisation_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("P2344979", _companyFaker.SpanishOrganisationNumber());
         }
 
         [Test]
         public void PolishTaxpayerIdentificationNumber_returns_a_polish_taxpayer_identification_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("1060000062", _companyFaker.PolishTaxpayerIdentificationNumber());
         }
 
         [Test]
         public void PolishRegisterOfNationalEconomy_returns_a_polish_register_of_national_economy()
         {
-            Assert.Fail();
+            Assert.AreEqual("123456785", _companyFaker.PolishRegisterOfNationalEconomy());
         }
 
         [Test]
         public void SouthAfricanPtyLtdRegistrationNumber_returns_a_south_african_pty_ltd_registration_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("5301/714689/07", _companyFaker.SouthAfricanPtyLtdRegistrationNumber());
         }
 
         [Test]
         public void SouthAfricanCloseCorporationRegistrationNumber_returns_a_south_african_close_corporation_registration_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("CK74/7585/23", _companyFaker.SouthAfricanCloseCorporationRegistrationNumber());
         }
 
         [Test]
         public void SouthAfricanListedCompanyRegistrationNumber_returns_a_south_african_listed_company_registration_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("7039/3135/06", _companyFaker.SouthAfricanListedCompanyRegistrationNumber());
         }
 
         [Test]
         public void SouthAfricanTrustRegistrationNumber_returns_a_south_african_trust_registration_number()
         {
-            Assert.Fail();
+            Assert.AreEqual("IT38/6489900", _companyFaker.SouthAfricanTrustRegistrationNumber());
         }
     }
 }

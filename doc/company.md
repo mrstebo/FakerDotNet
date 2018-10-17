@@ -22,7 +22,7 @@ Faker.Company.Ein() //=> "34-8488813"
 Faker.Company.DunsNumber() //=> "08-341-3736"
 
 // Get a random company logo url in PNG format.
-Faker.Company.Logo() //=> "https://pigment.Github.Com/fake-logos/logos/medium/color/5.png"
+Faker.Company.Logo() //=> "https://pigment.github.io/fake-logos/logos/medium/color/5.png"
 
 Faker.Company.Type() //=> "Privately Held"
 

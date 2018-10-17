@@ -38,6 +38,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Company_returns_ICompanyFaker()
+        {
+            Assert.IsInstanceOf<ICompanyFaker>(Faker.Company);
+        }
+
+        [Test]
         public void Date_returns_IDateFaker()
         {
             Assert.IsInstanceOf<IDateFaker>(Faker.Date);

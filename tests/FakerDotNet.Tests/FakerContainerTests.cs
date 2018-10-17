@@ -46,6 +46,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Company_returns_ICompanyFaker()
+        {
+            Assert.IsInstanceOf<ICompanyFaker>(_fakerContainer.Company);
+        }
+
+        [Test]
         public void Date_returns_IDateFaker()
         {
             Assert.IsInstanceOf<IDateFaker>(_fakerContainer.Date);
@@ -56,7 +62,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IFakeFaker>(_fakerContainer.Fake);
         }
-        
+
         [Test]
         public void Friends_returns_IFriendsFaker()
         {
@@ -104,6 +110,5 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
         }
-
     }
 }

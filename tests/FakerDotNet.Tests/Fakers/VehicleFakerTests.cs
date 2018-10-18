@@ -164,7 +164,7 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _randomWrapper.Next(5, 10))
                .Returns(10);
 
-            A.CallTo(() => _fakerContainer.Random.Elements(
+            A.CallTo(() => _fakerContainer.Random.Assortment(
                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.CarOptions), 10))
                .Returns(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" });
 
@@ -177,7 +177,7 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _randomWrapper.Next(5, 10))
                .Returns(8);
 
-            A.CallTo(() => _fakerContainer.Random.Elements(
+            A.CallTo(() => _fakerContainer.Random.Assortment(
                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.StandardSpecs), 8))
                .Returns(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" });
 

@@ -38,7 +38,13 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IBooleanFaker>(_fakerContainer.Boolean);
         }
-        
+
+        [Test]
+        public void Business_returns_IBusinessFaker()
+        {
+            Assert.IsInstanceOf<IBusinessFaker>(_fakerContainer.Business);
+        }
+
         [Test]
         public void Date_returns_IDateFaker()
         {
@@ -49,6 +55,18 @@ namespace FakerDotNet.Tests
         public void Fake_returns_IFakeFaker()
         {
             Assert.IsInstanceOf<IFakeFaker>(_fakerContainer.Fake);
+        }
+        
+        [Test]
+        public void Friends_returns_IFriendsFaker()
+        {
+            Assert.IsInstanceOf<IFriendsFaker>(_fakerContainer.Friends);
+        }
+
+        [Test]
+        public void Lorem_returns_ILoremFaker()
+        {
+            Assert.IsInstanceOf<ILoremFaker>(_fakerContainer.Lorem);
         }
 
         [Test]
@@ -61,6 +79,12 @@ namespace FakerDotNet.Tests
         public void Number_returns_INumberFaker()
         {
             Assert.IsInstanceOf<INumberFaker>(_fakerContainer.Number);
+        }
+
+        [Test]
+        public void Pokemon_returns_IPokemonFaker()
+        {
+            Assert.IsInstanceOf<IPokemonFaker>(_fakerContainer.Pokemon);
         }
 
         [Test]
@@ -80,5 +104,6 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
         }
+
     }
 }

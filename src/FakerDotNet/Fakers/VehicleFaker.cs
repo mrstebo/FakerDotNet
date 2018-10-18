@@ -125,12 +125,12 @@ namespace FakerDotNet.Fakers
 
         public IEnumerable<string> CarOptions()
         {
-            return _fakerContainer.Random.Elements(Data.CarOptions, _randomWrapper.Next(5, 10));
+            return _fakerContainer.Random.Assortment(Data.CarOptions, _randomWrapper.Next(5, 10));
         }
 
         public IEnumerable<string> StandardSpecs()
         {
-            return _fakerContainer.Random.Elements(Data.StandardSpecs, _randomWrapper.Next(5, 10));
+            return _fakerContainer.Random.Assortment(Data.StandardSpecs, _randomWrapper.Next(5, 10));
         }
 
         public int Doors()

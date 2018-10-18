@@ -13,8 +13,6 @@ namespace FakerDotNet.Fakers
 
     internal class AppFaker : IAppFaker
     {
-        private static readonly AppData Data = new AppData();
-
         private readonly IFakerContainer _fakerContainer;
 
         public AppFaker(IFakerContainer fakerContainer)
@@ -24,13 +22,13 @@ namespace FakerDotNet.Fakers
 
         public string Name()
         {
-            return _fakerContainer.Random.Element(Data.Names);
+            return _fakerContainer.Random.Element(AppData.Names);
         }
 
         public string Version()
         {
             var numbers = Enumerable.Range(0, 9);
-            var format = _fakerContainer.Random.Element(Data.Versions);
+            var format = _fakerContainer.Random.Element(AppData.Versions);
 
             return Regex.Replace(format, "#", m => _fakerContainer.Random.Element(numbers).ToString());
         }

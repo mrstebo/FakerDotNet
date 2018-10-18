@@ -1,6 +1,8 @@
 ﻿using FakerDotNet.Data;
 using FakerDotNet.Wrappers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FakerDotNet.Fakers
 {
@@ -27,6 +29,8 @@ namespace FakerDotNet.Fakers
         int Year();
         int Mileage(int minium = 10000, int maxium = 90000);
         int Kilometers();
+        string LicensePlate();
+        string LicensePlate(string state);
     }
 
     internal class VehicleFaker : IVehicleFaker
@@ -169,6 +173,31 @@ namespace FakerDotNet.Fakers
             return Mileage();
         }
 
+        public string LicensePlate()
+        {
+            return String.Join(String.Empty, Data.LicensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
+        }
+
+        public string LicensePlate(string state)
+        {
+            var licensePlateTemplate = _fakerContainer.Random.Element(Data.LicensePlateTemplateByState[state]);
+            return String.Join(String.Empty, licensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
+        }
+
+        private string ConvertsTemplateChar(char c)
+        {
+            char[] alphabet = Enumerable.Range('A', 26).Select(x => (char)x).ToArray();
+
+            if (c == '?')
+            {
+                return _fakerContainer.Random.Element(alphabet).ToString();
+            }
+            if (c == '#')
+                return _fakerContainer
+                    .Random.Element(Enumerable.Range(0, 9).ToArray()).ToString();
+
+            return c.ToString();
+        }
         private string GetChecksum(string vin)
         {
             int checkSumTotal = 0;

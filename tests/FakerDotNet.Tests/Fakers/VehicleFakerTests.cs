@@ -231,5 +231,37 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.AreEqual(DateTime.Now.AddYears(-10).Year, _vehicleFaker.Year());
         }
+
+        [Test]
+        public void Milage_returns_milage_defaults()
+        {
+            A.CallTo(() => _randomWrapper.Next(10000, 90000)).Returns(26961);
+
+            Assert.AreEqual(26961, _vehicleFaker.Mileage());
+        }
+
+        [Test]
+        public void Milage_returns_milage_minium_specified()
+        {
+            A.CallTo(() => _randomWrapper.Next(50000, 90000)).Returns(81557);
+
+            Assert.AreEqual(81557, _vehicleFaker.Mileage(50000));
+        }
+
+        [Test]
+        public void Milage_returns_milage_minium_and_maxium_specified()
+        {
+            A.CallTo(() => _randomWrapper.Next(50000, 250000)).Returns(117503);
+
+            Assert.AreEqual(117503, _vehicleFaker.Mileage(50000, 250000));
+        }
+
+        [Test]
+        public void Kilometer_calls_milage()
+        {
+            A.CallTo(() => _randomWrapper.Next(10000, 90000)).Returns(35378);
+
+            Assert.AreEqual(35378, _vehicleFaker.Kilometers());
+        }
     }
 }

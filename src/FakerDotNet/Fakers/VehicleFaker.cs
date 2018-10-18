@@ -25,6 +25,8 @@ namespace FakerDotNet.Fakers
         int EngineSize();
         int Engine();
         int Year();
+        int Mileage(int minium = 10000, int maxium = 90000);
+        int Kilometers();
     }
 
     internal class VehicleFaker : IVehicleFaker
@@ -32,7 +34,7 @@ namespace FakerDotNet.Fakers
         private static readonly VehicleData Data = new VehicleData();
         private int[] vinDigitPositionMultiplier = new[] { 8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2 };
         private Dictionary<char, int> vinDigitValues = new Dictionary<char, int>() { { 'A', 1 }, { 'B', 2 }, { 'C', 3 }, { 'D', 4 }, { 'E', 5 }, { 'F', 6 }, { 'G', 7 }, { 'H', 8 }, { 'J', 1 }, { 'K', 2 }, { 'L', 3 }, { 'M', 4 }, { 'N', 5 }, { 'P', 7 }, { 'R', 9 }, { 'S', 2 }, { 'T', 3 }, { 'U', 4 }, { 'V', 5 }, { 'W', 6 }, { 'X', 7 }, { 'Y', 8 }, { 'Z', 9 }, { '1', 1 }, { '2', 2 }, { '3', 3 }, { '4', 4 }, { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 }, { '0', 0 } };
-
+        
         private readonly IFakerContainer _fakerContainer;
         private readonly IRandomWrapper _randomWrapper;
 
@@ -156,6 +158,15 @@ namespace FakerDotNet.Fakers
         public int Year()
         {
             return _fakerContainer.Time.Backward(_randomWrapper.Next(365, 5475), TimePeriod.All).Year;
+        }
+
+        public int Mileage(int minium = 10000, int maxium = 90000) {
+            return _randomWrapper.Next(minium, maxium);
+        }
+
+        public int Kilometers()
+        {
+            return Mileage();
         }
 
         private string GetChecksum(string vin)

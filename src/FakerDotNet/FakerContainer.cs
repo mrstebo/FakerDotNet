@@ -18,6 +18,7 @@ namespace FakerDotNet
         IPokemonFaker Pokemon { get; }
         IRandomFaker Random { get; }
         ITimeFaker Time { get; }
+        ITwinPeaksFaker TwinPeaks { get; }
         IZeldaFaker Zelda { get; }
     }
 
@@ -39,6 +40,7 @@ namespace FakerDotNet
             Pokemon = new PokemonFaker(this);
             Random = new RandomFaker();
             Time = new TimeFaker();
+            TwinPeaks = new TwinPeaksFaker(this);
             Zelda = new ZeldaFaker(this);
         }
 
@@ -56,6 +58,7 @@ namespace FakerDotNet
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
         public ITimeFaker Time { get; }
+        public ITwinPeaksFaker TwinPeaks { get; }
         public IZeldaFaker Zelda { get; }
     }
 }

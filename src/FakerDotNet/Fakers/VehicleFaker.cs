@@ -185,18 +185,19 @@ namespace FakerDotNet.Fakers
 
         private string ConvertsTemplateChar(char c)
         {
-            char[] alphabet = Enumerable.Range('A', 26).Select(x => (char)x).ToArray();
-
-            if (c == '?')
+            switch (c)
             {
-                return _fakerContainer.Random.Element(alphabet).ToString();
+                case '?':
+                    return _fakerContainer
+                        .Random.Element(VehicleData.LicensePlateAlphabet).ToString();
+                case '#':
+                    return _fakerContainer
+                        .Random.Element(VehicleData.LicensePlateNumbers).ToString();
+                default:
+                    return c.ToString();
             }
-            if (c == '#')
-                return _fakerContainer
-                    .Random.Element(Enumerable.Range(0, 9).ToArray()).ToString();
-
-            return c.ToString();
         }
+
         private string GetChecksum(string vin)
         {
             int checkSumTotal = 0;

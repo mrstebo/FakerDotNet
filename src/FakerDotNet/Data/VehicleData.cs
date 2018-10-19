@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace FakerDotNet.Data
 {
@@ -485,5 +486,7 @@ namespace FakerDotNet.Data
             {"WI", new [] {"???-####", "#####K", "#####T"}},
             {"WY", new [] {"#-#####", "1#-#####", "2[0-3]-#####", "99-#####", "DV-####", "####", "GS###", "PHS-####", "WYO-####", "AF###", "AR###", "CG###", "MC###", "MM###", "NA###" } }
         };
+        internal static readonly IEnumerable<char> LicensePlateAlphabet = Enumerable.Range('A', 26).Select(x => (char) x);
+        internal static readonly IEnumerable<int> LicensePlateNumbers = Enumerable.Range(0, 9);
     }
 }

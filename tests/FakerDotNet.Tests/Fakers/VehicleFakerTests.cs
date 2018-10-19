@@ -260,5 +260,34 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.AreEqual(35378, _vehicleFaker.Kilometers());
         }
+
+        [Test]
+        public void LicensePlate_returns_plate_no_state()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                  A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
+              .Returns('A');
+            A.CallTo(() => _fakerContainer.Random.Element(
+                 A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.LicensePlateNumbers)))
+             .Returns(1);
+
+            Assert.AreEqual("AAA-1111", _vehicleFaker.LicensePlate());
+        }
+
+        [Test]
+        public void LicensePlate_returns_plate_Florida_state()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(
+                  A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.LicensePlateTemplateByState["FL"])))
+              .Returns("??? ?##");
+            A.CallTo(() => _fakerContainer.Random.Element(
+                  A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
+              .Returns('F');
+            A.CallTo(() => _fakerContainer.Random.Element(
+                 A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.LicensePlateNumbers)))
+             .Returns(5);
+
+            Assert.AreEqual("FFF F55", _vehicleFaker.LicensePlate("FL"));
+        }
     }
 }

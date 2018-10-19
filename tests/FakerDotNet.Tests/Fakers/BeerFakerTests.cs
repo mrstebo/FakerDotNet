@@ -7,6 +7,7 @@ using System.Collections.Generic;
 namespace FakerDotNet.Tests.Fakers
 {
     [TestFixture]
+    [SetCulture("en-GB")]
     [Parallelizable]
     public class BeerFakerTests
     {
@@ -93,14 +94,14 @@ namespace FakerDotNet.Tests.Fakers
         public void Alcohol_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 10)).Returns(8.73D);
-            Assert.AreEqual("8,7%", _beerFaker.Alcohol());
+            Assert.AreEqual("8.7%", _beerFaker.Alcohol());
         }
 
         [Test]
         public void Blg_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(5, 20)).Returns(18.79D);
-            Assert.AreEqual("18,8°Blg", _beerFaker.Blg());
+            Assert.AreEqual("18.8°Blg", _beerFaker.Blg());
 
         }
     }

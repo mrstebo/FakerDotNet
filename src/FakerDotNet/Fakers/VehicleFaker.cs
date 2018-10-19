@@ -35,7 +35,6 @@ namespace FakerDotNet.Fakers
 
     internal class VehicleFaker : IVehicleFaker
     {
-        private static readonly VehicleData Data = new VehicleData();
         private int[] vinDigitPositionMultiplier = new[] { 8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2 };
         private Dictionary<char, int> vinDigitValues = new Dictionary<char, int>() { { 'A', 1 }, { 'B', 2 }, { 'C', 3 }, { 'D', 4 }, { 'E', 5 }, { 'F', 6 }, { 'G', 7 }, { 'H', 8 }, { 'J', 1 }, { 'K', 2 }, { 'L', 3 }, { 'M', 4 }, { 'N', 5 }, { 'P', 7 }, { 'R', 9 }, { 'S', 2 }, { 'T', 3 }, { 'U', 4 }, { 'V', 5 }, { 'W', 6 }, { 'X', 7 }, { 'Y', 8 }, { 'Z', 9 }, { '1', 1 }, { '2', 2 }, { '3', 3 }, { '4', 4 }, { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 }, { '0', 0 } };
         
@@ -49,18 +48,18 @@ namespace FakerDotNet.Fakers
 
         public VehicleFaker(IFakerContainer fakerContainer, IRandomWrapper randomWrapper)
         {
-            this._fakerContainer = fakerContainer;
-            this._randomWrapper = randomWrapper;
+            _fakerContainer = fakerContainer;
+            _randomWrapper = randomWrapper;
         }
 
         public string Make()
         {
-            return _fakerContainer.Random.Element(Data.Makes);
+            return _fakerContainer.Random.Element(VehicleData.Makes);
         }
 
         public string Manufacture()
         {
-            return _fakerContainer.Random.Element(Data.Manufactures);
+            return _fakerContainer.Random.Element(VehicleData.Manufactures);
         }
 
         public string Vin()
@@ -84,12 +83,12 @@ namespace FakerDotNet.Fakers
 
         public string Model()
         {
-            return Model(_fakerContainer.Random.Element(Data.Makes));
+            return Model(_fakerContainer.Random.Element(VehicleData.Makes));
         }
 
         public string Model(string make)
         {
-            return _fakerContainer.Random.Element(Data.Make_Models[make]);
+            return _fakerContainer.Random.Element(VehicleData.Make_Models[make]);
         }
 
         public string MakeAndModel()
@@ -101,42 +100,42 @@ namespace FakerDotNet.Fakers
 
         public string Color()
         {
-            return _fakerContainer.Random.Element(Data.Colors);
+            return _fakerContainer.Random.Element(VehicleData.Colors);
         }
 
         public string Transmission()
         {
-            return _fakerContainer.Random.Element(Data.Transmissions);
+            return _fakerContainer.Random.Element(VehicleData.Transmissions);
         }
 
         public string DriveType()
         {
-            return _fakerContainer.Random.Element(Data.DriveTypes);
+            return _fakerContainer.Random.Element(VehicleData.DriveTypes);
         }
 
         public string FuelType()
         {
-            return _fakerContainer.Random.Element(Data.FuelTypes);
+            return _fakerContainer.Random.Element(VehicleData.FuelTypes);
         }
 
         public string VehicleStyle()
         {
-            return _fakerContainer.Random.Element(Data.VehicleStyles);
+            return _fakerContainer.Random.Element(VehicleData.VehicleStyles);
         }
 
         public string CarType()
         {
-            return _fakerContainer.Random.Element(Data.CarTypes);
+            return _fakerContainer.Random.Element(VehicleData.CarTypes);
         }
 
         public IEnumerable<string> CarOptions()
         {
-            return _fakerContainer.Random.Assortment(Data.CarOptions, _randomWrapper.Next(5, 10));
+            return _fakerContainer.Random.Assortment(VehicleData.CarOptions, _randomWrapper.Next(5, 10));
         }
 
         public IEnumerable<string> StandardSpecs()
         {
-            return _fakerContainer.Random.Assortment(Data.StandardSpecs, _randomWrapper.Next(5, 10));
+            return _fakerContainer.Random.Assortment(VehicleData.StandardSpecs, _randomWrapper.Next(5, 10));
         }
 
         public int Doors()
@@ -151,7 +150,7 @@ namespace FakerDotNet.Fakers
 
         public int EngineSize()
         {
-            return _fakerContainer.Random.Element(Data.EngineSize);
+            return _fakerContainer.Random.Element(VehicleData.EngineSize);
         }
 
         public int Engine()
@@ -175,12 +174,12 @@ namespace FakerDotNet.Fakers
 
         public string LicensePlate()
         {
-            return String.Join(String.Empty, Data.LicensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
+            return String.Join(String.Empty, VehicleData.LicensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
         }
 
         public string LicensePlate(string state)
         {
-            var licensePlateTemplate = _fakerContainer.Random.Element(Data.LicensePlateTemplateByState[state]);
+            var licensePlateTemplate = _fakerContainer.Random.Element(VehicleData.LicensePlateTemplateByState[state]);
             return String.Join(String.Empty, licensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
         }
 

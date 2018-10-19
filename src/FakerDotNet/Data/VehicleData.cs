@@ -2,9 +2,9 @@
 
 namespace FakerDotNet.Data
 {
-    internal class VehicleData
+    internal static class VehicleData
     {
-        internal IEnumerable<string> Manufactures => new[]
+        internal static readonly IEnumerable<string> Manufactures = new[]
 
         {
             "Abarth",
@@ -116,7 +116,7 @@ namespace FakerDotNet.Data
             "IVM"
         };
 
-        internal IEnumerable<string> Makes => new[]
+        internal static readonly IEnumerable<string> Makes = new[]
         {
             "BMW",
             "Audi",
@@ -129,7 +129,7 @@ namespace FakerDotNet.Data
             "Honda",
             "Nissan"
         };
-        internal Dictionary<string, IEnumerable<string>> Make_Models => new Dictionary<string, IEnumerable<string>>()
+        internal static readonly Dictionary<string, IEnumerable<string>> Make_Models = new Dictionary<string, IEnumerable<string>>()
         {
             { "BMW", new[] {"328i", "M3", "M5", "X1", "X3", "X5" } },
             {"Audi", new [] { "A4", "A5", "S5", "A7", "A8" } },
@@ -142,7 +142,7 @@ namespace FakerDotNet.Data
             {"Honda", new []{ "Accord", "Civic", "CR-V", "Odyssey" } },
             {"Nissan", new []{ "Rogue", "Juke", "Cube", "Pathfiner", "Versa", "Altima" } }
         };
-        internal IEnumerable<string> Colors = new[]
+        internal static readonly IEnumerable<string> Colors = new[]
         {
             "Red", 
             "Orange", 
@@ -155,14 +155,14 @@ namespace FakerDotNet.Data
             "Grey", 
             "Beige"
         };
-        internal IEnumerable<string> Transmissions = new[]
+        internal static readonly IEnumerable<string> Transmissions = new[]
         {
             "Automanual",
             "Automatic",
             "CVT",
             "Manual"
         };
-        internal IEnumerable<string> DriveTypes = new[]
+        internal static readonly IEnumerable<string> DriveTypes = new[]
         {
             "4x2/2-wheel drive",
             "4x4/4-wheel drive",
@@ -170,7 +170,7 @@ namespace FakerDotNet.Data
             "FWD",
             "RWD"
         };
-        internal IEnumerable<string> FuelTypes = new[]
+        internal static readonly IEnumerable<string> FuelTypes = new[]
         {
             "Compressed Natural Gas",
             "Diesel",
@@ -180,14 +180,14 @@ namespace FakerDotNet.Data
             "Gasoline Hybrid",
             "Ethanol"
         };
-        internal IEnumerable<string> VehicleStyles = new[]
+        internal static readonly IEnumerable<string> VehicleStyles = new[]
         {
             "XL",
             "L",
             "ESi",
             "XLE"
         };
-        internal IEnumerable<string> CarTypes = new[]
+        internal static readonly IEnumerable<string> CarTypes = new[]
         {
             "Cargo Van",
             "Convertible",
@@ -202,7 +202,7 @@ namespace FakerDotNet.Data
             "Sedan",
             "Wagon"
         };
-        internal IEnumerable<string> CarOptions = new[]
+        internal static readonly IEnumerable<string> CarOptions = new[]
         {
             "A/C: Front",
             "Airbag: Driver",
@@ -239,7 +239,7 @@ namespace FakerDotNet.Data
             "Tinted Glass",
             "Tow Package"
         };
-        internal IEnumerable<string> StandardSpecs = new[]
+        internal static readonly IEnumerable<string> StandardSpecs = new[]
         {
             "1.8L DOHC 16-valve I4 engine -inc: engine cover",
             "Engine mounts -inc: (2) solid, (1) liquid-filled",
@@ -431,9 +431,9 @@ namespace FakerDotNet.Data
             "Dual note horn",
             "Tire pressure monitoring display"
         };
-        internal IEnumerable<int> EngineSize = new[] { 4, 6, 8 };
-        internal string LicensePlateTemplate = "???-####";
-        internal Dictionary<string, IEnumerable<string>> LicensePlateTemplateByState => new Dictionary<string, IEnumerable<string>>()
+        internal static readonly IEnumerable<int> EngineSize = new[] { 4, 6, 8 };
+        internal static readonly string LicensePlateTemplate = "???-####";
+        internal static readonly Dictionary<string, IEnumerable<string>> LicensePlateTemplateByState = new Dictionary<string, IEnumerable<string>>()
         {
             {"AL", new [] { "#??####", "##??###" } },
             {"AZ", new [] {"???####"} },

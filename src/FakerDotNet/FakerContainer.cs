@@ -17,6 +17,7 @@ namespace FakerDotNet
         INumberFaker Number { get; }
         IPokemonFaker Pokemon { get; }
         IRandomFaker Random { get; }
+        ISuperheroFaker Superhero { get; }
         ITimeFaker Time { get; }
         IZeldaFaker Zelda { get; }
     }
@@ -38,6 +39,7 @@ namespace FakerDotNet
             Number = new NumberFaker();
             Pokemon = new PokemonFaker(this);
             Random = new RandomFaker();
+            Superhero = new SuperheroFaker(this);
             Time = new TimeFaker();
             Zelda = new ZeldaFaker(this);
         }
@@ -55,6 +57,7 @@ namespace FakerDotNet
         public INumberFaker Number { get; }
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
+        public ISuperheroFaker Superhero { get; }
         public ITimeFaker Time { get; }
         public IZeldaFaker Zelda { get; }
     }

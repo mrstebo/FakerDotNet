@@ -87,6 +87,7 @@ namespace FakerDotNet.Tests.Fakers
         public void Ibu_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(10, 100)).Returns(15.43D);
+
             Assert.AreEqual("15 IBU", _beerFaker.Ibu());
         }
 
@@ -94,6 +95,7 @@ namespace FakerDotNet.Tests.Fakers
         public void Alcohol_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 10)).Returns(8.73D);
+
             Assert.AreEqual("8.7%", _beerFaker.Alcohol());
         }
 
@@ -101,6 +103,7 @@ namespace FakerDotNet.Tests.Fakers
         public void Blg_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(5, 20)).Returns(18.79D);
+
             Assert.AreEqual("18.8°Blg", _beerFaker.Blg());
 
         }

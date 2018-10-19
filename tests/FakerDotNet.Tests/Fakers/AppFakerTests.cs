@@ -18,8 +18,6 @@ namespace FakerDotNet.Tests.Fakers
             _appFaker = new AppFaker(_fakerContainer);
         }
 
-        private static readonly AppData Data = new AppData();
-
         private IFakerContainer _fakerContainer;
         private IAppFaker _appFaker;
 
@@ -35,8 +33,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Name_returns_a_name()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Names)))
+            A.CallTo(() => _fakerContainer.Random.Element(AppData.Names))
                 .Returns("My App");
 
             Assert.AreEqual("My App", _appFaker.Name());
@@ -47,8 +44,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             var numbers = Enumerable.Range(0, 9);
 
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Versions)))
+            A.CallTo(() => _fakerContainer.Random.Element(AppData.Versions))
                 .Returns("0.#.#");
             A.CallTo(() => _fakerContainer.Random.Element(
                     A<IEnumerable<int>>.That.IsSameSequenceAs(numbers)))

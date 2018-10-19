@@ -105,7 +105,6 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _fakerContainer.Number.Between(5, 20)).Returns(18.79D);
 
             Assert.AreEqual("18.8°Blg", _beerFaker.Blg());
-
         }
     }
 }

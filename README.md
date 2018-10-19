@@ -23,6 +23,7 @@ Contents
   - [Faker.Number](doc/number.md)
   - [Faker.Pokemon](doc/pokemon.md)
   - [Faker.Random](doc/random.md)
+    [Faker.RockBand](doc/rockband.md)
   - [Faker.Time](doc/time.md)
   - [Faker.Zelda](doc/zelda.md)
 - [Contributing](#contributing)

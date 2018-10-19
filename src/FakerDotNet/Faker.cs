@@ -19,6 +19,7 @@ namespace FakerDotNet
         public static INumberFaker Number { get; } = Container.Number;
         public static IPokemonFaker Pokemon { get; } = Container.Pokemon;
         public static IRandomFaker Random { get; } = Container.Random;
+        public static IRockBandFaker RockBand { get; } = Container.RockBand;
         public static ITimeFaker Time { get; } = Container.Time;
         public static IZeldaFaker Zelda { get; } = Container.Zelda;
     }

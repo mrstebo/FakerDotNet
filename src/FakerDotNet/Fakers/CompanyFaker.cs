@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using FakerDotNet.Algorithms;
 using FakerDotNet.Data;
 
 namespace FakerDotNet.Fakers
@@ -105,7 +106,17 @@ namespace FakerDotNet.Fakers
 
         public string SwedishOrganisationNumber()
         {
-            throw new NotImplementedException();
+            // Get a random Swedish organization number. See more here https://sv.wikipedia.org/wiki/Organisationsnummer
+            // Valid leading digit: 1, 2, 3, 5, 6, 7, 8, 9
+            // Valid third digit: >= 2
+            // Last digit is a control digit
+            var @base = long.Parse(string.Join("",
+                _fakerContainer.Number.NonZeroDigit(),
+                _fakerContainer.Number.Digit(),
+                (int) _fakerContainer.Number.Between(2, 9),
+                _fakerContainer.Number.Number(6)
+            ));
+            return $"{@base}{LuhnAlgorithm.GetCheckValue(@base)}";
         }
 
         public string CzechOrganisationNumber()

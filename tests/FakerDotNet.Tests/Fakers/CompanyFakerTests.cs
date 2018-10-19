@@ -155,6 +155,15 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void SwedishOrganisationNumber_returns_a_swedish_organisation_number()
         {
+            A.CallTo(() => _fakerContainer.Number.NonZeroDigit())
+                .Returns("7");
+            A.CallTo(() => _fakerContainer.Number.Digit())
+                .Returns("9");
+            A.CallTo(() => _fakerContainer.Number.Between(2, 9))
+                .Returns(6);
+            A.CallTo(() => _fakerContainer.Number.Number(6))
+                .Returns("257802");
+            
             Assert.AreEqual("7962578022", _companyFaker.SwedishOrganisationNumber());
         }
 

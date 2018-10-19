@@ -2,7 +2,6 @@ using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace FakerDotNet.Tests.Fakers
 {
@@ -18,16 +17,13 @@ namespace FakerDotNet.Tests.Fakers
             _beerFaker = new BeerFaker(_fakerContainer);
         }
 
-        private static readonly BeerData Data = new BeerData();
-
         private IFakerContainer _fakerContainer;
         private IBeerFaker _beerFaker;
 
         [Test]
         public void Brand_returns_a_brand()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Brand)))
+            A.CallTo(() => _fakerContainer.Random.Element(BeerData.Brand))
                 .Returns("Pabst Blue Ribbon");
 
             Assert.AreEqual("Pabst Blue Ribbon", _beerFaker.Brand());
@@ -36,8 +32,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Name_returns_a_name()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Name)))
+            A.CallTo(() => _fakerContainer.Random.Element(BeerData.Name))
                 .Returns("La Fin Du Monde");
 
             Assert.AreEqual("La Fin Du Monde", _beerFaker.Name());
@@ -46,8 +41,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Style_returns_a_style()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Style)))
+            A.CallTo(() => _fakerContainer.Random.Element(BeerData.Style))
                 .Returns("Belgian Strong Ale");
 
             Assert.AreEqual("Belgian Strong Ale", _beerFaker.Style());
@@ -56,8 +50,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Hop_returns_a_hop()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Hop)))
+            A.CallTo(() => _fakerContainer.Random.Element(BeerData.Hop))
                 .Returns("Cashmere");
 
             Assert.AreEqual("Cashmere", _beerFaker.Hop());
@@ -66,8 +59,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Yeast_returns_a_yeast()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Yeast)))
+            A.CallTo(() => _fakerContainer.Random.Element(BeerData.Yeast))
                 .Returns("1469 - West Yorkshire Ale");
 
             Assert.AreEqual("1469 - West Yorkshire Ale", _beerFaker.Yeast());
@@ -76,8 +68,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Malts_returns_a_malt()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Malts)))
+            A.CallTo(() => _fakerContainer.Random.Element(BeerData.Malts))
                 .Returns("Victory");
 
             Assert.AreEqual("Victory", _beerFaker.Malts());

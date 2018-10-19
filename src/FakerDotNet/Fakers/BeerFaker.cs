@@ -18,8 +18,6 @@ namespace FakerDotNet.Fakers
 
     internal class BeerFaker : IBeerFaker
     {
-        private static readonly BeerData Data = new BeerData();
-
         private readonly IFakerContainer _fakerContainer;
 
         public BeerFaker(IFakerContainer fakerContainer)
@@ -29,32 +27,32 @@ namespace FakerDotNet.Fakers
 
         public string Brand()
         {
-            return _fakerContainer.Random.Element(Data.Brand);
+            return _fakerContainer.Random.Element(BeerData.Brand);
         }
 
         public string Name()
         {
-            return _fakerContainer.Random.Element(Data.Name);
+            return _fakerContainer.Random.Element(BeerData.Name);
         }
 
         public string Style()
         {
-            return _fakerContainer.Random.Element(Data.Style);
+            return _fakerContainer.Random.Element(BeerData.Style);
         }
 
         public string Hop()
         {
-            return _fakerContainer.Random.Element(Data.Hop);
+            return _fakerContainer.Random.Element(BeerData.Hop);
         }
 
         public string Yeast()
         {
-            return _fakerContainer.Random.Element(Data.Yeast);
+            return _fakerContainer.Random.Element(BeerData.Yeast);
         }
 
         public string Malts()
         {
-            return _fakerContainer.Random.Element(Data.Malts);
+            return _fakerContainer.Random.Element(BeerData.Malts);
         }
 
         public string Ibu()

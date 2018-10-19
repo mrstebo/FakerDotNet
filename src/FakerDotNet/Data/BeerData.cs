@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class BeerData
+    internal static class BeerData
     {
-        public IEnumerable<string> Brand => new[]
+        public static readonly IEnumerable<string> Brand = new[]
         {
             "Corona Extra",
             "Heineken",
@@ -43,7 +43,7 @@ namespace FakerDotNet.Data
         };
 
 
-        public IEnumerable<string> Name => new[]
+        public static readonly IEnumerable<string> Name = new[]
         {
             "Pliny The Elder",
             "Founders Kentucky Breakfast",
@@ -98,7 +98,7 @@ namespace FakerDotNet.Data
             "Maudite"
         };
 
-        public IEnumerable<string> Style => new[]
+        public static readonly IEnumerable<string> Style = new[]
         {
             "Light Lager",
             "Pilsner",
@@ -125,7 +125,7 @@ namespace FakerDotNet.Data
             "Wood-aged Beer"
         };
 
-        public IEnumerable<string> Hop => new[]
+        public static readonly IEnumerable<string> Hop = new[]
         {
             "Ahtanum",
             "Amarillo",
@@ -180,7 +180,7 @@ namespace FakerDotNet.Data
             "Yakima Gol"
         };
 
-        public IEnumerable<string> Yeast => new[]
+        public static readonly IEnumerable<string> Yeast = new[]
         {
             "1007 - German Ale",
             "1010 - American Wheat",
@@ -233,7 +233,7 @@ namespace FakerDotNet.Data
             "5733 - Pediococcus"
         };
 
-        public IEnumerable<string> Malts => new[]
+        public static readonly IEnumerable<string> Malts = new[]
         {
             "Black malt",
             "Caramel",

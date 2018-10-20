@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using FakerDotNet.Algorithms;
 using FakerDotNet.Data;
+using FakerDotNet.Extensions;
 
 namespace FakerDotNet.Fakers
 {
@@ -146,7 +147,11 @@ namespace FakerDotNet.Fakers
 
         public string SpanishOrganisationNumber()
         {
-            throw new NotImplementedException();
+            // Get a random Spanish organization number. See more here https://es.wikipedia.org/wiki/Número_de_identificación_fiscal
+            // Valid leading character: A, B, C, D, E, F, G, H, J, N, P, Q, R, S, U, V, W
+            // 7 digit numbers
+            var letters = "ABCDEFGHIJKLMNOPQRSTUVW".Characters();
+            return $"{_fakerContainer.Random.Element(letters)}{_fakerContainer.Number.Number(7)}";
         }
 
         public string PolishTaxpayerIdentificationNumber()

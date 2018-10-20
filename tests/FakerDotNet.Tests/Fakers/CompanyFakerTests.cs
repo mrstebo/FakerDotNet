@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
 using FakerDotNet.Data;
+using FakerDotNet.Extensions;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
 
@@ -200,6 +201,14 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void SpanishOrganisationNumber_returns_a_spanish_organisation_number()
         {
+            var letters = "ABCDEFGHIJKLMNOPQRSTUVW".Characters();
+
+            A.CallTo(() => _fakerContainer.Random.Element(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(letters)))
+                .Returns("P");
+            A.CallTo(() => _fakerContainer.Number.Number(7))
+                .Returns("2344979");
+            
             Assert.AreEqual("P2344979", _companyFaker.SpanishOrganisationNumber());
         }
 

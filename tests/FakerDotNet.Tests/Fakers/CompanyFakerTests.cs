@@ -171,6 +171,9 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void CzechOrganisationNumber_returns_a_czech_organisation_number()
         {
+            A.CallTo(() => _fakerContainer.Number.Digit())
+                .ReturnsNextFromSequence("7", "7", "7", "7", "8", "1", "7");
+            
             Assert.AreEqual("77778171", _companyFaker.CzechOrganisationNumber());
         }
 

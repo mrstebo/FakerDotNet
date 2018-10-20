@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using FakerDotNet.Algorithms;
@@ -122,7 +123,19 @@ namespace FakerDotNet.Fakers
 
         public string CzechOrganisationNumber()
         {
-            throw new NotImplementedException();
+            var weights = new[] {8, 7, 6, 5, 4, 3, 2};
+            var sum = 0;
+            var @base = new List<int>();
+
+            foreach (var weight in weights)
+            {
+                @base.Add(int.Parse(_fakerContainer.Number.Digit()));
+                sum += (weight * @base[@base.Count - 1]);
+            }
+
+            @base.Add((11 - (sum % 11)) % 10);
+
+            return string.Join("", @base);
         }
 
         public string FrenchSirenNumber()

@@ -83,6 +83,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        [SetCulture("en-GB")]
         public void Alcohol_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 10)).Returns(8.73D);
@@ -91,6 +92,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        [SetCulture("en-GB")]
         public void Blg_is_valid()
         {
             A.CallTo(() => _fakerContainer.Number.Between(5, 20)).Returns(18.79D);

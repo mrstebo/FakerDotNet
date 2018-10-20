@@ -40,5 +40,26 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.Contains(_randomFaker.Element(word), word.ToCharArray());
         }
+
+        [Test]
+        public void Assortment_returns_shuffled_collection()
+        {
+            var collection = new[] {1, 2, 3, 4, 5};
+
+            var result = _randomFaker.Assortment(collection, 5).ToArray();
+
+            Assert.AreEqual(5, result.Length);
+            CollectionAssert.AreNotEqual(collection, result);
+        }
+
+        [Test]
+        public void Assortment_returns_repeated_shuffled_collection_if_count_is_greater_than_length_of_collection()
+        {
+            var collection = new[] {1, 2, 3, 4, 5};
+
+            var result = _randomFaker.Assortment(collection, 12).ToArray();
+
+            Assert.AreEqual(12, result.Length);
+        }
     }
 }

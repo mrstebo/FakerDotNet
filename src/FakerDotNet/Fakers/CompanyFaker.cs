@@ -140,12 +140,16 @@ namespace FakerDotNet.Fakers
 
         public string FrenchSirenNumber()
         {
-            throw new NotImplementedException();
+            // Get a random French SIREN number. See more here https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_entreprises
+            var @base = int.Parse(_fakerContainer.Number.Number(8));
+            return $"{@base}{LuhnAlgorithm.GetCheckValue(@base)}";
         }
 
         public string FrenchSiretNumber()
         {
-            throw new NotImplementedException();
+            var location = _fakerContainer.Number.LeadingZeroNumber(3).PadLeft(4, '0');
+            var orgNumber = long.Parse(FrenchSirenNumber() + location);
+            return $"{orgNumber}{LuhnAlgorithm.GetCheckValue(orgNumber)}";
         }
 
         public string NorwegianOrganisationNumber()

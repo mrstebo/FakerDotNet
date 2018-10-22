@@ -180,12 +180,20 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void FrenchSirenNumber_returns_a_french_siren_number()
         {
+            A.CallTo(() => _fakerContainer.Number.Number(8))
+                .Returns("81948962");
+            
             Assert.AreEqual("819489626", _companyFaker.FrenchSirenNumber());
         }
 
         [Test]
         public void FrenchSiretNumber_returns_a_french_siret_number()
         {
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(3))
+                .Returns("001");
+            A.CallTo(() => _fakerContainer.Number.Number(8))
+                .ReturnsNextFromSequence("81948962");
+            
             Assert.AreEqual("81948962600013", _companyFaker.FrenchSiretNumber());
         }
 

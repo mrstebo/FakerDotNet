@@ -13,14 +13,14 @@ cache:
   - packages -> **\packages.config
 
 install:
-  - ps: choco install gitversion.portable
+  - ps: choco install gitversion.portable -pre -y
 
 assembly_info:
   patch: true
 
 before_build:
   - nuget restore FakerDotNet.sln
-  - ps: gitversion /l console /output buildserver /updateAssemblyInfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
 
 build:
   project: FakerDotNet.sln

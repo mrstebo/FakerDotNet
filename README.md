@@ -24,6 +24,7 @@ Contents
   - [Faker.Pokemon](doc/pokemon.md)
   - [Faker.Random](doc/random.md)
   - [Faker.Time](doc/time.md)
+  - [Faker.Time](doc/twin_peaks.md)
   - [Faker.Zelda](doc/zelda.md)
 - [Contributing](#contributing)
 - [Copyright](#copyright)

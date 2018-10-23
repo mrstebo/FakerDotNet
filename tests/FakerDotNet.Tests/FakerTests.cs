@@ -20,6 +20,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Beer_returns_IBeerFaker()
+        {
+            Assert.IsInstanceOf<IBeerFaker>(Faker.Beer);
+        }
+
+        [Test]
         public void Book_returns_IBookFaker()
         {
             Assert.IsInstanceOf<IBookFaker>(Faker.Book);

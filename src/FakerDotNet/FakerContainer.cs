@@ -6,6 +6,7 @@ namespace FakerDotNet
     {
         IAddressFaker Address { get; }
         IAppFaker App { get; }
+        IBeerFaker Beer { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
         IBusinessFaker Business { get; }
@@ -28,6 +29,7 @@ namespace FakerDotNet
         {
             Address = new AddressFaker(this);
             App = new AppFaker(this);
+            Beer = new BeerFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
             Business = new BusinessFaker(this);
@@ -46,6 +48,7 @@ namespace FakerDotNet
 
         public IAddressFaker Address { get; }
         public IAppFaker App { get; }
+        public IBeerFaker Beer { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }
         public IBusinessFaker Business { get; }

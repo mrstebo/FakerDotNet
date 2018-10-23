@@ -33,7 +33,6 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(TeamData.Creatures))
                 .Returns("buffalo");
-
             A.CallTo(() => _fakerContainer.Address.State())
                 .Returns("Kansas");
 

@@ -27,7 +27,7 @@ namespace FakerDotNet.Fakers
 
         public string Name()
         {
-            return State() + " " + Creature();
+            return $"{State()} {Creature()}";
         }
 
         public string State()

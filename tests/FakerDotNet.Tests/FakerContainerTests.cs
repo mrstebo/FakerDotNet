@@ -28,6 +28,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Beer_returns_IBeerFaker()
+        {
+            Assert.IsInstanceOf<IBeerFaker>(_fakerContainer.Beer);
+        }
+
+        [Test]
         public void Book_returns_IBookFaker()
         {
             Assert.IsInstanceOf<IBookFaker>(_fakerContainer.Book);
@@ -56,7 +62,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IFakeFaker>(_fakerContainer.Fake);
         }
-        
+
         [Test]
         public void Friends_returns_IFriendsFaker()
         {
@@ -91,6 +97,12 @@ namespace FakerDotNet.Tests
         public void Random_returns_IRandomFaker()
         {
             Assert.IsInstanceOf<IRandomFaker>(_fakerContainer.Random);
+        }
+
+        [Test]
+        public void RockBand_returns_IRockBandFaker()
+        {
+            Assert.IsInstanceOf<IRockBandFaker>(_fakerContainer.RockBand);
         }
 
         [Test]

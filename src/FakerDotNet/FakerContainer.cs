@@ -6,6 +6,7 @@ namespace FakerDotNet
     {
         IAddressFaker Address { get; }
         IAppFaker App { get; }
+        IBeerFaker Beer { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
         IBusinessFaker Business { get; }
@@ -16,7 +17,8 @@ namespace FakerDotNet
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IPokemonFaker Pokemon { get; }
-        IRandomFaker Random { get; }
+        IRandomFaker Random { get; }        
+        IRockBandFaker RockBand { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
         IZeldaFaker Zelda { get; }
@@ -28,6 +30,7 @@ namespace FakerDotNet
         {
             Address = new AddressFaker(this);
             App = new AppFaker(this);
+            Beer = new BeerFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
             Business = new BusinessFaker(this);
@@ -38,7 +41,8 @@ namespace FakerDotNet
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Pokemon = new PokemonFaker(this);
-            Random = new RandomFaker();
+            Random = new RandomFaker();            
+            RockBand = new RockBandFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
             Zelda = new ZeldaFaker(this);
@@ -46,6 +50,7 @@ namespace FakerDotNet
 
         public IAddressFaker Address { get; }
         public IAppFaker App { get; }
+        public IBeerFaker Beer { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }
         public IBusinessFaker Business { get; }
@@ -57,6 +62,7 @@ namespace FakerDotNet
         public INumberFaker Number { get; }
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
+        public IRockBandFaker RockBand { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
         public IZeldaFaker Zelda { get; }

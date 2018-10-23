@@ -15,6 +15,14 @@ namespace FakerDotNet.Fakers
 
     internal class SuperheroFaker : ISuperheroFaker
     {
+        public static readonly IEnumerable<string> NameFormats = new[]
+        {
+            "{0} {1} {2}",
+            "{0} {1}",
+            "{1} {2}",
+            "{1}"
+        };
+
         private readonly IFakerContainer _fakerContainer;
 
         public SuperheroFaker(IFakerContainer faker)
@@ -46,13 +54,5 @@ namespace FakerDotNet.Fakers
         {
             return string.Format(_fakerContainer.Random.Element(NameFormats), Prefix(), Descriptor(), Suffix());
         }
-
-        public IEnumerable<string> NameFormats = new[]
-        {
-            "{0} {1} {2}",
-            "{0} {1}",
-            "{1} {2}",
-            "{1}"
-        };
     }
 }

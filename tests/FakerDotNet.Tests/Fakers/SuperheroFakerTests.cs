@@ -64,7 +64,7 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns("Dragon");
             A.CallTo(() => _fakerContainer.Random.Element(SuperheroData.Descriptors))
                 .Returns("Abomination");
-            A.CallTo(() => _fakerContainer.Random.Element(_superheroFaker.NameFormats))
+            A.CallTo(() => _fakerContainer.Random.Element(SuperheroFaker.NameFormats))
                 .Returns("{0} {1} {2}");
 
             Assert.AreEqual("Cyborg Abomination Dragon", _superheroFaker.Name());
@@ -79,7 +79,7 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns("Dragon");
             A.CallTo(() => _fakerContainer.Random.Element(SuperheroData.Descriptors))
                 .Returns("Abomination");
-            A.CallTo(() => _fakerContainer.Random.Element(_superheroFaker.NameFormats))
+            A.CallTo(() => _fakerContainer.Random.Element(SuperheroFaker.NameFormats))
                 .Returns("{0} {1}");
 
             Assert.AreEqual("Cyborg Abomination", _superheroFaker.Name());
@@ -94,7 +94,7 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns("Dragon");
             A.CallTo(() => _fakerContainer.Random.Element(SuperheroData.Descriptors))
                 .Returns("Abomination");
-            A.CallTo(() => _fakerContainer.Random.Element(_superheroFaker.NameFormats))
+            A.CallTo(() => _fakerContainer.Random.Element(SuperheroFaker.NameFormats))
                 .Returns("{1} {2}");
 
             Assert.AreEqual("Abomination Dragon", _superheroFaker.Name());
@@ -109,7 +109,7 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns("Dragon");
             A.CallTo(() => _fakerContainer.Random.Element(SuperheroData.Descriptors))
                 .Returns("Abomination");
-            A.CallTo(() => _fakerContainer.Random.Element(_superheroFaker.NameFormats))
+            A.CallTo(() => _fakerContainer.Random.Element(SuperheroFaker.NameFormats))
                 .Returns("{1}");
 
             Assert.AreEqual("Abomination", _superheroFaker.Name());

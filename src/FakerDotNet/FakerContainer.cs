@@ -18,8 +18,9 @@ namespace FakerDotNet
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IPokemonFaker Pokemon { get; }
-        IRandomFaker Random { get; }
+        IRandomFaker Random { get; }        
         IRockBandFaker RockBand { get; }
+        ITeamFaker Team { get; }
         ITimeFaker Time { get; }
         IZeldaFaker Zelda { get; }
     }
@@ -42,8 +43,9 @@ namespace FakerDotNet
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Pokemon = new PokemonFaker(this);
-            Random = new RandomFaker();
+            Random = new RandomFaker();            
             RockBand = new RockBandFaker(this);
+            Team = new TeamFaker(this);
             Time = new TimeFaker();
             Zelda = new ZeldaFaker(this);
         }
@@ -64,6 +66,7 @@ namespace FakerDotNet
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
         public IRockBandFaker RockBand { get; }
+        public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
         public IZeldaFaker Zelda { get; }
     }

@@ -22,6 +22,7 @@ namespace FakerDotNet
         IRockBandFaker RockBand { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
+        ITwinPeaksFaker TwinPeaks { get; }
         IZeldaFaker Zelda { get; }
     }
 
@@ -47,6 +48,7 @@ namespace FakerDotNet
             RockBand = new RockBandFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
+            TwinPeaks = new TwinPeaksFaker(this);
             Zelda = new ZeldaFaker(this);
         }
 
@@ -68,6 +70,7 @@ namespace FakerDotNet
         public IRockBandFaker RockBand { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
+        public ITwinPeaksFaker TwinPeaks { get; }
         public IZeldaFaker Zelda { get; }
     }
 }

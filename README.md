@@ -28,6 +28,7 @@ Contents
   - [Faker.RockBand](doc/rockband.md)
   - [Faker.Team](doc/team.md)
   - [Faker.Time](doc/time.md)
+  - [Faker.Time](doc/twin_peaks.md)
   - [Faker.Zelda](doc/zelda.md)
 - [Contributing](#contributing)
 - [Copyright](#copyright)

@@ -24,6 +24,7 @@ namespace FakerDotNet
         public static ITeamFaker Team { get; } = Container.Team;
         public static IRockBandFaker RockBand { get; } = Container.RockBand;
         public static ITimeFaker Time { get; } = Container.Time;
+        public static ITwinPeaksFaker TwinPeaks { get; } = Container.TwinPeaks;
         public static IZeldaFaker Zelda { get; } = Container.Zelda;
     }
 }

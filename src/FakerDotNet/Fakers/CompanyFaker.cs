@@ -159,22 +159,33 @@ namespace FakerDotNet.Fakers
 
         public string SouthAfricanPtyLtdRegistrationNumber()
         {
-            throw new NotImplementedException();
+            return string.Join("/",
+                _fakerContainer.Number.LeadingZeroNumber(4),
+                _fakerContainer.Number.LeadingZeroNumber((int) _fakerContainer.Number.Between(4, 10)),
+                "07");
         }
 
         public string SouthAfricanCloseCorporationRegistrationNumber()
         {
-            throw new NotImplementedException();
+            return string.Join("/",
+                $"CK{_fakerContainer.Number.LeadingZeroNumber((int) _fakerContainer.Number.Between(2, 4))}",
+                _fakerContainer.Number.LeadingZeroNumber((int) _fakerContainer.Number.Between(4, 10)),
+                "23");
         }
 
         public string SouthAfricanListedCompanyRegistrationNumber()
         {
-            throw new NotImplementedException();
+            return string.Join("/",
+                _fakerContainer.Number.LeadingZeroNumber(4),
+                _fakerContainer.Number.LeadingZeroNumber((int) _fakerContainer.Number.Between(4, 10)),
+                "06");
         }
 
         public string SouthAfricanTrustRegistrationNumber()
         {
-            throw new NotImplementedException();
+            return string.Join("/",
+                $"IT{_fakerContainer.Number.LeadingZeroNumber((int) _fakerContainer.Number.Between(2, 4))}",
+                _fakerContainer.Number.LeadingZeroNumber((int) _fakerContainer.Number.Between(2, 10)));
         }
         
         private string Parse(string format)

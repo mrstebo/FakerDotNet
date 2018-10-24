@@ -214,24 +214,54 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void SouthAfricanPtyLtdRegistrationNumber_returns_a_south_african_pty_ltd_registration_number()
         {
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(4))
+                .Returns("5301");
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(6))
+                .Returns("714689");
+            A.CallTo(() => _fakerContainer.Number.Between(4, 10))
+                .Returns(6);
+            
             Assert.AreEqual("5301/714689/07", _companyFaker.SouthAfricanPtyLtdRegistrationNumber());
         }
 
         [Test]
         public void SouthAfricanCloseCorporationRegistrationNumber_returns_a_south_african_close_corporation_registration_number()
         {
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(2))
+                .Returns("74");
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(4))
+                .Returns("7585");
+            A.CallTo(() => _fakerContainer.Number.Between(2, 4))
+                .Returns(2);
+            A.CallTo(() => _fakerContainer.Number.Between(4, 10))
+                .Returns(4);
+            
             Assert.AreEqual("CK74/7585/23", _companyFaker.SouthAfricanCloseCorporationRegistrationNumber());
         }
 
         [Test]
         public void SouthAfricanListedCompanyRegistrationNumber_returns_a_south_african_listed_company_registration_number()
         {
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(4))
+                .ReturnsNextFromSequence("7039", "3135");
+            A.CallTo(() => _fakerContainer.Number.Between(4, 10))
+                .Returns(4);
+            
             Assert.AreEqual("7039/3135/06", _companyFaker.SouthAfricanListedCompanyRegistrationNumber());
         }
 
         [Test]
         public void SouthAfricanTrustRegistrationNumber_returns_a_south_african_trust_registration_number()
         {
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(2))
+                .Returns("38");
+            A.CallTo(() => _fakerContainer.Number.LeadingZeroNumber(7))
+                .Returns("6489900");
+            A.CallTo(() => _fakerContainer.Number.Between(2, 4))
+                .Returns(2);
+            A.CallTo(() => _fakerContainer.Number.Between(2, 10))
+                .Returns(7);
+            
             Assert.AreEqual("IT38/6489900", _companyFaker.SouthAfricanTrustRegistrationNumber());
         }
     }

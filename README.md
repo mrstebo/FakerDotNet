@@ -19,6 +19,7 @@ Contents
   - [Faker.Business](doc/business.md)
   - [Faker.Date](doc/date.md)
   - [Faker.Fake](doc/fake.md)
+  - [Faker.GameOfThrones](doc/gameofthrones.md)
   - [Faker.Lorem](doc/lorem.md)
   - [Faker.Name](doc/name.md)
   - [Faker.Number](doc/number.md)

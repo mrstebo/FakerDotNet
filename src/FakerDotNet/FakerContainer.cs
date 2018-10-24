@@ -20,6 +20,7 @@ namespace FakerDotNet
         IPokemonFaker Pokemon { get; }
         IRandomFaker Random { get; }        
         IRockBandFaker RockBand { get; }
+        ISuperheroFaker Superhero { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
         ITwinPeaksFaker TwinPeaks { get; }
@@ -46,6 +47,7 @@ namespace FakerDotNet
             Pokemon = new PokemonFaker(this);
             Random = new RandomFaker();            
             RockBand = new RockBandFaker(this);
+            Superhero = new SuperheroFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
             TwinPeaks = new TwinPeaksFaker(this);
@@ -68,6 +70,7 @@ namespace FakerDotNet
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
         public IRockBandFaker RockBand { get; }
+        public ISuperheroFaker Superhero { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
         public ITwinPeaksFaker TwinPeaks { get; }

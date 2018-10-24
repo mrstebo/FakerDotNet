@@ -25,11 +25,7 @@ namespace FakerDotNet.Fakers
         string CzechOrganisationNumber();
         string FrenchSirenNumber();
         string FrenchSiretNumber();
-        string NorwegianOrganisationNumber();
-        string AustralianBusinessNumber();
         string SpanishOrganisationNumber();
-        string PolishTaxpayerIdentificationNumber();
-        string PolishRegisterOfNationalEconomy();
         string SouthAfricanPtyLtdRegistrationNumber();
         string SouthAfricanCloseCorporationRegistrationNumber();
         string SouthAfricanListedCompanyRegistrationNumber();
@@ -152,16 +148,6 @@ namespace FakerDotNet.Fakers
             return $"{orgNumber}{LuhnAlgorithm.GetCheckValue(orgNumber)}";
         }
 
-        public string NorwegianOrganisationNumber()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string AustralianBusinessNumber()
-        {
-            throw new NotImplementedException();
-        }
-
         public string SpanishOrganisationNumber()
         {
             // Get a random Spanish organization number. See more here https://es.wikipedia.org/wiki/Número_de_identificación_fiscal
@@ -169,16 +155,6 @@ namespace FakerDotNet.Fakers
             // 7 digit numbers
             var letters = "ABCDEFGHIJKLMNOPQRSTUVW".Characters();
             return $"{_fakerContainer.Random.Element(letters)}{_fakerContainer.Number.Number(7)}";
-        }
-
-        public string PolishTaxpayerIdentificationNumber()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string PolishRegisterOfNationalEconomy()
-        {
-            throw new NotImplementedException();
         }
 
         public string SouthAfricanPtyLtdRegistrationNumber()

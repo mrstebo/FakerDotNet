@@ -39,17 +39,7 @@ Faker.Company.FrenchSirenNumber() //=> "819489626"
 
 Faker.Company.FrenchSiretNumber() //=> "81948962600013"
 
-Faker.Company.NorwegianOrganisationNumber() //=> "839071558"
-
-Faker.Company.AustralianBusinessNumber() //=> "81137773602"
-
 Faker.Company.SpanishOrganisationNumber() //=> "P2344979"
-
-// Get a random Polish taxpayer identification number
-Faker.Company.PolishTaxpayerIdentificationNumber() //=> "1060000062"
-
-// Get a random Polish register of national economy number
-Faker.Company.PolishRegisterOfNationalEconomy() //=> "123456785"
 
 // Generate South African company registration numbers:
 Faker.Company.SouthAfricanPtyLtdRegistrationNumber() //=> "5301/714689/07"

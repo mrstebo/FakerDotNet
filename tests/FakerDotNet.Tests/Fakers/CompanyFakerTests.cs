@@ -198,18 +198,6 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void NorwegianOrganisationNumber_returns_a_norwegian_organisation_number()
-        {
-            Assert.AreEqual("839071558", _companyFaker.NorwegianOrganisationNumber());
-        }
-
-        [Test]
-        public void AustralianBusinessNumber_returns_an_australian_business_number()
-        {
-            Assert.AreEqual("81137773602", _companyFaker.AustralianBusinessNumber());
-        }
-
-        [Test]
         public void SpanishOrganisationNumber_returns_a_spanish_organisation_number()
         {
             var letters = "ABCDEFGHIJKLMNOPQRSTUVW".Characters();
@@ -221,18 +209,6 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns("2344979");
             
             Assert.AreEqual("P2344979", _companyFaker.SpanishOrganisationNumber());
-        }
-
-        [Test]
-        public void PolishTaxpayerIdentificationNumber_returns_a_polish_taxpayer_identification_number()
-        {
-            Assert.AreEqual("1060000062", _companyFaker.PolishTaxpayerIdentificationNumber());
-        }
-
-        [Test]
-        public void PolishRegisterOfNationalEconomy_returns_a_polish_register_of_national_economy()
-        {
-            Assert.AreEqual("123456785", _companyFaker.PolishRegisterOfNationalEconomy());
         }
 
         [Test]

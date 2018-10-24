@@ -52,6 +52,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Color_returns_IColorFaker()
+        {
+            Assert.IsInstanceOf<IColorFaker>(_fakerContainer.Color);
+        }
+
+        [Test]
         public void Company_returns_ICompanyFaker()
         {
             Assert.IsInstanceOf<ICompanyFaker>(_fakerContainer.Company);

@@ -216,7 +216,7 @@ namespace FakerDotNet.Tests.Fakers
                    A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.EngineSize)))
                .Returns(4);
 
-            Assert.AreEqual(4, _vehicleFaker.EngineSize());
+            Assert.AreEqual(4, _vehicleFaker.Engine());
         }
 
         [Test]

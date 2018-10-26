@@ -30,6 +30,7 @@ Contents
   - [Faker.Team](doc/team.md)
   - [Faker.Time](doc/time.md)
   - [Faker.TwinPeaks](doc/twin_peaks.md)
+  - [Faker.Vehicle](doc/vehicle.md)
   - [Faker.Zelda](doc/zelda.md)
 - [Contributing](#contributing)
 - [Copyright](#copyright)

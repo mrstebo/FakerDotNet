@@ -23,8 +23,8 @@ namespace FakerDotNet
         ISuperheroFaker Superhero { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
-        IVehicleFaker Vehicle { get; }
         ITwinPeaksFaker TwinPeaks { get; }
+        IVehicleFaker Vehicle { get; }
         IZeldaFaker Zelda { get; }
     }
 
@@ -51,8 +51,8 @@ namespace FakerDotNet
             Superhero = new SuperheroFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
-            Vehicle = new VehicleFaker(this);
             TwinPeaks = new TwinPeaksFaker(this);
+            Vehicle = new VehicleFaker(this);
             Zelda = new ZeldaFaker(this);
         }
 
@@ -75,8 +75,8 @@ namespace FakerDotNet
         public ISuperheroFaker Superhero { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
-        public IVehicleFaker Vehicle { get; }
         public ITwinPeaksFaker TwinPeaks { get; }
+        public IVehicleFaker Vehicle { get; }
         public IZeldaFaker Zelda { get; }
     }
 }

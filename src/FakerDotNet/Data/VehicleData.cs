@@ -5,7 +5,7 @@ namespace FakerDotNet.Data
 {
     internal static class VehicleData
     {
-        internal static readonly IEnumerable<string> Manufactures = new[]
+        public static readonly IEnumerable<string> Manufactures = new[]
 
         {
             "Abarth",
@@ -116,8 +116,7 @@ namespace FakerDotNet.Data
             "Wuling",
             "IVM"
         };
-
-        internal static readonly IEnumerable<string> Makes = new[]
+        public static readonly IEnumerable<string> Makes = new[]
         {
             "BMW",
             "Audi",
@@ -130,7 +129,7 @@ namespace FakerDotNet.Data
             "Honda",
             "Nissan"
         };
-        internal static readonly Dictionary<string, IEnumerable<string>> Make_Models = new Dictionary<string, IEnumerable<string>>()
+        public static readonly Dictionary<string, IEnumerable<string>> Make_Models = new Dictionary<string, IEnumerable<string>>()
         {
             { "BMW", new[] {"328i", "M3", "M5", "X1", "X3", "X5" } },
             {"Audi", new [] { "A4", "A5", "S5", "A7", "A8" } },
@@ -143,7 +142,7 @@ namespace FakerDotNet.Data
             {"Honda", new []{ "Accord", "Civic", "CR-V", "Odyssey" } },
             {"Nissan", new []{ "Rogue", "Juke", "Cube", "Pathfiner", "Versa", "Altima" } }
         };
-        internal static readonly IEnumerable<string> Colors = new[]
+        public static readonly IEnumerable<string> Colors = new[]
         {
             "Red", 
             "Orange", 
@@ -156,14 +155,14 @@ namespace FakerDotNet.Data
             "Grey", 
             "Beige"
         };
-        internal static readonly IEnumerable<string> Transmissions = new[]
+        public static readonly IEnumerable<string> Transmissions = new[]
         {
             "Automanual",
             "Automatic",
             "CVT",
             "Manual"
         };
-        internal static readonly IEnumerable<string> DriveTypes = new[]
+        public static readonly IEnumerable<string> DriveTypes = new[]
         {
             "4x2/2-wheel drive",
             "4x4/4-wheel drive",
@@ -171,7 +170,7 @@ namespace FakerDotNet.Data
             "FWD",
             "RWD"
         };
-        internal static readonly IEnumerable<string> FuelTypes = new[]
+        public static readonly IEnumerable<string> FuelTypes = new[]
         {
             "Compressed Natural Gas",
             "Diesel",
@@ -181,14 +180,14 @@ namespace FakerDotNet.Data
             "Gasoline Hybrid",
             "Ethanol"
         };
-        internal static readonly IEnumerable<string> VehicleStyles = new[]
+        public static readonly IEnumerable<string> VehicleStyles = new[]
         {
             "XL",
             "L",
             "ESi",
             "XLE"
         };
-        internal static readonly IEnumerable<string> CarTypes = new[]
+        public static readonly IEnumerable<string> CarTypes = new[]
         {
             "Cargo Van",
             "Convertible",
@@ -203,7 +202,7 @@ namespace FakerDotNet.Data
             "Sedan",
             "Wagon"
         };
-        internal static readonly IEnumerable<string> CarOptions = new[]
+        public static readonly IEnumerable<string> CarOptions = new[]
         {
             "A/C: Front",
             "Airbag: Driver",
@@ -240,7 +239,7 @@ namespace FakerDotNet.Data
             "Tinted Glass",
             "Tow Package"
         };
-        internal static readonly IEnumerable<string> StandardSpecs = new[]
+        public static readonly IEnumerable<string> StandardSpecs = new[]
         {
             "1.8L DOHC 16-valve I4 engine -inc: engine cover",
             "Engine mounts -inc: (2) solid, (1) liquid-filled",
@@ -432,9 +431,9 @@ namespace FakerDotNet.Data
             "Dual note horn",
             "Tire pressure monitoring display"
         };
-        internal static readonly IEnumerable<int> EngineSize = new[] { 4, 6, 8 };
-        internal static readonly string LicensePlateTemplate = "???-####";
-        internal static readonly Dictionary<string, IEnumerable<string>> LicensePlateTemplateByState = new Dictionary<string, IEnumerable<string>>()
+        public static readonly IEnumerable<int> EngineSize = new[] { 4, 6, 8 };
+        public static readonly string LicensePlateTemplate = "???-####";
+        public static readonly Dictionary<string, IEnumerable<string>> LicensePlateTemplateByState = new Dictionary<string, IEnumerable<string>>()
         {
             {"AL", new [] { "#??####", "##??###" } },
             {"AZ", new [] {"???####"} },
@@ -486,7 +485,7 @@ namespace FakerDotNet.Data
             {"WI", new [] {"???-####", "#####K", "#####T"}},
             {"WY", new [] {"#-#####", "1#-#####", "2[0-3]-#####", "99-#####", "DV-####", "####", "GS###", "PHS-####", "WYO-####", "AF###", "AR###", "CG###", "MC###", "MM###", "NA###" } }
         };
-        internal static readonly IEnumerable<char> LicensePlateAlphabet = Enumerable.Range('A', 26).Select(x => (char) x);
-        internal static readonly IEnumerable<int> LicensePlateNumbers = Enumerable.Range(0, 9);
+        public static readonly IEnumerable<char> LicensePlateAlphabet = Enumerable.Range('A', 26).Select(x => (char) x);
+        public static readonly IEnumerable<int> LicensePlateNumbers = Enumerable.Range(0, 9);
     }
 }

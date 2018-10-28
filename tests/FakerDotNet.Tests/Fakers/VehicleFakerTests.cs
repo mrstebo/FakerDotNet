@@ -29,8 +29,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Make_returns_a_make()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Makes)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Makes))
                 .Returns("Honda");
 
             Assert.AreEqual("Honda", _vehicleFaker.Make());
@@ -39,8 +38,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Manufacture_returns_a_manufacture()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Manufactures)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Manufactures))
                 .Returns("Lamborghini");
 
             Assert.AreEqual("Lamborghini", _vehicleFaker.Manufacture());
@@ -60,35 +58,28 @@ namespace FakerDotNet.Tests.Fakers
         [Test] 
         public void Model_returns_a_model()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Makes)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Makes))
                 .Returns("Audi");
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Make_Models["Audi"])))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Make_Models["Audi"]))
                 .Returns("A8");
 
             Assert.AreEqual("A8", _vehicleFaker.Model());
-
         }
 
         [Test]
         public void Model_returns_a_model_for_make()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Make_Models["Toyota"])))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Make_Models["Toyota"]))
                 .Returns("Prius");
 
             Assert.AreEqual("Prius", _vehicleFaker.Model("Toyota"));
-
         }
 
         [Test]
         public void MakeAndModel_returns_a_make_and_model() {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Makes)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Makes))
                 .Returns("Dodge");
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Make_Models["Dodge"])))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Make_Models["Dodge"]))
                 .Returns("Charger");
 
             Assert.AreEqual("Dodge Charger", _vehicleFaker.MakeAndModel());
@@ -97,8 +88,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Color_returns_a_color()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Colors)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Colors))
                .Returns("Red");
 
             Assert.AreEqual("Red", _vehicleFaker.Color());
@@ -107,8 +97,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Trasmission_returns_a_transmission()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.Transmissions)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Transmissions))
                .Returns("Automanual");
 
             Assert.AreEqual("Automanual", _vehicleFaker.Transmission());
@@ -117,8 +106,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void DriveType_returns_a_drivetype()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.DriveTypes)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.DriveTypes))
                .Returns("4x2/2-wheel drive");
 
             Assert.AreEqual("4x2/2-wheel drive", _vehicleFaker.DriveType());
@@ -127,8 +115,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void FuelType_returns_a_fueltype()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.FuelTypes)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.FuelTypes))
                .Returns("Diesel");
 
             Assert.AreEqual("Diesel", _vehicleFaker.FuelType());
@@ -137,8 +124,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void VehicleStyles_returns_a_vehiclestyle()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.VehicleStyles)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.VehicleStyles))
                .Returns("ESi");
 
             Assert.AreEqual("ESi", _vehicleFaker.VehicleStyle());
@@ -147,8 +133,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void CarTypes_returns_a_cartype()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.CarTypes)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.CarTypes))
                .Returns("Sedan");
 
             Assert.AreEqual("Sedan", _vehicleFaker.CarType());
@@ -161,8 +146,7 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _randomWrapper.Next(5, 10))
                .Returns(10);
 
-            A.CallTo(() => _fakerContainer.Random.Assortment(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.CarOptions), 10))
+            A.CallTo(() => _fakerContainer.Random.Assortment(VehicleData.CarOptions, 10))
                .Returns(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" });
 
             Assert.AreEqual(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" }, _vehicleFaker.CarOptions());
@@ -174,8 +158,7 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _randomWrapper.Next(5, 10))
                .Returns(8);
 
-            A.CallTo(() => _fakerContainer.Random.Assortment(
-                   A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.StandardSpecs), 8))
+            A.CallTo(() => _fakerContainer.Random.Assortment(VehicleData.StandardSpecs, 8))
                .Returns(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" });
 
             Assert.AreEqual(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" }, _vehicleFaker.StandardSpecs());
@@ -202,8 +185,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void EngineSize_returns_an_enginesize()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.EngineSize)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.EngineSize))
                .Returns(6);
 
             Assert.AreEqual(6, _vehicleFaker.EngineSize());
@@ -212,8 +194,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Engine_returns_an_engine()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                   A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.EngineSize)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.EngineSize))
                .Returns(4);
 
             Assert.AreEqual(4, _vehicleFaker.Engine());
@@ -264,11 +245,9 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void LicensePlate_returns_plate_no_state()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                  A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
               .Returns('A');
-            A.CallTo(() => _fakerContainer.Random.Element(
-                 A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.LicensePlateNumbers)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(1);
 
             Assert.AreEqual("AAA-1111", _vehicleFaker.LicensePlate());
@@ -277,14 +256,11 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void LicensePlate_returns_plate_Florida_state()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                  A<IEnumerable<string>>.That.IsSameSequenceAs(VehicleData.LicensePlateTemplateByState["FL"])))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateTemplateByState["FL"]))
               .Returns("??? ?##");
-            A.CallTo(() => _fakerContainer.Random.Element(
-                  A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
               .Returns('F');
-            A.CallTo(() => _fakerContainer.Random.Element(
-                 A<IEnumerable<int>>.That.IsSameSequenceAs(VehicleData.LicensePlateNumbers)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(5);
 
             Assert.AreEqual("FFF F55", _vehicleFaker.LicensePlate("FL"));

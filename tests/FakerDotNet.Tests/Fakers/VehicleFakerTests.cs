@@ -245,7 +245,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void LicensePlate_returns_plate_no_state()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
+            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
               .Returns('A');
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(1);
@@ -258,7 +258,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateTemplateByState["FL"]))
               .Returns("??? ?##");
-            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
+            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
               .Returns('T');
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(5);

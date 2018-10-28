@@ -259,11 +259,11 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateTemplateByState["FL"]))
               .Returns("??? ?##");
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
-              .Returns('F');
+              .Returns('T');
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(5);
 
-            Assert.AreEqual("FFF F55", _vehicleFaker.LicensePlate("FL"));
+            Assert.AreEqual("TTT T55", _vehicleFaker.LicensePlate("FL"));
         }
     }
 }

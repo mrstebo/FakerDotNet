@@ -124,6 +124,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void University_returns_IUniversityFaker()
+        {
+            Assert.IsInstanceOf<IUniversityFaker>(_fakerContainer.University);
+        }
+
+        [Test]
         public void Zelda_returns_IZeldaFaker()
         {
             Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);

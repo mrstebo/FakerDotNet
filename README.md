@@ -6,8 +6,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
 [![Coverage Status](https://coveralls.io/repos/github/mrstebo/FakerDotNet/badge.svg?branch=master)](https://coveralls.io/github/mrstebo/FakerDotNet?branch=master)
 [![NuGet Version](https://img.shields.io/nuget/v/FakerDotNet.svg)](https://www.nuget.org/packages/FakerDotNet/)
 
-Contents
---------
+## Contents
 
 - [Installing](#installing)
 - [Usage](#usage)
@@ -32,6 +31,7 @@ Contents
   - [Faker.Team](doc/team.md)
   - [Faker.Time](doc/time.md)
   - [Faker.TwinPeaks](doc/twin_peaks.md)
+  - [Faker.University](doc/university.md)
   - [Faker.Zelda](doc/zelda.md)
 - [Contributing](#contributing)
 - [Copyright](#copyright)

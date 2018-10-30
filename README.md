@@ -28,6 +28,7 @@ Contents
   - [Faker.Pokemon](doc/pokemon.md)
   - [Faker.Random](doc/random.md)
   - [Faker.RockBand](doc/rockband.md)
+  - [Faker.SlackEmoji](doc/slackemoji.md)
   - [Faker.Superhero](doc/superhero.md)
   - [Faker.Team](doc/team.md)
   - [Faker.Time](doc/time.md)

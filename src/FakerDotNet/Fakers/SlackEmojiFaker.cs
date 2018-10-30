@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FakerDotNet.Fakers
 {
@@ -27,14 +28,39 @@ namespace FakerDotNet.Fakers
             _fakerContainer = fakerContainer;
         }
 
-        public string Activity()
+        public string People()
         {
-            return _fakerContainer.Random.Element(SlackEmojiData.Activity);
+            return _fakerContainer.Random.Element(SlackEmojiData.People);
+        }
+
+        public string Nature()
+        {
+            return _fakerContainer.Random.Element(SlackEmojiData.Nature);
+        }
+
+        public string FoodAndDrink()
+        {
+            return _fakerContainer.Random.Element(SlackEmojiData.FoodAndDrink);
         }
 
         public string Celebration()
         {
             return _fakerContainer.Random.Element(SlackEmojiData.Celebration);
+        }
+
+        public string Activity()
+        {
+            return _fakerContainer.Random.Element(SlackEmojiData.Activity);
+        }
+
+        public string TravelAndPlaces()
+        {
+            return _fakerContainer.Random.Element(SlackEmojiData.TravelAndPlaces);
+        }
+
+        public string ObjectAndSymbols()
+        {
+            return _fakerContainer.Random.Element(SlackEmojiData.ObjectsAndSymbols);
         }
 
         public string Custom()
@@ -44,32 +70,16 @@ namespace FakerDotNet.Fakers
 
         public string Emoji()
         {
-            throw new NotImplementedException();
+            return Parse(_fakerContainer.Random.Element(SlackEmojiData.Emoji));
         }
 
-        public string FoodAndDrink()
+        private string Parse(string format)
         {
-            return _fakerContainer.Random.Element(SlackEmojiData.FoodAndDrink);
-        }
+            var text = Regex.Replace(format, @"\{(\w+)\}", @"{SlackEmoji.$1}");
 
-        public string Nature()
-        {
-            return _fakerContainer.Random.Element(SlackEmojiData.Nature);
-        }
+            text = Regex.Replace(text, "#", m => _fakerContainer.Number.NonZeroDigit());
 
-        public string ObjectAndSymbols()
-        {
-            return _fakerContainer.Random.Element(SlackEmojiData.ObjectsAndSymbols);
-        }
-
-        public string People()
-        {
-            return _fakerContainer.Random.Element(SlackEmojiData.People);
-        }
-
-        public string TravelAndPlaces()
-        {
-            return _fakerContainer.Random.Element(SlackEmojiData.TravelAndPlaces);
+            return _fakerContainer.Fake.F(text);
         }
     }
 }

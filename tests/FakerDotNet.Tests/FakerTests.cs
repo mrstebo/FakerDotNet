@@ -108,6 +108,11 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IRandomFaker>(Faker.Random);
         }
+        [Test]
+        public void SlackEmoji_returns_ISlackEmoji()
+        {
+            Assert.IsInstanceOf<ISlackEmojiFaker>(Faker.SlackEmoji);
+        }
 
         [Test]
         public void Time_returns_ITimeFaker()

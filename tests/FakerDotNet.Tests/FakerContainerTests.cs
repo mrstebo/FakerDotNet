@@ -118,6 +118,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void SlackEmoji_returns_ISlackEmoji()
+        {
+            Assert.IsInstanceOf<ISlackEmojiFaker>(_fakerContainer.SlackEmoji);
+        }
+
+        [Test]
         public void Time_returns_ITimeFaker()
         {
             Assert.IsInstanceOf<ITimeFaker>(_fakerContainer.Time);

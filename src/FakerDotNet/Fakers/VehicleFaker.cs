@@ -1,9 +1,9 @@
-﻿using FakerDotNet.Algorithms;
-using FakerDotNet.Data;
+﻿using FakerDotNet.Data;
 using FakerDotNet.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FakerDotNet.Checksums;
 
 namespace FakerDotNet.Fakers
 {
@@ -66,15 +66,15 @@ namespace FakerDotNet.Fakers
             string vin = string.Empty;
             for (var i = 0; i < 8; i ++)
             {
-                var e = _fakerContainer.Random.Element(VinCheckSum.vinDigitValues);
+                var e = _fakerContainer.Random.Element(VehicleVinChecksum.VehicleVinDigitValues);
                 vin += e.Key;
             }
             vin += '0';
             for (var i = 0; i < 8; i++)
             {
-                vin += _fakerContainer.Random.Element(VinCheckSum.vinDigitValues).Key;
+                vin += _fakerContainer.Random.Element(VehicleVinChecksum.VehicleVinDigitValues).Key;
             }
-            var checksum = VinCheckSum.GetChecksum(vin);
+            var checksum = VehicleVinChecksum.GetVehicleVinChecksum(vin);
 
 
             return vin.Substring(0, 8) + checksum + vin.Substring(9, 8);

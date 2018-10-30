@@ -1,4 +1,4 @@
-﻿using FakerDotNet.Algorithms;
+﻿using FakerDotNet.Checksums;
 using NUnit.Framework;
 
 namespace FakerDotNet.Tests.Algorithms
@@ -12,7 +12,7 @@ namespace FakerDotNet.Tests.Algorithms
         [TestCase("KM8JU3AG0FU003762", "4")]
         public void GetCheckSumTest(string vin, string checkSum)
         {
-            Assert.AreEqual(checkSum, VinCheckSum.GetChecksum(vin));
+            Assert.AreEqual(checkSum, VehicleVinChecksum.GetVehicleVinChecksum(vin));
         }
     }
 }

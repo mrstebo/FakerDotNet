@@ -112,13 +112,19 @@ namespace FakerDotNet.Tests
         [Test]
         public void RockBand_returns_IRockBandFaker()
         {
-            Assert.IsInstanceOf<IRandomFaker>(Faker.Random);
+            Assert.IsInstanceOf<IRockBandFaker>(Faker.RockBand);
         }
 
         [Test]
         public void Time_returns_ITimeFaker()
         {
             Assert.IsInstanceOf<ITimeFaker>(Faker.Time);
+        }
+
+        [Test]
+        public void Vehicle_returns_IVehicleFaker()
+        {
+            Assert.IsInstanceOf<IVehicleFaker>(Faker.Vehicle);
         }
 
         [Test]

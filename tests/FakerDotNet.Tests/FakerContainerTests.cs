@@ -130,6 +130,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Vehicle_returns_IVehicleFaker()
+        {
+            Assert.IsInstanceOf<IVehicleFaker>(_fakerContainer.Vehicle);
+        }
+
+        [Test]
         public void Zelda_returns_IZeldaFaker()
         {
             Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);

@@ -19,7 +19,7 @@ Faker.SlackEmoji.Activity() //=> ":performing_arts:"
 Faker.SlackEmoji.TravelAndPlaces() //=> ":truck:"
 
 # Random Slack Emoji from objects & symbols category
-Faker.SlackEmoji.ObjectAndSymbols() //=> ":alarm_clock:"
+Faker.SlackEmoji.ObjectsAndSymbols() //=> ":alarm_clock:"
 
 # Random Slack Emoji from custom category
 Faker.SlackEmoji.Custom() //=> ":suspect:"

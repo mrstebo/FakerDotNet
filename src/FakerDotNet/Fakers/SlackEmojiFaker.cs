@@ -14,7 +14,7 @@ namespace FakerDotNet.Fakers
         string Celebration();
         string Activity();
         string TravelAndPlaces();
-        string ObjectAndSymbols();
+        string ObjectsAndSymbols();
         string Custom();
         string Emoji();
     }
@@ -58,7 +58,7 @@ namespace FakerDotNet.Fakers
             return _fakerContainer.Random.Element(SlackEmojiData.TravelAndPlaces);
         }
 
-        public string ObjectAndSymbols()
+        public string ObjectsAndSymbols()
         {
             return _fakerContainer.Random.Element(SlackEmojiData.ObjectsAndSymbols);
         }

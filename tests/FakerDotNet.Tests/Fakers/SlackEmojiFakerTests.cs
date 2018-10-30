@@ -63,10 +63,10 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Activity_returns_an_activity()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.FoodAndDrink))
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Activity))
                 .Returns(":performing_arts:");
 
-            Assert.AreEqual(":performing_arts:", _slackEmojiFaker.FoodAndDrink());
+            Assert.AreEqual(":performing_arts:", _slackEmojiFaker.Activity());
         }
 
         [Test]
@@ -81,10 +81,10 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void ObjectAndSymbols_returns_an_objectandsymbol()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Activity))
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.ObjectsAndSymbols))
                 .Returns(":alarm_clock:");
 
-            Assert.AreEqual(":alarm_clock:", _slackEmojiFaker.Activity());
+            Assert.AreEqual(":alarm_clock:", _slackEmojiFaker.ObjectsAndSymbols());
         }
 
         [Test]

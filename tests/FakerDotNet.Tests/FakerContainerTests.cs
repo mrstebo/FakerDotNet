@@ -112,6 +112,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void RickAndMorty_returns_IRickAndMortyFaker()
+        {
+            Assert.IsInstanceOf<IRickAndMortyFaker>(_fakerContainer.RickAndMorty);
+        }
+
+        [Test]
         public void RockBand_returns_IRockBandFaker()
         {
             Assert.IsInstanceOf<IRockBandFaker>(_fakerContainer.RockBand);

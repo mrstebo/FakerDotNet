@@ -23,12 +23,14 @@ namespace FakerDotNet
         public static INumberFaker Number { get; } = Container.Number;
         public static IPokemonFaker Pokemon { get; } = Container.Pokemon;
         public static IRandomFaker Random { get; } = Container.Random;
+        public static IRickAndMortyFaker RickAndMorty { get; } = Container.RickAndMorty;
         public static ITeamFaker Team { get; } = Container.Team;
         public static IRockBandFaker RockBand { get; } = Container.RockBand;
         public static ISuperheroFaker Superhero { get; } = Container.Superhero;
         public static ITimeFaker Time { get; } = Container.Time;
         public static ITwinPeaksFaker TwinPeaks { get; } = Container.TwinPeaks;
         public static IUniversityFaker University { get; } = Container.University;
+        public static IVehicleFaker Vehicle {get; } = Container.Vehicle;
         public static IZeldaFaker Zelda { get; } = Container.Zelda;
     }
 }

@@ -20,13 +20,15 @@ namespace FakerDotNet
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IPokemonFaker Pokemon { get; }
-        IRandomFaker Random { get; }        
+        IRandomFaker Random { get; }
+        IRickAndMortyFaker RickAndMorty { get; }
         IRockBandFaker RockBand { get; }
         ISuperheroFaker Superhero { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
         ITwinPeaksFaker TwinPeaks { get; }
         IUniversityFaker University { get; }
+        IVehicleFaker Vehicle { get; }
         IZeldaFaker Zelda { get; }
     }
 
@@ -50,13 +52,15 @@ namespace FakerDotNet
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Pokemon = new PokemonFaker(this);
-            Random = new RandomFaker();            
+            Random = new RandomFaker();
+            RickAndMorty = new RickAndMortyFaker(this);
             RockBand = new RockBandFaker(this);
             Superhero = new SuperheroFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
             TwinPeaks = new TwinPeaksFaker(this);
             University = new UniversityFaker(this);
+            Vehicle = new VehicleFaker(this);
             Zelda = new ZeldaFaker(this);
         }
 
@@ -77,12 +81,14 @@ namespace FakerDotNet
         public INumberFaker Number { get; }
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
+        public IRickAndMortyFaker RickAndMorty { get; }
         public IRockBandFaker RockBand { get; }
         public ISuperheroFaker Superhero { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
         public ITwinPeaksFaker TwinPeaks { get; }
         public IUniversityFaker University { get; }
+        public IVehicleFaker Vehicle { get; }
         public IZeldaFaker Zelda { get; }
     }
 }

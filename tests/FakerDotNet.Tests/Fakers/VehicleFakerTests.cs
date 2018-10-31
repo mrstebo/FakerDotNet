@@ -3,7 +3,6 @@ using FakerDotNet.Fakers;
 using FakerDotNet.Wrappers;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using FakerDotNet.Data;
@@ -95,7 +94,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Trasmission_returns_a_transmission()
+        public void Transmission_returns_a_transmission()
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Transmissions))
                .Returns("Automanual");
@@ -104,7 +103,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void DriveType_returns_a_drivetype()
+        public void DriveType_returns_a_drive_type()
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.DriveTypes))
                .Returns("4x2/2-wheel drive");
@@ -113,7 +112,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void FuelType_returns_a_fueltype()
+        public void FuelType_returns_a_fuel_type()
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.FuelTypes))
                .Returns("Diesel");
@@ -122,7 +121,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void VehicleStyles_returns_a_vehiclestyle()
+        public void VehicleStyles_returns_a_vehicle_style()
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.VehicleStyles))
                .Returns("ESi");
@@ -131,7 +130,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void CarTypes_returns_a_cartype()
+        public void CarTypes_returns_a_car_type()
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.CarTypes))
                .Returns("Sedan");
@@ -141,27 +140,50 @@ namespace FakerDotNet.Tests.Fakers
 
 
         [Test]
-        public void CarOptions_returns_some_caroptions()
+        public void CarOptions_returns_some_car_options()
         {
+            var carOptions = new[]
+            {
+                "DVD System",
+                "MP3 (Single Disc)",
+                "Tow Package",
+                "CD (Multi Disc)",
+                "Cassette Player",
+                "Bucket Seats",
+                "Cassette Player",
+                "Leather Interior",
+                "AM/FM Stereo",
+                "Third Row Seats"
+            };
+
             A.CallTo(() => _randomWrapper.Next(5, 10))
-               .Returns(10);
-
+                .Returns(10);
             A.CallTo(() => _fakerContainer.Random.Assortment(VehicleData.CarOptions, 10))
-               .Returns(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" });
+                .Returns(carOptions);
 
-            Assert.AreEqual(new[] { "DVD System", "MP3 (Single Disc)", "Tow Package", "CD (Multi Disc)", "Cassette Player", "Bucket Seats", "Cassette Player", "Leather Interior", "AM/FM Stereo", "Third Row Seats" }, _vehicleFaker.CarOptions());
+            Assert.AreEqual(carOptions, _vehicleFaker.CarOptions());
         }
 
         [Test]
-        public void StandarSpecs_returns_some_standardspecs()
+        public void StandardSpecs_returns_some_standard_specs()
         {
+            var standardSpecs = new[]
+            {
+                "Full-size spare tire w/aluminum alloy wheel",
+                "Back-up camera",
+                "Carpeted cargo area",
+                "Silver accent IP trim finisher -inc: silver shifter finisher",
+                "Back-up camera",
+                "Water-repellent windshield & front door glass",
+                "Floor carpeting"
+            };
+            
             A.CallTo(() => _randomWrapper.Next(5, 10))
                .Returns(8);
-
             A.CallTo(() => _fakerContainer.Random.Assortment(VehicleData.StandardSpecs, 8))
-               .Returns(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" });
+               .Returns(standardSpecs);
 
-            Assert.AreEqual(new[] { "Full-size spare tire w/aluminum alloy wheel", "Back-up camera", "Carpeted cargo area", "Silver accent IP trim finisher -inc: silver shifter finisher", "Back-up camera", "Water-repellent windshield & front door glass", "Floor carpeting" }, _vehicleFaker.StandardSpecs());
+            Assert.AreEqual(standardSpecs, _vehicleFaker.StandardSpecs());
         }
 
         [Test]
@@ -174,7 +196,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void DoorCount_returns_a_doorcount()
+        public void DoorCount_returns_a_door_count()
         {
             A.CallTo(() => _randomWrapper.Next(1, 4))
                .Returns(3);
@@ -183,7 +205,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void EngineSize_returns_an_enginesize()
+        public void EngineSize_returns_an_engine_size()
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.EngineSize))
                .Returns(6);
@@ -203,7 +225,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Year_returns_a_year()
         {
-            A.CallTo(() => _randomWrapper.Next(365, 5475)).Returns(3650);
+            A.CallTo(() => _randomWrapper.Next(365, 5475))
+                .Returns(3650);
             A.CallTo(() => _fakerContainer.Time.Backward(3650, TimePeriod.All))
               .Returns(DateTime.Now.AddYears(-10));
 
@@ -211,33 +234,37 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Milage_returns_milage_defaults()
+        public void Mileage_returns_mileage_defaults()
         {
-            A.CallTo(() => _randomWrapper.Next(10000, 90000)).Returns(26961);
+            A.CallTo(() => _randomWrapper.Next(10000, 90000))
+                .Returns(26961);
 
             Assert.AreEqual(26961, _vehicleFaker.Mileage());
         }
 
         [Test]
-        public void Milage_returns_milage_minium_specified()
+        public void Mileage_returns_mileage_min_specified()
         {
-            A.CallTo(() => _randomWrapper.Next(50000, 90000)).Returns(81557);
+            A.CallTo(() => _randomWrapper.Next(50000, 90000))
+                .Returns(81557);
 
             Assert.AreEqual(81557, _vehicleFaker.Mileage(50000));
         }
 
         [Test]
-        public void Milage_returns_milage_minium_and_maxium_specified()
+        public void Mileage_returns_mileage_min_and_max_specified()
         {
-            A.CallTo(() => _randomWrapper.Next(50000, 250000)).Returns(117503);
+            A.CallTo(() => _randomWrapper.Next(50000, 250000))
+                .Returns(117503);
 
             Assert.AreEqual(117503, _vehicleFaker.Mileage(50000, 250000));
         }
 
         [Test]
-        public void Kilometer_calls_milage()
+        public void Kilometer_calls_mileage()
         {
-            A.CallTo(() => _randomWrapper.Next(10000, 90000)).Returns(35378);
+            A.CallTo(() => _randomWrapper.Next(10000, 90000))
+                .Returns(35378);
 
             Assert.AreEqual(35378, _vehicleFaker.Kilometers());
         }
@@ -245,7 +272,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void LicensePlate_returns_plate_no_state()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
               .Returns('A');
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(1);
@@ -258,7 +285,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateTemplateByState["FL"]))
               .Returns("??? ?##");
-            A.CallTo(() => _fakerContainer.Random.Element(A<IEnumerable<char>>.That.IsSameSequenceAs(VehicleData.LicensePlateAlphabet)))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet))
               .Returns('T');
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.LicensePlateNumbers))
              .Returns(5);

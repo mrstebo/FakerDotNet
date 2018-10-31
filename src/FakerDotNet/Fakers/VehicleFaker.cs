@@ -1,6 +1,5 @@
 ﻿using FakerDotNet.Data;
 using FakerDotNet.Wrappers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using FakerDotNet.Checksums;
@@ -28,7 +27,7 @@ namespace FakerDotNet.Fakers
         int EngineSize();
         int Engine();
         int Year();
-        int Mileage(int minium = 10000, int maxium = 90000);
+        int Mileage(int min = 10000, int max = 90000);
         int Kilometers();
         string LicensePlate();
         string LicensePlate(string state);
@@ -36,12 +35,12 @@ namespace FakerDotNet.Fakers
 
     internal class VehicleFaker : IVehicleFaker
     {
-        
+
         private readonly IFakerContainer _fakerContainer;
         private readonly IRandomWrapper _randomWrapper;
 
-        public VehicleFaker(IFakerContainer _fakerContainer)
-            : this(_fakerContainer, new RandomWrapper())
+        public VehicleFaker(IFakerContainer fakerContainer)
+            : this(fakerContainer, new RandomWrapper())
         {
         }
 
@@ -63,17 +62,19 @@ namespace FakerDotNet.Fakers
 
         public string Vin()
         {
-            string vin = string.Empty;
-            for (var i = 0; i < 8; i ++)
+            var vin = string.Empty;
+            for (var i = 0; i < 8; i++)
             {
                 var e = _fakerContainer.Random.Element(VehicleVinChecksum.VehicleVinDigitValues);
                 vin += e.Key;
             }
+
             vin += '0';
             for (var i = 0; i < 8; i++)
             {
                 vin += _fakerContainer.Random.Element(VehicleVinChecksum.VehicleVinDigitValues).Key;
             }
+
             var checksum = VehicleVinChecksum.GetVehicleVinChecksum(vin);
 
 
@@ -162,8 +163,9 @@ namespace FakerDotNet.Fakers
             return _fakerContainer.Time.Backward(_randomWrapper.Next(365, 5475), TimePeriod.All).Year;
         }
 
-        public int Mileage(int minium = 10000, int maxium = 90000) {
-            return _randomWrapper.Next(minium, maxium);
+        public int Mileage(int min = 10000, int max = 90000)
+        {
+            return _randomWrapper.Next(min, max);
         }
 
         public int Kilometers()
@@ -173,13 +175,14 @@ namespace FakerDotNet.Fakers
 
         public string LicensePlate()
         {
-            return String.Join(String.Empty, VehicleData.LicensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
+            return string.Join(string.Empty,
+                VehicleData.LicensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
         }
 
         public string LicensePlate(string state)
         {
             var licensePlateTemplate = _fakerContainer.Random.Element(VehicleData.LicensePlateTemplateByState[state]);
-            return String.Join(String.Empty, licensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
+            return string.Join(string.Empty, licensePlateTemplate.ToCharArray().Select(ConvertsTemplateChar));
         }
 
         private string ConvertsTemplateChar(char c)

@@ -76,6 +76,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void File_returns_IFileFaker()
+        {
+            Assert.IsInstanceOf<IFileFaker>(_fakerContainer.File);
+        }
+
+        [Test]
         public void Friends_returns_IFriendsFaker()
         {
             Assert.IsInstanceOf<IFriendsFaker>(_fakerContainer.Friends);

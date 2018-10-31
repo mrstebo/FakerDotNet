@@ -1,4 +1,5 @@
-﻿using FakerDotNet.Data;
+﻿using System;
+using FakerDotNet.Data;
 using FakerDotNet.Wrappers;
 using System.Collections.Generic;
 using System.Linq;
@@ -190,13 +191,13 @@ namespace FakerDotNet.Fakers
             switch (c)
             {
                 case '?':
-                    return _fakerContainer
-                        .Random.Element(VehicleData.LicensePlateAlphabet).ToString();
+                    return Convert.ToString(_fakerContainer.Random.Element(VehicleData.LicensePlateAlphabet));
+
                 case '#':
-                    return _fakerContainer
-                        .Random.Element(VehicleData.LicensePlateNumbers).ToString();
+                    return Convert.ToString(_fakerContainer.Random.Element(VehicleData.LicensePlateNumbers));
+
                 default:
-                    return c.ToString();
+                    return Convert.ToString(c);
             }
         }
     }

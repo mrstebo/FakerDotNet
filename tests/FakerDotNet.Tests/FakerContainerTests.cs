@@ -82,6 +82,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void GameOfThrones_returns_IGameOfThronesFaker()
+        {
+            Assert.IsInstanceOf<IGameOfThronesFaker>(_fakerContainer.GameOfThrones);
+        }
+
+        [Test]
         public void Lorem_returns_ILoremFaker()
         {
             Assert.IsInstanceOf<ILoremFaker>(_fakerContainer.Lorem);
@@ -124,9 +130,27 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Superhero_returns_ISuperheroFaker()
+        {
+            Assert.IsInstanceOf<ISuperheroFaker>(_fakerContainer.Superhero);
+        }
+
+        [Test]
+        public void Team_returns_ITeamFaker()
+        {
+            Assert.IsInstanceOf<ITeamFaker>(_fakerContainer.Team);
+        }
+
+        [Test]
         public void Time_returns_ITimeFaker()
         {
             Assert.IsInstanceOf<ITimeFaker>(_fakerContainer.Time);
+        }
+
+        [Test]
+        public void TwinPeaks_returns_ITwinPeaksFaker()
+        {
+            Assert.IsInstanceOf<ITwinPeaksFaker>(_fakerContainer.TwinPeaks);
         }
 
         [Test]

@@ -8,6 +8,7 @@ namespace FakerDotNet
 
         public static IAddressFaker Address { get; } = Container.Address;
         public static IAppFaker App { get; } = Container.App;
+        public static IAvatarFaker Avatar { get; } = Container.Avatar;
         public static IBeerFaker Beer { get; } = Container.Beer;
         public static IBookFaker Book { get; } = Container.Book;
         public static IBooleanFaker Boolean { get; } = Container.Boolean;

@@ -144,6 +144,7 @@ namespace FakerDotNet.Data
             ":open_hands:",
             ":pray:"
         };
+
         public static readonly IEnumerable<string> Nature = new[]
         {
             ":seedling:",
@@ -272,6 +273,7 @@ namespace FakerDotNet.Data
             ":last_quarter_moon_with_face:",
             ":sun_with_face:"
         };
+
         public static readonly IEnumerable<string> FoodAndDrink = new[]
         {
             ":tomato:",
@@ -333,6 +335,7 @@ namespace FakerDotNet.Data
             ":beers:",
             ":baby_bottle:"
          };
+
         public static readonly IEnumerable<string> Celebration = new[]
         {
             ":ribbon:",
@@ -375,6 +378,7 @@ namespace FakerDotNet.Data
             ":green_heart:",
             ":blue_heart:"
         };
+
         public static readonly IEnumerable<string> Activity = new[]
         {
             ":running:",
@@ -432,6 +436,7 @@ namespace FakerDotNet.Data
             ":roller_coaster:"
 
         };
+
         public static readonly IEnumerable<string> TravelAndPlaces = new[]
         {
             ":train:",
@@ -522,6 +527,7 @@ namespace FakerDotNet.Data
             ":ru:",
             ":us:"
         };
+
         public static readonly IEnumerable<string> ObjectsAndSymbols = new[]
         {
             ":watch:",
@@ -867,6 +873,7 @@ namespace FakerDotNet.Data
             ":clock1130:",
             ":clock1230:"
         };
+
         public static readonly IEnumerable<string> Custom = new[]
         {
             ":beryl:",
@@ -897,6 +904,7 @@ namespace FakerDotNet.Data
             ":taco:",
             ":trollface:"
         };
+
         public static readonly IEnumerable<string> Emoji = new[]
         {
             "#{people}",

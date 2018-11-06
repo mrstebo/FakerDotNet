@@ -100,7 +100,7 @@ namespace FakerDotNet.Tests.Fakers
         public void Emoji_returns_an_emoji()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
-                .Returns("#{nature}");
+                .Returns("{nature}");
             A.CallTo(() => _fakerContainer.SlackEmoji.Nature())
                 .Returns(":last_quarter_moon:");
 

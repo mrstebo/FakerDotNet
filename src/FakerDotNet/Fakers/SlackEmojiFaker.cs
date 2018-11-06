@@ -77,8 +77,6 @@ namespace FakerDotNet.Fakers
         {
             var text = Regex.Replace(format, @"\{(\w+)\}", @"{SlackEmoji.$1}");
 
-            text = Regex.Replace(text, "#", m => _fakerContainer.Number.NonZeroDigit());
-
             return _fakerContainer.Fake.F(text);
         }
     }

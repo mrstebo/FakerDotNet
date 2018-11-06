@@ -6,6 +6,7 @@ namespace FakerDotNet
     {
         IAddressFaker Address { get; }
         IAppFaker App { get; }
+        IAvatarFaker Avatar { get; }
         IBeerFaker Beer { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
@@ -20,13 +21,16 @@ namespace FakerDotNet
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IPokemonFaker Pokemon { get; }
-        IRandomFaker Random { get; }        
+        IRandomFaker Random { get; }
+        IRickAndMortyFaker RickAndMorty { get; }
         IRockBandFaker RockBand { get; }
         ISlackEmojiFaker SlackEmoji { get; }
         ISuperheroFaker Superhero { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
         ITwinPeaksFaker TwinPeaks { get; }
+        IUniversityFaker University { get; }
+        IVehicleFaker Vehicle { get; }
         IZeldaFaker Zelda { get; }
     }
 
@@ -36,6 +40,7 @@ namespace FakerDotNet
         {
             Address = new AddressFaker(this);
             App = new AppFaker(this);
+            Avatar = new AvatarFaker(this);
             Beer = new BeerFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
@@ -50,18 +55,22 @@ namespace FakerDotNet
             Name = new NameFaker(this);
             Number = new NumberFaker();
             Pokemon = new PokemonFaker(this);
-            Random = new RandomFaker();            
+            Random = new RandomFaker();
+            RickAndMorty = new RickAndMortyFaker(this);
             RockBand = new RockBandFaker(this);
             SlackEmoji = new SlackEmojiFaker(this);
             Superhero = new SuperheroFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
             TwinPeaks = new TwinPeaksFaker(this);
+            University = new UniversityFaker(this);
+            Vehicle = new VehicleFaker(this);
             Zelda = new ZeldaFaker(this);
         }
 
         public IAddressFaker Address { get; }
         public IAppFaker App { get; }
+        public IAvatarFaker Avatar { get; }
         public IBeerFaker Beer { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }
@@ -77,12 +86,15 @@ namespace FakerDotNet
         public INumberFaker Number { get; }
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
+        public IRickAndMortyFaker RickAndMorty { get; }
         public IRockBandFaker RockBand { get; }
         public ISlackEmojiFaker SlackEmoji { get; }
         public ISuperheroFaker Superhero { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }
         public ITwinPeaksFaker TwinPeaks { get; }
+        public IUniversityFaker University { get; }
+        public IVehicleFaker Vehicle { get; }
         public IZeldaFaker Zelda { get; }
     }
 }

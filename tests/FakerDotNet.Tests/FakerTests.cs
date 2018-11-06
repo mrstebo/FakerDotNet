@@ -20,6 +20,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Avatar_returns_IAvatarFaker()
+        {
+            Assert.IsInstanceOf<IAvatarFaker>(Faker.Avatar);
+        }
+
+        [Test]
         public void Beer_returns_IBeerFaker()
         {
             Assert.IsInstanceOf<IBeerFaker>(Faker.Beer);
@@ -72,6 +78,12 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IFriendsFaker>(Faker.Friends);
         }
+        
+        [Test]
+        public void GameOfThrones_returns_IGameOfThronesFaker()
+        {
+            Assert.IsInstanceOf<IGameOfThronesFaker>(Faker.GameOfThrones);
+        }
 
         [Test]
         public void Lorem_returns_ILoremFaker()
@@ -104,9 +116,27 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void RickAndMorty_returns_IRickAndMortyFaker()
+        {
+            Assert.IsInstanceOf<IRickAndMortyFaker>(Faker.RickAndMorty);
+        }
+
+        [Test]
         public void RockBand_returns_IRockBandFaker()
         {
-            Assert.IsInstanceOf<IRandomFaker>(Faker.Random);
+            Assert.IsInstanceOf<IRockBandFaker>(Faker.RockBand);
+        }
+        
+        [Test]
+        public void Superhero_returns_ISuperheroFaker()
+        {
+            Assert.IsInstanceOf<ISuperheroFaker>(Faker.Superhero);
+        }
+
+        [Test]
+        public void Team_returns_ITeamFaker()
+        {
+            Assert.IsInstanceOf<ITeamFaker>(Faker.Team);
         }
         [Test]
         public void SlackEmoji_returns_ISlackEmoji()
@@ -118,6 +148,24 @@ namespace FakerDotNet.Tests
         public void Time_returns_ITimeFaker()
         {
             Assert.IsInstanceOf<ITimeFaker>(Faker.Time);
+        }
+
+        [Test]
+        public void TwinPeaks_returns_ITwinPeaksFaker()
+        {
+            Assert.IsInstanceOf<ITwinPeaksFaker>(Faker.TwinPeaks);
+        }
+
+        [Test]
+        public void University_returns_IUniversityFaker()
+        {
+            Assert.IsInstanceOf<IUniversityFaker>(Faker.University);
+        }
+
+        [Test]
+        public void Vehicle_returns_IVehicleFaker()
+        {
+            Assert.IsInstanceOf<IVehicleFaker>(Faker.Vehicle);
         }
 
         [Test]

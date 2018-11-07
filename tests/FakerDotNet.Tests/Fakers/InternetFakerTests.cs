@@ -1,0 +1,383 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using FakeItEasy;
+using FakerDotNet.Data;
+using FakerDotNet.Fakers;
+using NUnit.Framework;
+
+namespace FakerDotNet.Tests.Fakers
+{
+    [TestFixture]
+    [Parallelizable]
+    public class InternetFakerTests
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            _fakerContainer = A.Fake<IFakerContainer>();
+            _internetFaker = new InternetFaker(_fakerContainer);
+
+            A.CallTo(() => _fakerContainer.Fake).Returns(new FakeFaker(_fakerContainer));
+        }
+
+        private IFakerContainer _fakerContainer;
+        private IInternetFaker _internetFaker;
+
+        [Test]
+        public void Email_returns_an_email_address()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("eliza");
+            A.CallTo(() => _fakerContainer.Company.Name())
+                .Returns("mann");
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
+                .Returns("net");
+
+            Assert.AreEqual("eliza@mann.net", _internetFaker.Email());
+        }
+
+        [Test]
+        public void Email_returns_an_email_address_with_the_specified_name()
+        {
+            A.CallTo(() => _fakerContainer.Company.Name())
+                .Returns("terry");
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
+                .Returns("biz");
+
+            Assert.AreEqual("nancy@terry.biz", _internetFaker.Email("Nancy"));
+        }
+
+        [Test]
+        public void Email_returns_an_email_address_with_the_specified_separator()
+        {
+            var separators = new[] {"+"};
+
+            A.CallTo(() => _fakerContainer.Random.Element(separators))
+                .Returns("+");
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs("Janelle", "Santiago"), 2))
+                .Returns(new[] {"Janelle", "Santiago"});
+            A.CallTo(() => _fakerContainer.Company.Name())
+                .Returns("becker");
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
+                .Returns("com");
+
+            Assert.AreEqual("janelle+santiago@becker.com", _internetFaker.Email("Janelle Santiago", separators));
+        }
+
+        [Test]
+        public void FreeEmail_returns_an_email_address()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("freddy");
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.FreeEmails))
+                .Returns("gmail.com");
+
+            Assert.AreEqual("freddy@gmail.com", _internetFaker.FreeEmail());
+        }
+
+        [Test]
+        public void FreeEmail_returns_an_email_address_with_the_specified_name()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.FreeEmails))
+                .Returns("yahoo.com");
+
+            Assert.AreEqual("nancy@yahoo.com", _internetFaker.FreeEmail("Nancy"));
+        }
+
+        [Test]
+        public void SafeEmail_returns_an_email_address()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("christelle");
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.SafeDomainSuffixes))
+                .Returns("org");
+
+            Assert.AreEqual("christelle@example.org", _internetFaker.SafeEmail());
+        }
+
+        [Test]
+        public void SafeEmail_returns_an_email_address_with_the_specified_name()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.SafeDomainSuffixes))
+                .Returns("net");
+
+            Assert.AreEqual("nancy@example.net", _internetFaker.SafeEmail("Nancy"));
+        }
+
+        [Test]
+        public void Username_returns_a_username()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("alexie");
+
+            Assert.AreEqual("alexie", _internetFaker.Username());
+        }
+
+        [Test]
+        public void Username_returns_a_username_with_the_specified_name()
+        {
+            Assert.AreEqual("nancy", _internetFaker.Username("Nancy"));
+        }
+
+        [Test]
+        public void Username_returns_a_username_with_the_specified_separator()
+        {
+            var separators = new[] {".", "_", "-"};
+
+            A.CallTo(() => _fakerContainer.Random.Element(separators))
+                .Returns("-");
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs("Nancy", "Johnson"), 2))
+                .Returns(new[] {"Johnson", "Nancy"});
+
+            Assert.AreEqual("johnson-nancy", _internetFaker.Username("Nancy Johnson", separators));
+        }
+
+        [Test]
+        public void Username_returns_a_username_with_length_in_specified_range()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .ReturnsNextFromSequence("amy", "brad", "nancy");
+
+            Assert.AreEqual("nancy", _internetFaker.Username(new Range<int>(5, 8)));
+        }
+
+        [Test]
+        public void Username_when_range_with_min_length_that_is_too_large_throws_ArgumentError()
+        {
+            var range = new Range<int>(10_000_000, 10_000_000);
+            
+            var ex = Assert.Throws<ArgumentException>(() => _internetFaker.Username(range));
+
+            Assert.That(ex.Message.StartsWith("Given argument is too large"));
+        }
+
+        [Test]
+        public void Username_returns_an_empty_username_if_range_with_min_length_is_less_than_zero()
+        {
+            var range = new Range<int>(-5, 5);
+            
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("nancy");
+
+            Assert.AreEqual("", _internetFaker.Username(range));
+        }
+
+        [Test]
+        public void Username_returns_a_username_with_length_greater_or_equal_to_the_min_length()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .ReturnsNextFromSequence("nancy", "alexie", "johnathon");
+
+            Assert.AreEqual("johnathon", _internetFaker.Username(8));
+        }
+
+        [Test]
+        public void Username_returns_an_empty_username_if_min_length_is_less_than_zero()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
+                .Returns("{Name.FirstName}");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("nancy");
+
+            Assert.AreEqual("", _internetFaker.Username(-5));
+        }
+
+        [Test]
+        public void Username_with_min_length_that_is_too_large_throws_ArgumentError()
+        {
+            var ex = Assert.Throws<ArgumentException>(() => _internetFaker.Username(10_000_000));
+
+            Assert.That(ex.Message.StartsWith("Given argument is too large"));
+        }
+
+        [Test]
+        public void Password_returns_a_password()
+        {
+            Assert.AreEqual("vg5msvy1uerg7", _internetFaker.Password());
+        }
+
+        [Test]
+        public void Password_returns_a_password_with_length_greater_or_equal_to_the_min_length()
+        {
+            Assert.AreEqual("yfgjik0hgzdqs0", _internetFaker.Password(8));
+        }
+
+        [Test]
+        public void Password_returns_a_password_with_length_inclusively_between_min_and_max_length()
+        {
+            Assert.AreEqual("eoc9shwd1hwq4vbgfw", _internetFaker.Password(10, 20));
+        }
+
+        [Test]
+        public void Password_returns_a_password_with_mixed_casing_when_specified()
+        {
+            Assert.AreEqual("3k5qS15aNmG", _internetFaker.Password(10, 20, true));
+        }
+
+        [Test]
+        public void Password_returns_a_password_with_special_casing_when_specified()
+        {
+            Assert.AreEqual("*%NkOnJsH4", _internetFaker.Password(10, 20, true, true));
+        }
+
+        [Test]
+        public void DomainName_returns_a_domain_name()
+        {
+            A.CallTo(() => _fakerContainer.Company.Name())
+                .Returns("Effertz Inc");
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
+                .Returns("info");
+            
+            Assert.AreEqual("effertz.info", _internetFaker.DomainName());
+        }
+
+        [Test]
+        public void DomainWord_returns_a_domain_word()
+        {
+            A.CallTo(() => _fakerContainer.Company.Name())
+                .Returns("Haleyziemann Corp");
+            
+            Assert.AreEqual("haleyziemann", _internetFaker.DomainWord());
+        }
+
+        [Test]
+        public void DomainSuffix_returns_a_domain_suffix()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
+                .Returns("info");
+            
+            Assert.AreEqual("info", _internetFaker.DomainSuffix());
+        }
+
+        [Test]
+        public void IpV4Address_returns_an_IPv4_address()
+        {
+            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
+                .ReturnsNextFromSequence(24, 29, 18, 175);
+            
+            Assert.AreEqual("24.29.18.175", _internetFaker.IpV4Address());
+        }
+
+        [Test]
+        public void PrivateIpV4Address_returns_a_private_IPv4_address()
+        {
+            Assert.AreEqual("10.0.0.1", _internetFaker.PrivateIpV4Address());
+        }
+
+        [Test]
+        public void PublicIpV4Address_returns_a_public_IPv4_address()
+        {
+            Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
+        }
+
+        [Test]
+        public void IpV4Cidr_returns_an_IPv4_CIDR_range()
+        {
+            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
+                .ReturnsNextFromSequence(24, 29, 18, 175);
+            A.CallTo(() => _fakerContainer.Number.Between(1, 31))
+                .Returns(21);
+            
+            Assert.AreEqual("24.29.18.175/21", _internetFaker.IpV4Cidr());
+        }
+
+        [Test]
+        public void IpV6Address_returns_an_IPv6_address()
+        {
+            Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df", _internetFaker.IpV6Address());
+        }
+
+        [Test]
+        public void IpV6Cidr_returns_an_IPv6_CIDR_range()
+        {
+            Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df/78", _internetFaker.IpV6Cidr());
+        }
+
+        [Test]
+        public void MacAddress_returns_a_mac_address()
+        {
+            Assert.AreEqual("e6:0d:00:11:ed:4f", _internetFaker.MacAddress());
+        }
+
+        [Test]
+        public void MacAddress_returns_a_mac_address_with_the_specified_prefix()
+        {
+            Assert.AreEqual("55:44:33:02:1d:9b", _internetFaker.MacAddress("55:44:33"));
+        }
+
+        [Test]
+        public void Url_returns_a_url()
+        {
+            Assert.AreEqual("http://thiel.com/chauncey_simonis", _internetFaker.Url());
+        }
+
+        [Test]
+        public void Url_returns_a_url_with_the_specified_host()
+        {
+            Assert.AreEqual("http://example.com/clotilde.swift", _internetFaker.Url("example.com"));
+        }
+
+        [Test]
+        public void Url_returns_a_url_with_the_specified_path()
+        {
+            Assert.AreEqual("http://example.com/foobar.html", _internetFaker.Url("example.com", "/foobar.html"));
+        }
+
+        [Test]
+        public void Url_returns_a_url_with_the_specified_scheme()
+        {
+            Assert.AreEqual("git://example.com/foobar.git", _internetFaker.Url("example.com", "/foobar.git", "git"));
+        }
+
+        [Test]
+        public void Slug_returns_a_slugged_string()
+        {
+            Assert.AreEqual("pariatur_laudantium", _internetFaker.Slug());
+        }
+
+        [Test]
+        public void Slug_returns_a_slugged_string_with_the_specified_words()
+        {
+            Assert.AreEqual("foo.bar", _internetFaker.Slug("foo bar"));
+        }
+
+        [Test]
+        public void Slug_returns_a_slugged_string_with_the_specified_glue()
+        {
+            Assert.AreEqual("foo-bar", _internetFaker.Slug("foo bar", "-"));
+        }
+
+        [Test]
+        public void UserAgent_returns_a_user_agent()
+        {
+            Assert.AreEqual(
+                "Mozilla/5.0 (compatible; MSIE 9.0; AOL 9.7; AOLBuild 4343.19; Windows NT 6.1; WOW64; Trident/5.0; FunWebProducts)",
+                _internetFaker.UserAgent());
+        }
+
+        [Test]
+        public void UserAgent_returns_a_user_agent_for_the_specified_vendor()
+        {
+            Assert.AreEqual(
+                "Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0",
+                _internetFaker.UserAgent(UserAgent.Firefox));
+        }
+    }
+}

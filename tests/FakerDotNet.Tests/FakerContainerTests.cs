@@ -94,6 +94,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Internet_returns_IInternetFaker()
+        {
+            Assert.IsInstanceOf<IInternetFaker>(_fakerContainer.Internet);
+        }
+
+        [Test]
         public void Lorem_returns_ILoremFaker()
         {
             Assert.IsInstanceOf<ILoremFaker>(_fakerContainer.Lorem);

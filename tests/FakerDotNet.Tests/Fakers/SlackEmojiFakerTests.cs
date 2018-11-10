@@ -97,14 +97,91 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Emoji_returns_an_emoji()
+        public void Emoji_returns_an_emoji_people()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
-                .Returns("{nature}");
+                .Returns("{People}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.People())
+                .Returns(":relieved:");
+
+            Assert.AreEqual(":relieved:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_nature()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{Nature}");
             A.CallTo(() => _fakerContainer.SlackEmoji.Nature())
                 .Returns(":last_quarter_moon:");
 
             Assert.AreEqual(":last_quarter_moon:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_foodAndDrink()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{FoodAndDrink}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.FoodAndDrink())
+                .Returns(":ramen:");
+
+            Assert.AreEqual(":ramen:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_Celebration()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{Celebration}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.Celebration())
+                .Returns(":collision:");
+
+            Assert.AreEqual(":collision:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_Activity()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{Activity}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.Activity())
+                .Returns(":surfer:");
+
+            Assert.AreEqual(":surfer:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_TravelAndPlaces()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{TravelAndPlaces}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.TravelAndPlaces())
+                .Returns(":oncoming_taxi:");
+
+            Assert.AreEqual(":oncoming_taxi:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_ObjectsAndSymbols()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{ObjectsAndSymbols}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.ObjectsAndSymbols())
+                .Returns(":video_camera:");
+
+            Assert.AreEqual(":video_camera:", _slackEmojiFaker.Emoji());
+        }
+
+        [Test]
+        public void Emoji_returns_an_emoji_Customs()
+        {
+            A.CallTo(() => _fakerContainer.Random.Element(SlackEmojiData.Emoji))
+                .Returns("{Custom}");
+            A.CallTo(() => _fakerContainer.SlackEmoji.Custom())
+                .Returns(":godmode:");
+
+            Assert.AreEqual(":godmode:", _slackEmojiFaker.Emoji());
         }
     }
 }

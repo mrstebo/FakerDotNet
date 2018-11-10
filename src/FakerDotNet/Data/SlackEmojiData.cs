@@ -907,14 +907,14 @@ namespace FakerDotNet.Data
 
         public static readonly IEnumerable<string> Emoji = new[]
         {
-            "{people}",
-            "{nature}",
-            "{food_and_drink}",
-            "{celebration}",
-            "{activity}",
-            "{travel_and_places}",
-            "{objects_and_symbols}",
-            "{custom}"
+            "{People}",
+            "{Nature}",
+            "{FoodAndDrink}",
+            "{Celebration}",
+            "{Activity}",
+            "{TravelAndPlaces}",
+            "{ObjectsAndSymbols}",
+            "{Custom}"
         };
     }
 }

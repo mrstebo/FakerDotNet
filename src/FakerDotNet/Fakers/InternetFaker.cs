@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using FakerDotNet.Data;
 
@@ -30,6 +31,8 @@ namespace FakerDotNet.Fakers
 
     internal class InternetFaker : IInternetFaker
     {
+        public static readonly string[] DefaultGlues = new[] {"-", ".", "_"};
+        
         private readonly IFakerContainer _fakerContainer;
 
         public InternetFaker(IFakerContainer fakerContainer)
@@ -165,12 +168,27 @@ namespace FakerDotNet.Fakers
 
         public string Slug(string words = null, string glue = null)
         {
-            throw new System.NotImplementedException();
+            words = string.IsNullOrEmpty(words)
+                ? string.Join(" ", _fakerContainer.Lorem.Words(2))
+                : words;
+            glue = string.IsNullOrEmpty(glue)
+                ? _fakerContainer.Random.Element(DefaultGlues)
+                : glue;
+
+            return words
+                .Replace(",", "")
+                .Replace(".", "")
+                .Replace(" ", glue)
+                .ToLowerInvariant();
         }
 
         public string UserAgent(string vendor = null)
         {
-            throw new System.NotImplementedException();
+            vendor = string.IsNullOrEmpty(vendor) || !InternetData.UserAgents.ContainsKey(vendor)
+                ? _fakerContainer.Random.Element(InternetData.UserAgents.Keys)
+                : vendor;
+
+            return _fakerContainer.Random.Element(InternetData.UserAgents[vendor]);
         }
     }
 }

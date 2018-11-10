@@ -158,7 +158,7 @@ namespace FakerDotNet.Tests.Fakers
         public void Username_when_range_with_min_length_that_is_too_large_throws_ArgumentError()
         {
             var range = new Range<int>(10_000_000, 10_000_000);
-            
+
             var ex = Assert.Throws<ArgumentException>(() => _internetFaker.Username(range));
 
             Assert.That(ex.Message.StartsWith("Given argument is too large"));
@@ -168,7 +168,7 @@ namespace FakerDotNet.Tests.Fakers
         public void Username_returns_an_empty_username_if_range_with_min_length_is_less_than_zero()
         {
             var range = new Range<int>(-5, 5);
-            
+
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
                 .Returns("{Name.FirstName}");
             A.CallTo(() => _fakerContainer.Name.FirstName())
@@ -244,7 +244,7 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns("Effertz Inc");
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
                 .Returns("info");
-            
+
             Assert.AreEqual("effertz.info", _internetFaker.DomainName());
         }
 
@@ -253,7 +253,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Company.Name())
                 .Returns("Haleyziemann Corp");
-            
+
             Assert.AreEqual("haleyziemann", _internetFaker.DomainWord());
         }
 
@@ -262,7 +262,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
                 .Returns("info");
-            
+
             Assert.AreEqual("info", _internetFaker.DomainSuffix());
         }
 
@@ -271,7 +271,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 254))
                 .ReturnsNextFromSequence(24, 29, 18, 175);
-            
+
             Assert.AreEqual("24.29.18.175", _internetFaker.IpV4Address());
         }
 
@@ -294,7 +294,7 @@ namespace FakerDotNet.Tests.Fakers
                 .ReturnsNextFromSequence(24, 29, 18, 175);
             A.CallTo(() => _fakerContainer.Number.Between(1, 31))
                 .Returns(21);
-            
+
             Assert.AreEqual("24.29.18.175/21", _internetFaker.IpV4Cidr());
         }
 
@@ -349,12 +349,20 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Slug_returns_a_slugged_string()
         {
+            A.CallTo(() => _fakerContainer.Lorem.Words(2, false))
+                .Returns(new[] {"Pariatur", "Laudantium"});
+            A.CallTo(() => _fakerContainer.Random.Element(InternetFaker.DefaultGlues))
+                .Returns("_");
+
             Assert.AreEqual("pariatur_laudantium", _internetFaker.Slug());
         }
 
         [Test]
         public void Slug_returns_a_slugged_string_with_the_specified_words()
         {
+            A.CallTo(() => _fakerContainer.Random.Element(InternetFaker.DefaultGlues))
+                .Returns(".");
+
             Assert.AreEqual("foo.bar", _internetFaker.Slug("foo bar"));
         }
 
@@ -367,17 +375,28 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void UserAgent_returns_a_user_agent()
         {
-            Assert.AreEqual(
-                "Mozilla/5.0 (compatible; MSIE 9.0; AOL 9.7; AOLBuild 4343.19; Windows NT 6.1; WOW64; Trident/5.0; FunWebProducts)",
-                _internetFaker.UserAgent());
+            const string vendor = "firefox";
+            const string userAgent =
+                "Mozilla/5.0 (compatible; MSIE 9.0; AOL 9.7; AOLBuild 4343.19; Windows NT 6.1; WOW64; Trident/5.0; FunWebProducts)";
+            
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UserAgents.Keys))
+                .Returns(vendor);
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UserAgents["firefox"]))
+                .Returns(userAgent);
+            
+            Assert.AreEqual(userAgent, _internetFaker.UserAgent());
         }
 
         [Test]
         public void UserAgent_returns_a_user_agent_for_the_specified_vendor()
         {
-            Assert.AreEqual(
-                "Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0",
-                _internetFaker.UserAgent(UserAgent.Firefox));
+            const string userAgent =
+                "Mozilla/5.0 (compatible; MSIE 9.0; AOL 9.7; AOLBuild 4343.19; Windows NT 6.1; WOW64; Trident/5.0; FunWebProducts)";
+            
+            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UserAgents[UserAgent.Firefox]))
+                .Returns(userAgent);
+            
+            Assert.AreEqual(userAgent, _internetFaker.UserAgent(UserAgent.Firefox));
         }
     }
 }

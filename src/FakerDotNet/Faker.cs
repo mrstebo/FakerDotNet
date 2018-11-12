@@ -26,6 +26,7 @@ namespace FakerDotNet
         public static IRandomFaker Random { get; } = Container.Random;
         public static IRickAndMortyFaker RickAndMorty { get; } = Container.RickAndMorty;
         public static IRockBandFaker RockBand { get; } = Container.RockBand;
+        public static ISlackEmojiFaker SlackEmoji { get; } = Container.SlackEmoji;
         public static ISuperheroFaker Superhero { get; } = Container.Superhero;
         public static ITeamFaker Team { get; } = Container.Team;
         public static ITimeFaker Time { get; } = Container.Time;

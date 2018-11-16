@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
@@ -313,24 +312,38 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void MacAddress_returns_a_mac_address()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
+                .ReturnsNextFromSequence(0xe6, 0x0d, 0x00, 0x11, 0xed, 0x4f);
+            
             Assert.AreEqual("e6:0d:00:11:ed:4f", _internetFaker.MacAddress());
         }
 
         [Test]
         public void MacAddress_returns_a_mac_address_with_the_specified_prefix()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
+                .ReturnsNextFromSequence(0x02, 0x1d, 0x9b);
+            
             Assert.AreEqual("55:44:33:02:1d:9b", _internetFaker.MacAddress("55:44:33"));
         }
 
         [Test]
         public void Url_returns_a_url()
         {
+            A.CallTo(() => _fakerContainer.Internet.DomainName())
+                .Returns("thiel.com");
+            A.CallTo(() => _fakerContainer.Internet.Username((string) null))
+                .Returns("chauncey_simonis");
+            
             Assert.AreEqual("http://thiel.com/chauncey_simonis", _internetFaker.Url());
         }
 
         [Test]
         public void Url_returns_a_url_with_the_specified_host()
         {
+            A.CallTo(() => _fakerContainer.Internet.Username((string) null))
+                .Returns("clotilde.swift");
+            
             Assert.AreEqual("http://example.com/clotilde.swift", _internetFaker.Url("example.com"));
         }
 

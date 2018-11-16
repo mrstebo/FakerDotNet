@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using FakerDotNet.Data;
 
@@ -158,12 +157,32 @@ namespace FakerDotNet.Fakers
 
         public string MacAddress(string prefix = "")
         {
-            throw new System.NotImplementedException();
+            var prefixDigits = prefix
+                .Split(':')
+                .Where(x => !string.IsNullOrEmpty(x))
+                .Select(x => Convert.ToInt32(x, 16))
+                .ToArray();
+            var addressDigits = Enumerable
+                .Range(0, 6 - prefixDigits.Length)
+                .Select(_ => (int) _fakerContainer.Number.Between(0, 255))
+                .ToArray();
+
+            return string.Join(":", prefixDigits
+                    .Concat(addressDigits)
+                    .Select(i => $"{i:X2}"))
+                .ToLowerInvariant();
         }
 
         public string Url(string host = null, string path = null, string scheme = "http")
         {
-            throw new System.NotImplementedException();
+            host = string.IsNullOrEmpty(host)
+                ? _fakerContainer.Internet.DomainName()
+                : host;
+            path = string.IsNullOrEmpty(path)
+                ? $"/{_fakerContainer.Internet.Username()}"
+                : path;
+            
+            return $"{scheme}://{host}{path}";
         }
 
         public string Slug(string words = null, string glue = null)

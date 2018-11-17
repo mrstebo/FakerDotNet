@@ -209,30 +209,69 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Password_returns_a_password()
         {
-            Assert.AreEqual("vg5msvy1uerg7", _internetFaker.Password());
+            A.CallTo(() => _fakerContainer.Lorem.Characters(8))
+                .Returns("vg5msvy1");
+            A.CallTo(() => _fakerContainer.Number.Between(0, 8))
+                .Returns(5);
+            A.CallTo(() => _fakerContainer.Lorem.Characters(5))
+                .Returns("uerg7");
+            
+            Assert.AreEqual("Vg5mSvY1UeRg7", _internetFaker.Password());
         }
 
         [Test]
         public void Password_returns_a_password_with_length_greater_or_equal_to_the_min_length()
         {
-            Assert.AreEqual("yfgjik0hgzdqs0", _internetFaker.Password(8));
+            A.CallTo(() => _fakerContainer.Lorem.Characters(8))
+                .Returns("yfgjik0h");
+            A.CallTo(() => _fakerContainer.Number.Between(0, 8))
+                .Returns(6);
+            A.CallTo(() => _fakerContainer.Lorem.Characters(6))
+                .Returns("gzdqs0");
+            
+            Assert.AreEqual("YfGjIk0hGzDqS0", _internetFaker.Password(8));
         }
 
         [Test]
         public void Password_returns_a_password_with_length_inclusively_between_min_and_max_length()
         {
-            Assert.AreEqual("eoc9shwd1hwq4vbgfw", _internetFaker.Password(10, 20));
+            A.CallTo(() => _fakerContainer.Lorem.Characters(10))
+                .Returns("eoc9shwd1h");
+            A.CallTo(() => _fakerContainer.Number.Between(0, 10))
+                .Returns(8);
+            A.CallTo(() => _fakerContainer.Lorem.Characters(8))
+                .Returns("wq4vbgfw");
+            
+            Assert.AreEqual("EoC9ShWd1hWq4vBgFw", _internetFaker.Password(10, 20));
         }
 
         [Test]
         public void Password_returns_a_password_with_mixed_casing_when_specified()
         {
+            A.CallTo(() => _fakerContainer.Lorem.Characters(10))
+                .Returns("3k5qs15anm");
+            A.CallTo(() => _fakerContainer.Number.Between(0, 10))
+                .Returns(1);
+            A.CallTo(() => _fakerContainer.Lorem.Characters(1))
+                .Returns("g");
+            
             Assert.AreEqual("3k5qS15aNmG", _internetFaker.Password(10, 20, true));
         }
 
         [Test]
         public void Password_returns_a_password_with_special_casing_when_specified()
         {
+            A.CallTo(() => _fakerContainer.Lorem.Characters(10))
+                .Returns("xxNkOnJsH4");
+            A.CallTo(() => _fakerContainer.Number.Between(0, 10))
+                .Returns(0);
+            A.CallTo(() => _fakerContainer.Lorem.Characters(0))
+                .Returns("");
+            A.CallTo(() => _fakerContainer.Number.Between(1, 10))
+                .Returns(2);
+            A.CallTo(() => _fakerContainer.Random.Element(InternetFaker.SpecialCharacters))
+                .ReturnsNextFromSequence("*", "%");
+            
             Assert.AreEqual("*%NkOnJsH4", _internetFaker.Password(10, 20, true, true));
         }
 

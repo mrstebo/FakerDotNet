@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using FakerDotNet.Data;
+using FakerDotNet.Extensions;
 
 namespace FakerDotNet.Fakers
 {
@@ -30,7 +31,8 @@ namespace FakerDotNet.Fakers
 
     internal class InternetFaker : IInternetFaker
     {
-        public static readonly string[] DefaultGlues = new[] {"-", ".", "_"};
+        public static readonly string[] DefaultGlues = {"-", ".", "_"};
+        public static readonly string[] SpecialCharacters = {"!", "@", "#", "$", "%", "^", "&", "*"};
         
         private readonly IFakerContainer _fakerContainer;
 
@@ -103,7 +105,34 @@ namespace FakerDotNet.Fakers
 
         public string Password(int minLength = 8, int maxLength = 16, bool mixCase = true, bool specialChars = false)
         {
-            throw new System.NotImplementedException();
+            var result = _fakerContainer.Lorem.Characters(minLength);
+            var diffLength = maxLength - minLength;
+
+            if (diffLength > 0)
+            {
+                result += _fakerContainer.Lorem
+                    .Characters((int) _fakerContainer.Number.Between(0, diffLength));
+            }
+
+            result = result.ToLowerInvariant();
+
+            if (mixCase)
+            {
+                result = string.Join("", result.Characters()
+                    .Select((c, i) => i % 2 == 0 ? c.ToUpperInvariant() : c));
+            }
+
+            if (specialChars)
+            {
+                var numberOfSpecialCharacters = _fakerContainer.Number.Between(1, minLength);
+                
+                result = string.Join("", result.Characters()
+                    .Select((c, i) => i < numberOfSpecialCharacters
+                        ? _fakerContainer.Random.Element(SpecialCharacters)
+                        : c));
+            }
+
+            return result;
         }
 
         public string DomainName()

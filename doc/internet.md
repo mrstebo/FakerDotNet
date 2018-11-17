@@ -32,11 +32,11 @@ Faker.Internet.Username(new Range<int>(5, 8))
 Faker.Internet.Username(8)
 
 // Optional arguments: min_length=8, max_length=16
-Faker.Internet.Password() //=> "vg5msvy1uerg7"
+Faker.Internet.Password() //=> "Vg5mSvY1UeRg7"
 
-Faker.Internet.Password(8) //=> "yfgjik0hgzdqs0"
+Faker.Internet.Password(8) //=> "YfGjIk0hGzDqS0"
 
-Faker.Internet.Password(10, 20) //=> "eoc9shwd1hwq4vbgfw"
+Faker.Internet.Password(10, 20) //=> "EoC9ShWd1hWq4vBgFw"
 
 Faker.Internet.Password(10, 20, true) //=> "3k5qS15aNmG"
 

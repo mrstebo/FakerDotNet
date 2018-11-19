@@ -18,12 +18,12 @@ namespace FakerDotNet.Fakers
         string DomainName();
         string DomainWord();
         string DomainSuffix();
-        string IpV4Address();
-        string PrivateIpV4Address();
-        string PublicIpV4Address();
-        string IpV4Cidr();
-        string IpV6Address();
-        string IpV6Cidr();
+        string IPv4Address();
+        string PrivateIPv4Address();
+        string PublicIPv4Address();
+        string IPv4Cidr();
+        string IPv6Address();
+        string IPv6Cidr();
         string MacAddress(string prefix = "");
         string Url(string host = null, string path = null, string scheme = "http");
         string Slug(string words = null, string glue = null);
@@ -151,7 +151,7 @@ namespace FakerDotNet.Fakers
             return _fakerContainer.Random.Element(InternetData.DomainSuffixes);
         }
 
-        public string IpV4Address()
+        public string IPv4Address()
         {
             return string.Join(".",
                 _fakerContainer.Number.Between(2, 254),
@@ -160,46 +160,46 @@ namespace FakerDotNet.Fakers
                 _fakerContainer.Number.Between(0, 255));
         }
 
-        public string PrivateIpV4Address()
+        public string PrivateIPv4Address()
         {
             string ip;
 
             do
             {
-                ip = _fakerContainer.Internet.IpV4Address();
-            } while (!IPV4Validator.IsPrivate(ip));
+                ip = _fakerContainer.Internet.IPv4Address();
+            } while (!IPv4Validator.IsPrivate(ip));
 
             return ip;
         }
 
-        public string PublicIpV4Address()
+        public string PublicIPv4Address()
         {
 
             string ip;
 
             do
             {
-                ip = _fakerContainer.Internet.IpV4Address();
-            } while (!IPV4Validator.IsPublic(ip));
+                ip = _fakerContainer.Internet.IPv4Address();
+            } while (!IPv4Validator.IsPublic(ip));
 
             return ip;
         }
 
-        public string IpV4Cidr()
+        public string IPv4Cidr()
         {
-            return $"{_fakerContainer.Internet.IpV4Address()}/{_fakerContainer.Number.Between(1, 31)}";
+            return $"{_fakerContainer.Internet.IPv4Address()}/{_fakerContainer.Number.Between(1, 31)}";
         }
 
-        public string IpV6Address()
+        public string IPv6Address()
         {
             return string.Join(":", Enumerable.Range(0, 8)
                 .Select(_ => (int) _fakerContainer.Number.Between(0, 65_536))
                 .Select(i => Convert.ToString(i, 16)));
         }
 
-        public string IpV6Cidr()
+        public string IPv6Cidr()
         {
-            return $"{_fakerContainer.Internet.IpV6Address()}/{_fakerContainer.Number.Between(1, 127)}";
+            return $"{_fakerContainer.Internet.IPv6Address()}/{_fakerContainer.Number.Between(1, 127)}";
         }
 
         public string MacAddress(string prefix = "")

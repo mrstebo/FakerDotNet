@@ -296,81 +296,81 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void IpV4Address_returns_an_IPv4_address()
+        public void IPv4Address_returns_an_IPv4_address()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 254))
                 .Returns(24);
             A.CallTo(() => _fakerContainer.Number.Between(0, 255))
                 .ReturnsNextFromSequence(29, 18, 175);
 
-            Assert.AreEqual("24.29.18.175", _internetFaker.IpV4Address());
+            Assert.AreEqual("24.29.18.175", _internetFaker.IPv4Address());
         }
 
         [Test]
-        public void PrivateIpV4Address_returns_a_private_IPv4_address()
+        public void PrivateIPv4Address_returns_a_private_IPv4_address()
         {
-            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+            A.CallTo(() => _fakerContainer.Internet.IPv4Address())
                 .Returns("10.0.0.1");
             
-            Assert.AreEqual("10.0.0.1", _internetFaker.PrivateIpV4Address());
+            Assert.AreEqual("10.0.0.1", _internetFaker.PrivateIPv4Address());
         }
 
         [Test]
-        public void PrivateIpV4Address_only_returns_private_IPv4_addresses()
+        public void PrivateIPv4Address_only_returns_private_IPv4_addresses()
         {
-            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+            A.CallTo(() => _fakerContainer.Internet.IPv4Address())
                 .ReturnsNextFromSequence("24.29.18.175", "11.21.45.211", "10.1.2.3");
 
-            Assert.AreEqual("10.1.2.3", _internetFaker.PrivateIpV4Address());
+            Assert.AreEqual("10.1.2.3", _internetFaker.PrivateIPv4Address());
         }
 
         [Test]
-        public void PublicIpV4Address_returns_a_public_IPv4_address()
+        public void PublicIPv4Address_returns_a_public_IPv4_address()
         {
-            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+            A.CallTo(() => _fakerContainer.Internet.IPv4Address())
                 .Returns("24.29.18.175");
             
-            Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
+            Assert.AreEqual("24.29.18.175", _internetFaker.PublicIPv4Address());
         }
 
         [Test]
-        public void PublicIpV4Address_only_returns_public_IPv4_addresses()
+        public void PublicIPv4Address_only_returns_public_IPv4_addresses()
         {
-            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+            A.CallTo(() => _fakerContainer.Internet.IPv4Address())
                 .ReturnsNextFromSequence("10.1.2.3", "192.0.0.1", "172.16.1.20", "24.29.18.175");
             
-            Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
+            Assert.AreEqual("24.29.18.175", _internetFaker.PublicIPv4Address());
         }
 
         [Test]
-        public void IpV4Cidr_returns_an_IPv4_CIDR_range()
+        public void IPv4Cidr_returns_an_IPv4_CIDR_range()
         {
-            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+            A.CallTo(() => _fakerContainer.Internet.IPv4Address())
                 .Returns("24.29.18.175");
             A.CallTo(() => _fakerContainer.Number.Between(1, 31))
                 .Returns(21);
 
-            Assert.AreEqual("24.29.18.175/21", _internetFaker.IpV4Cidr());
+            Assert.AreEqual("24.29.18.175/21", _internetFaker.IPv4Cidr());
         }
 
         [Test]
-        public void IpV6Address_returns_an_IPv6_address()
+        public void IPv6Address_returns_an_IPv6_address()
         {
             A.CallTo(() => _fakerContainer.Number.Between(0, 65_536))
                 .ReturnsNextFromSequence(0xac5f, 0xd696, 0x3807, 0x1d72, 0x2eb5, 0x4e81, 0x7d2b, 0xe1df);
             
-            Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df", _internetFaker.IpV6Address());
+            Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df", _internetFaker.IPv6Address());
         }
 
         [Test]
-        public void IpV6Cidr_returns_an_IPv6_CIDR_range()
+        public void IPv6Cidr_returns_an_IPv6_CIDR_range()
         {
-            A.CallTo(() => _fakerContainer.Internet.IpV6Address())
+            A.CallTo(() => _fakerContainer.Internet.IPv6Address())
                 .Returns("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df");
             A.CallTo(() => _fakerContainer.Number.Between(1, 127))
                 .Returns(78);
             
-            Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df/78", _internetFaker.IpV6Cidr());
+            Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df/78", _internetFaker.IPv6Cidr());
         }
 
         [Test]

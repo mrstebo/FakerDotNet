@@ -48,19 +48,19 @@ Faker.Internet.DomainWord() //=> "haleyziemann"
 
 Faker.Internet.DomainSuffix() //=> "info"
 
-Faker.Internet.IpV4Address() //=> "24.29.18.175"
+Faker.Internet.IPv4Address() //=> "24.29.18.175"
 
 // Private IP range according to RFC 1918 and 127.0.0.0/8 and 169.254.0.0/16.
-Faker.Internet.PrivateIpV4Address() //=> "10.0.0.1"
+Faker.Internet.PrivateIPv4Address() //=> "10.0.0.1"
 
 // Guaranteed not to be in the ip range from the private_ip_v4_address method.
-Faker.Internet.PublicIpV4Address() //=> "24.29.18.175"
+Faker.Internet.PublicIPv4Address() //=> "24.29.18.175"
 
-Faker.Internet.IpV4Cidr() //=> "24.29.18.175/21"
+Faker.Internet.IPv4Cidr() //=> "24.29.18.175/21"
 
-Faker.Internet.IpV6Address() //=> "ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df"
+Faker.Internet.IPv6Address() //=> "ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df"
 
-Faker.Internet.IpV6Cidr() //=> "ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df/78"
+Faker.Internet.IPv6Cidr() //=> "ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df/78"
 
 // Optional argument prefix=""
 Faker.Internet.MacAddress() //=> "e6:0d:00:11:ed:4f"

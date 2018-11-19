@@ -45,21 +45,21 @@ namespace FakerDotNet.Fakers
         public string Email(string name = null, params string[] separators)
         {
             return string.Join("@", 
-                Username(name, separators), 
-                DomainName());
+                _fakerContainer.Internet.Username(name, separators), 
+                _fakerContainer.Internet.DomainName());
         }
 
         public string FreeEmail(string name = null)
         {
             return string.Join("@", 
-                Username(name), 
+                _fakerContainer.Internet.Username(name), 
                 _fakerContainer.Random.Element(InternetData.FreeEmails));
         }
 
         public string SafeEmail(string name = null)
         {
             return string.Join("@",
-                Username(name),
+                _fakerContainer.Internet.Username(name),
                 $"example.{_fakerContainer.Random.Element(InternetData.SafeDomainSuffixes)}");
         }
 
@@ -138,7 +138,7 @@ namespace FakerDotNet.Fakers
 
         public string DomainName()
         {
-            return $"{DomainWord()}.{DomainSuffix()}";
+            return $"{_fakerContainer.Internet.DomainWord()}.{_fakerContainer.Internet.DomainSuffix()}";
         }
 
         public string DomainWord()
@@ -166,7 +166,7 @@ namespace FakerDotNet.Fakers
 
             do
             {
-                ip = IpV4Address();
+                ip = _fakerContainer.Internet.IpV4Address();
             } while (!IPV4Validator.IsPrivate(ip));
 
             return ip;
@@ -179,7 +179,7 @@ namespace FakerDotNet.Fakers
 
             do
             {
-                ip = IpV4Address();
+                ip = _fakerContainer.Internet.IpV4Address();
             } while (!IPV4Validator.IsPublic(ip));
 
             return ip;
@@ -187,7 +187,7 @@ namespace FakerDotNet.Fakers
 
         public string IpV4Cidr()
         {
-            return $"{IpV4Address()}/{_fakerContainer.Number.Between(1, 31)}";
+            return $"{_fakerContainer.Internet.IpV4Address()}/{_fakerContainer.Number.Between(1, 31)}";
         }
 
         public string IpV6Address()
@@ -199,7 +199,7 @@ namespace FakerDotNet.Fakers
 
         public string IpV6Cidr()
         {
-            return $"{IpV6Address()}/{_fakerContainer.Number.Between(1, 127)}";
+            return $"{_fakerContainer.Internet.IpV6Address()}/{_fakerContainer.Number.Between(1, 127)}";
         }
 
         public string MacAddress(string prefix = "")

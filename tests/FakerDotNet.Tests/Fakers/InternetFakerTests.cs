@@ -26,14 +26,10 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Email_returns_an_email_address()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
-                .Returns("{Name.FirstName}");
-            A.CallTo(() => _fakerContainer.Name.FirstName())
+            A.CallTo(() => _fakerContainer.Internet.Username((string) null))
                 .Returns("eliza");
-            A.CallTo(() => _fakerContainer.Company.Name())
-                .Returns("mann");
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
-                .Returns("net");
+            A.CallTo(() => _fakerContainer.Internet.DomainName())
+                .Returns("mann.net");
 
             Assert.AreEqual("eliza@mann.net", _internetFaker.Email());
         }
@@ -41,10 +37,10 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Email_returns_an_email_address_with_the_specified_name()
         {
-            A.CallTo(() => _fakerContainer.Company.Name())
-                .Returns("terry");
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
-                .Returns("biz");
+            A.CallTo(() => _fakerContainer.Internet.Username("Nancy"))
+                .Returns("nancy");
+            A.CallTo(() => _fakerContainer.Internet.DomainName())
+                .Returns("terry.biz");
 
             Assert.AreEqual("nancy@terry.biz", _internetFaker.Email("Nancy"));
         }
@@ -54,15 +50,10 @@ namespace FakerDotNet.Tests.Fakers
         {
             var separators = new[] {"+"};
 
-            A.CallTo(() => _fakerContainer.Random.Element(separators))
-                .Returns("+");
-            A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs("Janelle", "Santiago"), 2))
-                .Returns(new[] {"Janelle", "Santiago"});
-            A.CallTo(() => _fakerContainer.Company.Name())
-                .Returns("becker");
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
-                .Returns("com");
+            A.CallTo(() => _fakerContainer.Internet.Username("Janelle Santiago", separators))
+                .Returns("janelle+santiago");
+            A.CallTo(() => _fakerContainer.Internet.DomainName())
+                .Returns("becker.com");
 
             Assert.AreEqual("janelle+santiago@becker.com", _internetFaker.Email("Janelle Santiago", separators));
         }
@@ -70,9 +61,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void FreeEmail_returns_an_email_address()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
-                .Returns("{Name.FirstName}");
-            A.CallTo(() => _fakerContainer.Name.FirstName())
+            A.CallTo(() => _fakerContainer.Internet.Username((string) null))
                 .Returns("freddy");
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.FreeEmails))
                 .Returns("gmail.com");
@@ -83,6 +72,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void FreeEmail_returns_an_email_address_with_the_specified_name()
         {
+            A.CallTo(() => _fakerContainer.Internet.Username("Nancy"))
+                .Returns("nancy");
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.FreeEmails))
                 .Returns("yahoo.com");
 
@@ -92,9 +83,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void SafeEmail_returns_an_email_address()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.UsernameFormats))
-                .Returns("{Name.FirstName}");
-            A.CallTo(() => _fakerContainer.Name.FirstName())
+            A.CallTo(() => _fakerContainer.Internet.Username((string) null))
                 .Returns("christelle");
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.SafeDomainSuffixes))
                 .Returns("org");
@@ -105,6 +94,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void SafeEmail_returns_an_email_address_with_the_specified_name()
         {
+            A.CallTo(() => _fakerContainer.Internet.Username("Nancy"))
+                .Returns("nancy");
             A.CallTo(() => _fakerContainer.Random.Element(InternetData.SafeDomainSuffixes))
                 .Returns("net");
 
@@ -278,9 +269,9 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void DomainName_returns_a_domain_name()
         {
-            A.CallTo(() => _fakerContainer.Company.Name())
-                .Returns("Effertz Inc");
-            A.CallTo(() => _fakerContainer.Random.Element(InternetData.DomainSuffixes))
+            A.CallTo(() => _fakerContainer.Internet.DomainWord())
+                .Returns("effertz");
+            A.CallTo(() => _fakerContainer.Internet.DomainSuffix())
                 .Returns("info");
 
             Assert.AreEqual("effertz.info", _internetFaker.DomainName());
@@ -318,10 +309,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void PrivateIpV4Address_returns_a_private_IPv4_address()
         {
-            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
-                .Returns(10);
-            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
-                .ReturnsNextFromSequence(0, 0, 1);
+            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+                .Returns("10.0.0.1");
             
             Assert.AreEqual("10.0.0.1", _internetFaker.PrivateIpV4Address());
         }
@@ -329,10 +318,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void PublicIpV4Address_returns_a_public_IPv4_address()
         {
-            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
-                .Returns(24);
-            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
-                .ReturnsNextFromSequence(29, 18, 175);
+            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+                .Returns("24.29.18.175");
             
             Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
         }
@@ -340,10 +327,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void IpV4Cidr_returns_an_IPv4_CIDR_range()
         {
-            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
-                .Returns(24);
-            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
-                .ReturnsNextFromSequence(29, 18, 175);
+            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+                .Returns("24.29.18.175");
             A.CallTo(() => _fakerContainer.Number.Between(1, 31))
                 .Returns(21);
 
@@ -362,8 +347,8 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void IpV6Cidr_returns_an_IPv6_CIDR_range()
         {
-            A.CallTo(() => _fakerContainer.Number.Between(0, 65_536))
-                .ReturnsNextFromSequence(0xac5f, 0xd696, 0x3807, 0x1d72, 0x2eb5, 0x4e81, 0x7d2b, 0xe1df);
+            A.CallTo(() => _fakerContainer.Internet.IpV6Address())
+                .Returns("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df");
             A.CallTo(() => _fakerContainer.Number.Between(1, 127))
                 .Returns(78);
             

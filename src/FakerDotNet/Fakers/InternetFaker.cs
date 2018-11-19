@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using FakerDotNet.Data;
 using FakerDotNet.Extensions;
+using FakerDotNet.Validators;
 
 namespace FakerDotNet.Fakers
 {
@@ -154,19 +155,34 @@ namespace FakerDotNet.Fakers
         {
             return string.Join(".",
                 _fakerContainer.Number.Between(2, 254),
-                _fakerContainer.Number.Between(2, 254),
-                _fakerContainer.Number.Between(2, 254),
-                _fakerContainer.Number.Between(2, 254));
+                _fakerContainer.Number.Between(0, 255),
+                _fakerContainer.Number.Between(0, 255),
+                _fakerContainer.Number.Between(0, 255));
         }
 
         public string PrivateIpV4Address()
         {
-            throw new System.NotImplementedException();
+            string ip;
+
+            do
+            {
+                ip = IpV4Address();
+            } while (!IPV4Validator.IsPrivate(ip));
+
+            return ip;
         }
 
         public string PublicIpV4Address()
         {
-            throw new System.NotImplementedException();
+
+            string ip;
+
+            do
+            {
+                ip = IpV4Address();
+            } while (!IPV4Validator.IsPublic(ip));
+
+            return ip;
         }
 
         public string IpV4Cidr()

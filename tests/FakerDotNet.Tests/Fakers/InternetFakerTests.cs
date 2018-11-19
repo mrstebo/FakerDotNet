@@ -308,7 +308,9 @@ namespace FakerDotNet.Tests.Fakers
         public void IpV4Address_returns_an_IPv4_address()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 254))
-                .ReturnsNextFromSequence(24, 29, 18, 175);
+                .Returns(24);
+            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
+                .ReturnsNextFromSequence(29, 18, 175);
 
             Assert.AreEqual("24.29.18.175", _internetFaker.IpV4Address());
         }
@@ -316,12 +318,22 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void PrivateIpV4Address_returns_a_private_IPv4_address()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
+                .Returns(10);
+            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
+                .ReturnsNextFromSequence(0, 0, 1);
+            
             Assert.AreEqual("10.0.0.1", _internetFaker.PrivateIpV4Address());
         }
 
         [Test]
         public void PublicIpV4Address_returns_a_public_IPv4_address()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(2, 254))
+                .Returns(24);
+            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
+                .ReturnsNextFromSequence(29, 18, 175);
+            
             Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
         }
 
@@ -329,7 +341,9 @@ namespace FakerDotNet.Tests.Fakers
         public void IpV4Cidr_returns_an_IPv4_CIDR_range()
         {
             A.CallTo(() => _fakerContainer.Number.Between(2, 254))
-                .ReturnsNextFromSequence(24, 29, 18, 175);
+                .Returns(24);
+            A.CallTo(() => _fakerContainer.Number.Between(0, 255))
+                .ReturnsNextFromSequence(29, 18, 175);
             A.CallTo(() => _fakerContainer.Number.Between(1, 31))
                 .Returns(21);
 

@@ -316,10 +316,28 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        public void PrivateIpV4Address_only_returns_private_IPv4_addresses()
+        {
+            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+                .ReturnsNextFromSequence("24.29.18.175", "11.21.45.211", "10.1.2.3");
+
+            Assert.AreEqual("10.1.2.3", _internetFaker.PrivateIpV4Address());
+        }
+
+        [Test]
         public void PublicIpV4Address_returns_a_public_IPv4_address()
         {
             A.CallTo(() => _fakerContainer.Internet.IpV4Address())
                 .Returns("24.29.18.175");
+            
+            Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
+        }
+
+        [Test]
+        public void PublicIpV4Address_only_returns_public_IPv4_addresses()
+        {
+            A.CallTo(() => _fakerContainer.Internet.IpV4Address())
+                .ReturnsNextFromSequence("10.1.2.3", "192.0.0.1", "172.16.1.20", "24.29.18.175");
             
             Assert.AreEqual("24.29.18.175", _internetFaker.PublicIpV4Address());
         }

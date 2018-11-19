@@ -46,20 +46,20 @@ namespace FakerDotNet.Validators
 
         public static bool IsPublic(string ip)
         {
-            return IsIPAddress(ip) && ReservedIpPatterns
+            return IsIpAddress(ip) && ReservedIpPatterns
                 .Concat(PrivateIpPatterns)
                 .Select(x => new Regex(x))
-                .Any(x => !x.IsMatch(ip));
+                .All(x => !x.IsMatch(ip));
         }
 
         public static bool IsPrivate(string ip)
         {
-            return IsIPAddress(ip) && PrivateIpPatterns
+            return IsIpAddress(ip) && PrivateIpPatterns
                 .Select(x => new Regex(x))
                 .Any(x => x.IsMatch(ip));
         }
 
-        private static bool IsIPAddress(string ip)
+        private static bool IsIpAddress(string ip)
         {
             return IPAddress.TryParse(ip, out _);
         }

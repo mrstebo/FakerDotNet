@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace FakerDotNet.Validators
 {
-    internal static class IPV4Validator
+    internal static class IPv4Validator
     {
         private static readonly string[] ReservedIpPatterns =
         {

@@ -192,12 +192,14 @@ namespace FakerDotNet.Fakers
 
         public string IpV6Address()
         {
-            throw new System.NotImplementedException();
+            return string.Join(":", Enumerable.Range(0, 8)
+                .Select(_ => (int) _fakerContainer.Number.Between(0, 65_536))
+                .Select(i => Convert.ToString(i, 16)));
         }
 
         public string IpV6Cidr()
         {
-            throw new System.NotImplementedException();
+            return $"{IpV6Address()}/{_fakerContainer.Number.Between(1, 127)}";
         }
 
         public string MacAddress(string prefix = "")

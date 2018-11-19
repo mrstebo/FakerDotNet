@@ -353,12 +353,20 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void IpV6Address_returns_an_IPv6_address()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(0, 65_536))
+                .ReturnsNextFromSequence(0xac5f, 0xd696, 0x3807, 0x1d72, 0x2eb5, 0x4e81, 0x7d2b, 0xe1df);
+            
             Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df", _internetFaker.IpV6Address());
         }
 
         [Test]
         public void IpV6Cidr_returns_an_IPv6_CIDR_range()
         {
+            A.CallTo(() => _fakerContainer.Number.Between(0, 65_536))
+                .ReturnsNextFromSequence(0xac5f, 0xd696, 0x3807, 0x1d72, 0x2eb5, 0x4e81, 0x7d2b, 0xe1df);
+            A.CallTo(() => _fakerContainer.Number.Between(1, 127))
+                .Returns(78);
+            
             Assert.AreEqual("ac5f:d696:3807:1d72:2eb5:4e81:7d2b:e1df/78", _internetFaker.IpV6Cidr());
         }
 

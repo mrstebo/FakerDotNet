@@ -1,4 +1,4 @@
-# Faker::Avatar
+# Faker.Avatar
 
 ```cs
 Faker.Avatar.Image() //=> "https://robohash.org/sitsequiquia.png?size=300x300&set=set1"

@@ -25,6 +25,7 @@ namespace FakerDotNet
         IRandomFaker Random { get; }
         IRickAndMortyFaker RickAndMorty { get; }
         IRockBandFaker RockBand { get; }
+        ISlackEmojiFaker SlackEmoji { get; }
         ISuperheroFaker Superhero { get; }
         ITeamFaker Team { get; }
         ITimeFaker Time { get; }
@@ -59,6 +60,7 @@ namespace FakerDotNet
             Random = new RandomFaker();
             RickAndMorty = new RickAndMortyFaker(this);
             RockBand = new RockBandFaker(this);
+            SlackEmoji = new SlackEmojiFaker(this);
             Superhero = new SuperheroFaker(this);
             Team = new TeamFaker(this);
             Time = new TimeFaker();
@@ -89,6 +91,7 @@ namespace FakerDotNet
         public IRandomFaker Random { get; }
         public IRickAndMortyFaker RickAndMorty { get; }
         public IRockBandFaker RockBand { get; }
+        public ISlackEmojiFaker SlackEmoji { get; }
         public ISuperheroFaker Superhero { get; }
         public ITeamFaker Team { get; }
         public ITimeFaker Time { get; }

@@ -23,18 +23,9 @@ namespace FakerDotNet.Tests.Validators
 
         [Test]
         [TestCaseSource(typeof(IPRangeData), nameof(IPRangeData.PrivateIPs))]
-        public void IsPublic_returns_false_for_private_ip_addresses(string startIp, string endIp)
+        public void IsPublic_returns_false_for_private_ip_addresses(string ip)
         {
-            // Take the first and last batch...otherwise it could take a really long time
-            foreach (var ip in IPRangeHelper.GetRange(startIp, endIp).Take(10))
-            {
-                Assert.IsFalse(IPv4Validator.IsPublic(ip), "Apparently {0} is a public IP", ip);
-            }
-            
-            foreach (var ip in IPRangeHelper.GetRange(startIp, endIp).TakeLast(10))
-            {
-                Assert.IsFalse(IPv4Validator.IsPublic(ip), "Apparently {0} is a public IP", ip);
-            }
+            Assert.IsFalse(IPv4Validator.IsPublic(ip), "Apparently {0} is a public IP", ip);
         }
     }
 
@@ -44,14 +35,21 @@ namespace FakerDotNet.Tests.Validators
         {
             get
             {
-                yield return new TestCaseData("10.0.0.0", "10.255.255.255");
-                yield return new TestCaseData("100.64.0.0", "100.127.255.255");
-                yield return new TestCaseData("127.0.0.0", "127.255.255.255");
-                yield return new TestCaseData("169.254.0.0", "169.254.255.255");
-                yield return new TestCaseData("172.16.0.0", "172.31.255.255");
-                yield return new TestCaseData("192.0.0.0", "192.0.0.255");
-                yield return new TestCaseData("192.168.0.0", "192.168.255.255");
-                yield return new TestCaseData("198.18.0.0", "198.19.255.255");
+                yield return new TestCaseData("10.2.3.4");
+                yield return new TestCaseData("100.64.1.2");
+                yield return new TestCaseData("100.82.1.2");
+                yield return new TestCaseData("100.127.1.2");
+                yield return new TestCaseData("127.0.0.1");
+                yield return new TestCaseData("127.1.2.3");
+                yield return new TestCaseData("127.0.1.2");
+                yield return new TestCaseData("169.254.1.2");
+                yield return new TestCaseData("172.16.1.2");
+                yield return new TestCaseData("172.24.1.2");
+                yield return new TestCaseData("172.31.1.2");
+                yield return new TestCaseData("192.0.0.1");
+                yield return new TestCaseData("192.168.1.2");
+                yield return new TestCaseData("198.18.1.2");
+                yield return new TestCaseData("198.19.1.2");
             }
         }
     }

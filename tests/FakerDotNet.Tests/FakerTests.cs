@@ -78,11 +78,17 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IFriendsFaker>(Faker.Friends);
         }
-        
+
         [Test]
         public void GameOfThrones_returns_IGameOfThronesFaker()
         {
             Assert.IsInstanceOf<IGameOfThronesFaker>(Faker.GameOfThrones);
+        }
+
+        [Test]
+        public void Internet_returns_IInternetFaker()
+        {
+            Assert.IsInstanceOf<IInternetFaker>(Faker.Internet);
         }
 
         [Test]

@@ -1,8 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using FakerDotNet.Tests.Helpers;
 using FakerDotNet.Validators;
 using NUnit.Framework;
 
@@ -13,9 +9,7 @@ namespace FakerDotNet.Tests.Validators
     public class IPv4ValidatorTests
     {
         [Test]
-        [TestCase("1.0.0.1")]
-        [TestCase("11.0.0.0")]
-        [TestCase("24.21.233.103")]
+        [TestCaseSource(typeof(IPRangeData), nameof(IPRangeData.PublicIPs))]
         public void IsPublic_returns_true_for_public_ip_addresses(string ip)
         {
             Assert.IsTrue(IPv4Validator.IsPublic(ip));
@@ -27,10 +21,34 @@ namespace FakerDotNet.Tests.Validators
         {
             Assert.IsFalse(IPv4Validator.IsPublic(ip), "Apparently {0} is a public IP", ip);
         }
+
+        [Test]
+        [TestCaseSource(typeof(IPRangeData), nameof(IPRangeData.PrivateIPs))]
+        public void IsPrivate_returns_true_for_private_ip_addresses(string ip)
+        {
+            Assert.IsTrue(IPv4Validator.IsPrivate(ip));
+        }
+        
+        [Test]
+        [TestCaseSource(typeof(IPRangeData), nameof(IPRangeData.PublicIPs))]
+        public void IsPrivate_returns_false_for_public_ip_addresses(string ip)
+        {
+            Assert.IsFalse(IPv4Validator.IsPrivate(ip));
+        }
     }
 
     public class IPRangeData
     {
+        public static IEnumerable PublicIPs
+        {
+            get
+            {
+                yield return new TestCaseData("1.0.0.1");
+                yield return new TestCaseData("11.0.0.0");
+                yield return new TestCaseData("24.21.233.103");
+            }
+        }
+        
         public static IEnumerable PrivateIPs
         {
             get

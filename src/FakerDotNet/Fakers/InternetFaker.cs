@@ -34,7 +34,7 @@ namespace FakerDotNet.Fakers
     {
         public static readonly string[] DefaultGlues = {"-", ".", "_"};
         public static readonly string[] SpecialCharacters = {"!", "@", "#", "$", "%", "^", "&", "*"};
-        
+
         private readonly IFakerContainer _fakerContainer;
 
         public InternetFaker(IFakerContainer fakerContainer)
@@ -44,15 +44,15 @@ namespace FakerDotNet.Fakers
 
         public string Email(string name = null, params string[] separators)
         {
-            return string.Join("@", 
-                _fakerContainer.Internet.Username(name, separators), 
+            return string.Join("@",
+                _fakerContainer.Internet.Username(name, separators),
                 _fakerContainer.Internet.DomainName());
         }
 
         public string FreeEmail(string name = null)
         {
-            return string.Join("@", 
-                _fakerContainer.Internet.Username(name), 
+            return string.Join("@",
+                _fakerContainer.Internet.Username(name),
                 _fakerContainer.Random.Element(InternetData.FreeEmails));
         }
 
@@ -82,7 +82,7 @@ namespace FakerDotNet.Fakers
         {
             var result = Username(range.Minimum, separators);
 
-            return result.Length > range.Maximum 
+            return result.Length > range.Maximum
                 ? result.Substring(0, range.Maximum)
                 : result;
         }
@@ -93,14 +93,14 @@ namespace FakerDotNet.Fakers
                 throw new ArgumentException("Given argument is too large", nameof(minLength));
 
             var result = "";
-            
+
             for (var i = 0; i < 7; i++)
             {
                 result = Username((string) null, separators);
 
                 if (result.Length >= minLength) break;
             }
-            
+
             return minLength > 0 ? result : "";
         }
 
@@ -126,7 +126,7 @@ namespace FakerDotNet.Fakers
             if (specialChars)
             {
                 var numberOfSpecialCharacters = _fakerContainer.Number.Between(1, minLength);
-                
+
                 result = string.Join("", result.Characters()
                     .Select((c, i) => i < numberOfSpecialCharacters
                         ? _fakerContainer.Random.Element(SpecialCharacters)
@@ -228,7 +228,7 @@ namespace FakerDotNet.Fakers
             path = string.IsNullOrEmpty(path)
                 ? $"/{_fakerContainer.Internet.Username()}"
                 : path;
-            
+
             return $"{scheme}://{host}{path}";
         }
 

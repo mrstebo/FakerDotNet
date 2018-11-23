@@ -8,6 +8,7 @@ namespace FakerDotNet
 
         public static IAddressFaker Address { get; } = Container.Address;
         public static IAppFaker App { get; } = Container.App;
+        public static IAvatarFaker Avatar { get; } = Container.Avatar;
         public static IBeerFaker Beer { get; } = Container.Beer;
         public static IBookFaker Book { get; } = Container.Book;
         public static IBooleanFaker Boolean { get; } = Container.Boolean;
@@ -19,6 +20,7 @@ namespace FakerDotNet
         public static IFileFaker File { get; } = Container.File;
         public static IFriendsFaker Friends { get; } = Container.Friends;
         public static IGameOfThronesFaker GameOfThrones { get; } = Container.GameOfThrones;
+        public static IInternetFaker Internet { get; } = Container.Internet;
         public static ILoremFaker Lorem { get; } = Container.Lorem;
         public static INameFaker Name { get; } = Container.Name;
         public static INumberFaker Number { get; } = Container.Number;
@@ -26,6 +28,7 @@ namespace FakerDotNet
         public static IRandomFaker Random { get; } = Container.Random;
         public static IRickAndMortyFaker RickAndMorty { get; } = Container.RickAndMorty;
         public static IRockBandFaker RockBand { get; } = Container.RockBand;
+        public static ISlackEmojiFaker SlackEmoji { get; } = Container.SlackEmoji;
         public static ISuperheroFaker Superhero { get; } = Container.Superhero;
         public static ITeamFaker Team { get; } = Container.Team;
         public static ITimeFaker Time { get; } = Container.Time;

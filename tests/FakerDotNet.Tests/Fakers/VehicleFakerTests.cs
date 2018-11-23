@@ -59,7 +59,7 @@ namespace FakerDotNet.Tests.Fakers
         {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Makes))
                 .Returns("Audi");
-            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Make_Models["Audi"]))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.MakeModels["Audi"]))
                 .Returns("A8");
 
             Assert.AreEqual("A8", _vehicleFaker.Model());
@@ -68,7 +68,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Model_returns_a_model_for_make()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Make_Models["Toyota"]))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.MakeModels["Toyota"]))
                 .Returns("Prius");
 
             Assert.AreEqual("Prius", _vehicleFaker.Model("Toyota"));
@@ -78,7 +78,7 @@ namespace FakerDotNet.Tests.Fakers
         public void MakeAndModel_returns_a_make_and_model() {
             A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Makes))
                 .Returns("Dodge");
-            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.Make_Models["Dodge"]))
+            A.CallTo(() => _fakerContainer.Random.Element(VehicleData.MakeModels["Dodge"]))
                 .Returns("Charger");
 
             Assert.AreEqual("Dodge Charger", _vehicleFaker.MakeAndModel());

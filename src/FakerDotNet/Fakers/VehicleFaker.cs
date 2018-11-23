@@ -89,7 +89,7 @@ namespace FakerDotNet.Fakers
 
         public string Model(string make)
         {
-            return _fakerContainer.Random.Element(VehicleData.Make_Models[make]);
+            return _fakerContainer.Random.Element(VehicleData.MakeModels[make]);
         }
 
         public string MakeAndModel()

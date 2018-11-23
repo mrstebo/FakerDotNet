@@ -816,8 +816,11 @@ namespace FakerDotNet.Data
                 }
             };
 
-        public static readonly IEnumerable<char> LicensePlateAlphabet = Enumerable.Range('A', 26).Select(x => (char) x);
+        public static readonly IEnumerable<char> LicensePlateAlphabet = Enumerable.Range('A', 26)
+            .Select(x => (char) x)
+            .ToArray();
 
-        public static readonly IEnumerable<int> LicensePlateNumbers = Enumerable.Range(0, 9);
+        public static readonly IEnumerable<int> LicensePlateNumbers = Enumerable.Range(0, 9)
+            .ToArray();
     }
 }

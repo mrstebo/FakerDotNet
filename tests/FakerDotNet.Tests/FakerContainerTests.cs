@@ -147,6 +147,7 @@ namespace FakerDotNet.Tests
             Assert.IsInstanceOf<ISlackEmojiFaker>(_fakerContainer.SlackEmoji);
         }
 
+        [Test]
         public void Superhero_returns_ISuperheroFaker()
         {
             Assert.IsInstanceOf<ISuperheroFaker>(_fakerContainer.Superhero);

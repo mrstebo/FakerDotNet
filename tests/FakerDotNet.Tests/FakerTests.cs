@@ -116,6 +116,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void PhoneNumber_returns_IPhoneNumberFaker()
+        {
+            Assert.IsInstanceOf<IPhoneNumberFaker>(Faker.PhoneNumber);
+        }
+
+        [Test]
         public void Pokemon_returns_IPokemonFaker()
         {
             Assert.IsInstanceOf<IPokemonFaker>(Faker.Pokemon);

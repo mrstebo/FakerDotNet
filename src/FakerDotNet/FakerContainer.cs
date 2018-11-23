@@ -22,6 +22,7 @@ namespace FakerDotNet
         ILoremFaker Lorem { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
+        IPhoneNumberFaker PhoneNumber { get; }
         IPokemonFaker Pokemon { get; }
         IRandomFaker Random { get; }
         IRickAndMortyFaker RickAndMorty { get; }
@@ -58,6 +59,7 @@ namespace FakerDotNet
             Lorem = new LoremFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
+            PhoneNumber = new PhoneNumberFaker(this);
             Pokemon = new PokemonFaker(this);
             Random = new RandomFaker();
             RickAndMorty = new RickAndMortyFaker(this);
@@ -90,6 +92,7 @@ namespace FakerDotNet
         public ILoremFaker Lorem { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }
+        public IPhoneNumberFaker PhoneNumber { get; }
         public IPokemonFaker Pokemon { get; }
         public IRandomFaker Random { get; }
         public IRickAndMortyFaker RickAndMorty { get; }

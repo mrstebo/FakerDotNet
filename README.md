@@ -27,6 +27,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.Lorem](doc/lorem.md)
   - [Faker.Name](doc/name.md)
   - [Faker.Number](doc/number.md)
+  - [Faker.PhoneNumber](doc/phone_number.md)
   - [Faker.Pokemon](doc/pokemon.md)
   - [Faker.Random](doc/random.md)
   - [Faker.RickAndMorty](doc/rick_and_morty.md)

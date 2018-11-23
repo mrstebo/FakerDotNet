@@ -40,12 +40,14 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void FileName_returns_a_file_name()
         {
+            A.CallTo(() => _fakerContainer.Internet.Slug(null, null))
+                .ReturnsNextFromSequence("my-path");
             A.CallTo(() => _fakerContainer.Lorem.Word())
                 .Returns("SOMETHING_RANDOM");
             A.CallTo(() => _fakerContainer.Random.Element(FileData.Extensions))
                 .Returns("jpg");
 
-            Assert.AreEqual("xxx/something_random.jpg", _fileFaker.FileName());
+            Assert.AreEqual("my-path/something_random.jpg", _fileFaker.FileName());
         }
 
         [Test]

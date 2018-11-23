@@ -30,7 +30,7 @@ namespace FakerDotNet.Fakers
 
         public string FileName(string dir = null, string name = null, string ext = null, string directorySeparator = "/")
         {
-            dir = string.IsNullOrEmpty(dir) ? "xxx" : dir;
+            dir = string.IsNullOrEmpty(dir) ? _fakerContainer.Internet.Slug() : dir;
             name = string.IsNullOrEmpty(name) ? _fakerContainer.Lorem.Word().ToLowerInvariant() : name;
             ext = string.IsNullOrEmpty(ext) ? Extension() : ext;
             return $"{string.Join(directorySeparator, dir, name)}.{ext}";

@@ -21,6 +21,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.Company](doc/company.md)
   - [Faker.Date](doc/date.md)
   - [Faker.Fake](doc/fake.md)
+  - [Faker.File](doc/file.md)
   - [Faker.GameOfThrones](doc/game_of_thrones.md)
   - [Faker.Internet](doc/internet.md)
   - [Faker.Lorem](doc/lorem.md)

@@ -22,6 +22,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Ancient_returns_IAncientFaker()
+        {
+            Assert.IsInstanceOf<IAncientFaker>(_fakerContainer.Ancient);
+        }
+
+        [Test]
         public void App_returns_IAppFaker()
         {
             Assert.IsInstanceOf<IAppFaker>(_fakerContainer.App);

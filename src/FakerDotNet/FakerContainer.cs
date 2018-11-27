@@ -5,6 +5,7 @@ namespace FakerDotNet
     internal interface IFakerContainer
     {
         IAddressFaker Address { get; }
+        IAncientFaker Ancient { get; }
         IAppFaker App { get; }
         IAvatarFaker Avatar { get; }
         IBeerFaker Beer { get; }
@@ -42,6 +43,7 @@ namespace FakerDotNet
         public FakerContainer()
         {
             Address = new AddressFaker(this);
+            Ancient = new AncientFaker(this);
             App = new AppFaker(this);
             Avatar = new AvatarFaker(this);
             Beer = new BeerFaker(this);
@@ -75,6 +77,7 @@ namespace FakerDotNet
         }
 
         public IAddressFaker Address { get; }
+        public IAncientFaker Ancient { get; }
         public IAppFaker App { get; }
         public IAvatarFaker Avatar { get; }
         public IBeerFaker Beer { get; }

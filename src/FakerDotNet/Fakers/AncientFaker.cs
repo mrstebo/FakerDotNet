@@ -9,7 +9,7 @@ namespace FakerDotNet.Fakers
         string Titan();
         string Hero();
     }
-    
+
     internal class AncientFaker : IAncientFaker
     {
         private readonly IFakerContainer _fakerContainer;
@@ -18,7 +18,7 @@ namespace FakerDotNet.Fakers
         {
             _fakerContainer = fakerContainer;
         }
-        
+
         public string God()
         {
             return _fakerContainer.Random.Element(AncientData.Gods);

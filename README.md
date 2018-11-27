@@ -11,6 +11,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
 - [Installing](#installing)
 - [Usage](#usage)
   - [Faker.Address](doc/address.md)
+  - [Faker.Ancient](doc/ancient.md)
   - [Faker.App](doc/app.md)
   - [Faker.Avatar](doc/avatar.md)
   - [Faker.Beer](doc/beer.md)

@@ -56,6 +56,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Cat_returns_ICatFaker()
+        {
+            Assert.IsInstanceOf<ICatFaker>(Faker.Cat);
+        }
+
+        [Test]
         public void Color_returns_IColorFaker()
         {
             Assert.IsInstanceOf<IColorFaker>(Faker.Color);

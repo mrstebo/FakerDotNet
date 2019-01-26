@@ -14,12 +14,14 @@ namespace FakerDotNet
         public static IBookFaker Book { get; } = Container.Book;
         public static IBooleanFaker Boolean { get; } = Container.Boolean;
         public static IBusinessFaker Business { get; } = Container.Business;
+        public static ICatFaker Cat { get; } = Container.Cat;
         public static IChuckNorrisFaker ChuckNorris { get; } = Container.ChuckNorris;
         public static IColorFaker Color { get; } = Container.Color;
         public static ICompanyFaker Company { get; } = Container.Company;
         public static IDateFaker Date { get; } = Container.Date;
         public static IFakeFaker Fake { get; } = Container.Fake;
         public static IFileFaker File { get; } = Container.File;
+        public static IFoodFaker Food { get; } = Container.Food;
         public static IFriendsFaker Friends { get; } = Container.Friends;
         public static IGameOfThronesFaker GameOfThrones { get; } = Container.GameOfThrones;
         public static IInternetFaker Internet { get; } = Container.Internet;

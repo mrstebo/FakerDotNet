@@ -62,6 +62,12 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IBusinessFaker>(_fakerContainer.Business);
         }
+      
+        [Test]
+        public void Cat_returns_ICatFaker()
+        {
+            Assert.IsInstanceOf<ICatFaker>(_fakerContainer.Cat);
+        }
 
         [Test]
         public void ChuckNorris_returns_IChuckNorrisFaker()
@@ -97,6 +103,12 @@ namespace FakerDotNet.Tests
         public void File_returns_IFileFaker()
         {
             Assert.IsInstanceOf<IFileFaker>(_fakerContainer.File);
+        }
+
+        [Test]
+        public void Food_returns_IFoodFaker()
+        {
+            Assert.IsInstanceOf<IFoodFaker>(_fakerContainer.Food);
         }
 
         [Test]

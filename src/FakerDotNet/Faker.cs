@@ -20,6 +20,7 @@ namespace FakerDotNet
         public static IDateFaker Date { get; } = Container.Date;
         public static IFakeFaker Fake { get; } = Container.Fake;
         public static IFileFaker File { get; } = Container.File;
+        public static IFoodFaker Food { get; } = Container.Food;
         public static IFriendsFaker Friends { get; } = Container.Friends;
         public static IGameOfThronesFaker GameOfThrones { get; } = Container.GameOfThrones;
         public static IInternetFaker Internet { get; } = Container.Internet;

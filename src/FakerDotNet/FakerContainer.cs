@@ -18,6 +18,7 @@ namespace FakerDotNet
         IDateFaker Date { get; }
         IFakeFaker Fake { get; }
         IFileFaker File { get; }
+        IFoodFaker Food { get; }
         IFriendsFaker Friends { get; }
         IGameOfThronesFaker GameOfThrones { get; }
         IInternetFaker Internet { get; }
@@ -57,6 +58,7 @@ namespace FakerDotNet
             Date = new DateFaker();
             Fake = new FakeFaker(this);
             File = new FileFaker(this);
+            Food = new FoodFaker(this);
             Friends = new FriendsFaker(this);
             GameOfThrones = new GameOfThronesFaker(this);
             Internet = new InternetFaker(this);
@@ -92,6 +94,7 @@ namespace FakerDotNet
         public IDateFaker Date { get; }
         public IFakeFaker Fake { get; }
         public IFileFaker File { get; }
+        public IFoodFaker Food { get; }
         public IFriendsFaker Friends { get; }
         public IGameOfThronesFaker GameOfThrones { get; }
         public IInternetFaker Internet { get; }

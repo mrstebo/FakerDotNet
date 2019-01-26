@@ -92,6 +92,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Food_returns_IFoodFaker()
+        {
+            Assert.IsInstanceOf<IFoodFaker>(Faker.Food);
+        }
+
+        [Test]
         public void Friends_returns_IFriendsFaker()
         {
             Assert.IsInstanceOf<IFriendsFaker>(Faker.Friends);

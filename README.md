@@ -19,6 +19,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.Boolean](doc/boolean.md)
   - [Faker.Business](doc/business.md)
   - [Faker.Cat](doc/cat.md)
+  - [Faker.ChuckNorris](doc/chuck_norris.md)
   - [Faker.Color](doc/color.md)
   - [Faker.Company](doc/company.md)
   - [Faker.Date](doc/date.md)

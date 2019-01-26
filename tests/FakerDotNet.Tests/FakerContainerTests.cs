@@ -62,11 +62,17 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IBusinessFaker>(_fakerContainer.Business);
         }
-
+      
         [Test]
         public void Cat_returns_ICatFaker()
         {
             Assert.IsInstanceOf<ICatFaker>(_fakerContainer.Cat);
+        }
+
+        [Test]
+        public void ChuckNorris_returns_IChuckNorrisFaker()
+        {
+            Assert.IsInstanceOf<IChuckNorrisFaker>(_fakerContainer.ChuckNorris);
         }
 
         [Test]

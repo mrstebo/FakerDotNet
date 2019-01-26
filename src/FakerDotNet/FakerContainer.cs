@@ -13,6 +13,7 @@ namespace FakerDotNet
         IBooleanFaker Boolean { get; }
         IBusinessFaker Business { get; }
         ICatFaker Cat { get; }
+        IChuckNorrisFaker ChuckNorris { get; }
         IColorFaker Color { get; }
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
@@ -53,6 +54,7 @@ namespace FakerDotNet
             Boolean = new BooleanFaker();
             Business = new BusinessFaker(this);
             Cat = new CatFaker(this);
+            ChuckNorris = new ChuckNorrisFaker(this);
             Color = new ColorFaker(this);
             Company = new CompanyFaker(this);
             Date = new DateFaker();
@@ -89,6 +91,7 @@ namespace FakerDotNet
         public IBooleanFaker Boolean { get; }
         public IBusinessFaker Business { get; }
         public ICatFaker Cat { get; }
+        public IChuckNorrisFaker ChuckNorris { get; }
         public IColorFaker Color { get; }
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }

@@ -12,6 +12,7 @@ namespace FakerDotNet
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
         IBusinessFaker Business { get; }
+        IChuckNorrisFaker ChuckNorris { get; }
         IColorFaker Color { get; }
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
@@ -50,6 +51,7 @@ namespace FakerDotNet
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
             Business = new BusinessFaker(this);
+            ChuckNorris = new ChuckNorrisFaker(this);
             Color = new ColorFaker(this);
             Company = new CompanyFaker(this);
             Date = new DateFaker();
@@ -84,6 +86,7 @@ namespace FakerDotNet
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }
         public IBusinessFaker Business { get; }
+        public IChuckNorrisFaker ChuckNorris { get; }
         public IColorFaker Color { get; }
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }

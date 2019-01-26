@@ -64,6 +64,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void ChuckNorris_returns_IChuckNorrisFaker()
+        {
+            Assert.IsInstanceOf<IChuckNorrisFaker>(_fakerContainer.ChuckNorris);
+        }
+
+        [Test]
         public void Color_returns_IColorFaker()
         {
             Assert.IsInstanceOf<IColorFaker>(_fakerContainer.Color);

@@ -122,6 +122,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Hacker_returns_IHackerFaker()
+        {
+            Assert.IsInstanceOf<IHackerFaker>(Faker.Hacker);
+        }
+
+        [Test]
         public void Internet_returns_IInternetFaker()
         {
             Assert.IsInstanceOf<IInternetFaker>(Faker.Internet);

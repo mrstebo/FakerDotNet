@@ -16,6 +16,7 @@ namespace FakerDotNet
         public static IBusinessFaker Business { get; } = Container.Business;
         public static ICatFaker Cat { get; } = Container.Cat;
         public static IChuckNorrisFaker ChuckNorris { get; } = Container.ChuckNorris;
+        public static ICoffeeFaker Coffee { get; } = Container.Coffee;
         public static IColorFaker Color { get; } = Container.Color;
         public static ICompanyFaker Company { get; } = Container.Company;
         public static IDateFaker Date { get; } = Container.Date;

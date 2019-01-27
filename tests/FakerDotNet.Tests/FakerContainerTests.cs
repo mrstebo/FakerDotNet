@@ -76,6 +76,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Coffee_returns_ICoffeeFaker()
+        {
+            Assert.IsInstanceOf<ICoffeeFaker>(_fakerContainer.Coffee);
+        }
+
+        [Test]
         public void Color_returns_IColorFaker()
         {
             Assert.IsInstanceOf<IColorFaker>(_fakerContainer.Color);

@@ -14,6 +14,7 @@ namespace FakerDotNet
         IBusinessFaker Business { get; }
         ICatFaker Cat { get; }
         IChuckNorrisFaker ChuckNorris { get; }
+        ICoffeeFaker Coffee { get; }
         IColorFaker Color { get; }
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
@@ -55,6 +56,7 @@ namespace FakerDotNet
             Business = new BusinessFaker(this);
             Cat = new CatFaker(this);
             ChuckNorris = new ChuckNorrisFaker(this);
+            Coffee = new CoffeeFaker(this);
             Color = new ColorFaker(this);
             Company = new CompanyFaker(this);
             Date = new DateFaker();
@@ -92,6 +94,7 @@ namespace FakerDotNet
         public IBusinessFaker Business { get; }
         public ICatFaker Cat { get; }
         public IChuckNorrisFaker ChuckNorris { get; }
+        public ICoffeeFaker Coffee { get; }
         public IColorFaker Color { get; }
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }

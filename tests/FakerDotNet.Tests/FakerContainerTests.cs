@@ -196,6 +196,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void StarWars_returns_IStarWarsFaker()
+        {
+            Assert.IsInstanceOf<IStarWarsFaker>(_fakerContainer.StarWars);
+        }
+
+        [Test]
         public void Superhero_returns_ISuperheroFaker()
         {
             Assert.IsInstanceOf<ISuperheroFaker>(_fakerContainer.Superhero);

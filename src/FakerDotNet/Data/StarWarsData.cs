@@ -246,6 +246,13 @@ namespace FakerDotNet.Data
             "rarr"
         };
 
+        public static readonly IEnumerable<string> SentenceEndings = new[]
+        {
+            ".",
+            "?",
+            "!"
+        };
+
         public static readonly IDictionary<string, string[]> QuotesForCharacters = new Dictionary<string, string[]>
         {
             {

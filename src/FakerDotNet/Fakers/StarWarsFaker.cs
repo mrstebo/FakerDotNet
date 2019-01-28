@@ -1,4 +1,7 @@
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using FakerDotNet.Data;
 
 namespace FakerDotNet.Fakers
 {
@@ -27,52 +30,83 @@ namespace FakerDotNet.Fakers
 
         public string CallSquadron()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(StarWarsData.CallSquadrons);
         }
 
         public string CallSign()
         {
-            throw new NotImplementedException();
+            return $"{CallSquadron()} {CallNumber()}";
         }
 
         public string CallNumber()
         {
-            throw new NotImplementedException();
+            var callNumber = _fakerContainer.Random.Element(StarWarsData.CallNumbers);
+
+            return Numerify(callNumber);
         }
 
         public string Character()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(StarWarsData.Characters);
         }
 
         public string Droid()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(StarWarsData.Droids);
         }
 
         public string Planet()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(StarWarsData.Planets);
         }
 
         public string Quote(string character = "")
         {
-            throw new NotImplementedException();
+            var key = (string.IsNullOrEmpty(character) ? Character() : character)
+                .ToLowerInvariant()
+                .Replace(" ", "_");
+
+            if (!StarWarsData.QuotesForCharacters.ContainsKey(key))
+            {
+                var keys = string.Join(", ", StarWarsData.QuotesForCharacters.Keys);
+                throw new ArgumentException($"Character for quotes can be left blank or {keys}");
+            }
+
+            var quotes = StarWarsData.QuotesForCharacters[key];
+
+            return _fakerContainer.Random.Element(quotes);
         }
 
         public string Specie()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(StarWarsData.Species);
         }
 
         public string Vehicle()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(StarWarsData.Vehicles);
         }
 
         public string WookieeSentence()
         {
-            throw new NotImplementedException();
+            var numberOfWords = (int) _fakerContainer.Number.Between(0, 10);
+            var words = Enumerable.Range(0, numberOfWords)
+                .Select(_ => _fakerContainer.Random.Element(StarWarsData.WookieWords))
+                .ToArray();
+            var ending = _fakerContainer.Random.Element(StarWarsData.SentenceEndings);
+            var sentence = string.Join(" ", words) + ending;
+
+            return Capitalize(sentence);
+        }
+
+        private string Numerify(string text)
+        {
+            return Regex.Replace(text, "#", m => _fakerContainer.Number.NonZeroDigit());
+        }
+
+        private static string Capitalize(string text)
+        {
+            return Regex.Replace(text, "^(.)", m => m.Value.ToUpperInvariant());
         }
     }
 }

@@ -1,6 +1,7 @@
 # Faker.Company
- ```cs
- # Random Slack Emoji from people category
+
+```cs
+# Random Slack Emoji from people category
 Faker.SlackEmoji.People() //=> ":sleepy:"
 
 # Random Slack Emoji from nature category
@@ -26,4 +27,4 @@ Faker.SlackEmoji.Custom() //=> ":suspect:"
 
 # Random Slack Emoji from any category
 Faker.SlackEmoji.Emoji() //=> ":last_quarter_moon:"
- ```
+```

@@ -1,7 +1,5 @@
 # Faker.Ancient
 
-Available since version 1.7.0.
-
 ```cs
 Faker.Ancient.God() //=> "Zeus"
 

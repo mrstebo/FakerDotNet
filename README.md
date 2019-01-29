@@ -32,6 +32,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.HarryPotter](doc/harry_potter.md)
   - [Faker.Internet](doc/internet.md)
   - [Faker.Lorem](doc/lorem.md)
+  - [Faker.Music](doc/music.md)
   - [Faker.Name](doc/name.md)
   - [Faker.Number](doc/number.md)
   - [Faker.PhoneNumber](doc/phone_number.md)

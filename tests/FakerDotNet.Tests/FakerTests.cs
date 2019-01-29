@@ -146,6 +146,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Music_returns_IMusicFaker()
+        {
+            Assert.IsInstanceOf<IMusicFaker>(Faker.Music);
+        }
+
+        [Test]
         public void Name_returns_INameFaker()
         {
             Assert.IsInstanceOf<INameFaker>(Faker.Name);

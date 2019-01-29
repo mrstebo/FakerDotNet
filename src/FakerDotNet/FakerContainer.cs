@@ -27,6 +27,7 @@ namespace FakerDotNet
         IHarryPotterFaker HarryPotter { get; }
         IInternetFaker Internet { get; }
         ILoremFaker Lorem { get; }
+        IMusicFaker Music { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
         IPhoneNumberFaker PhoneNumber { get; }
@@ -72,6 +73,7 @@ namespace FakerDotNet
             HarryPotter = new HarryPotterFaker(this);
             Internet = new InternetFaker(this);
             Lorem = new LoremFaker(this);
+            Music = new MusicFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
             PhoneNumber = new PhoneNumberFaker(this);
@@ -113,6 +115,7 @@ namespace FakerDotNet
         public IHarryPotterFaker HarryPotter { get; }
         public IInternetFaker Internet { get; }
         public ILoremFaker Lorem { get; }
+        public IMusicFaker Music { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }
         public IPhoneNumberFaker PhoneNumber { get; }

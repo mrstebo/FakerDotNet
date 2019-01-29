@@ -136,6 +136,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void HarryPotter_returns_IHarryPotterFaker()
+        {
+            Assert.IsInstanceOf<IHarryPotterFaker>(_fakerContainer.HarryPotter);
+        }
+
+        [Test]
         public void Internet_returns_IInternetFaker()
         {
             Assert.IsInstanceOf<IInternetFaker>(_fakerContainer.Internet);

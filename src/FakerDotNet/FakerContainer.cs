@@ -24,6 +24,7 @@ namespace FakerDotNet
         IFriendsFaker Friends { get; }
         IGameOfThronesFaker GameOfThrones { get; }
         IHackerFaker Hacker { get; }
+        IHarryPotterFaker HarryPotter { get; }
         IInternetFaker Internet { get; }
         ILoremFaker Lorem { get; }
         INameFaker Name { get; }
@@ -67,6 +68,7 @@ namespace FakerDotNet
             Friends = new FriendsFaker(this);
             GameOfThrones = new GameOfThronesFaker(this);
             Hacker = new HackerFaker(this);
+            HarryPotter = new HarryPotterFaker(this);
             Internet = new InternetFaker(this);
             Lorem = new LoremFaker(this);
             Name = new NameFaker(this);
@@ -106,6 +108,7 @@ namespace FakerDotNet
         public IFriendsFaker Friends { get; }
         public IGameOfThronesFaker GameOfThrones { get; }
         public IHackerFaker Hacker { get; }
+        public IHarryPotterFaker HarryPotter { get; }
         public IInternetFaker Internet { get; }
         public ILoremFaker Lorem { get; }
         public INameFaker Name { get; }

@@ -28,6 +28,7 @@ namespace FakerDotNet
         public static IHackerFaker Hacker { get; } = Container.Hacker;
         public static IInternetFaker Internet { get; } = Container.Internet;
         public static ILoremFaker Lorem { get; } = Container.Lorem;
+        public static IMusicFaker Music { get; } = Container.Music;
         public static INameFaker Name { get; } = Container.Name;
         public static INumberFaker Number { get; } = Container.Number;
         public static IPhoneNumberFaker PhoneNumber { get; } = Container.PhoneNumber;

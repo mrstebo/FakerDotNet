@@ -180,6 +180,18 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IRockBandFaker>(Faker.RockBand);
         }
+
+        [Test]
+        public void SlackEmoji_returns_ISlackEmoji()
+        {
+            Assert.IsInstanceOf<ISlackEmojiFaker>(Faker.SlackEmoji);
+        }
+
+        [Test]
+        public void StarWars_returns_IStarWarsFaker()
+        {
+            Assert.IsInstanceOf<IStarWarsFaker>(Faker.StarWars);
+        }
         
         [Test]
         public void Superhero_returns_ISuperheroFaker()
@@ -191,11 +203,6 @@ namespace FakerDotNet.Tests
         public void Team_returns_ITeamFaker()
         {
             Assert.IsInstanceOf<ITeamFaker>(Faker.Team);
-        }
-        [Test]
-        public void SlackEmoji_returns_ISlackEmoji()
-        {
-            Assert.IsInstanceOf<ISlackEmojiFaker>(Faker.SlackEmoji);
         }
 
         [Test]

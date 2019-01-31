@@ -34,6 +34,7 @@ namespace FakerDotNet
         public static INameFaker Name { get; } = Container.Name;
         public static INumberFaker Number { get; } = Container.Number;
         public static IPhoneNumberFaker PhoneNumber { get; } = Container.PhoneNumber;
+        public static IPlaceholditFaker Placeholdit { get; } = Container.Placeholdit;
         public static IPokemonFaker Pokemon { get; } = Container.Pokemon;
         public static IRandomFaker Random { get; } = Container.Random;
         public static IRickAndMortyFaker RickAndMorty { get; } = Container.RickAndMorty;

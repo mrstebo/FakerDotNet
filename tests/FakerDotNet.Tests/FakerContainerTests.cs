@@ -184,6 +184,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Placeholdit_returns_IPlaceholditFaker()
+        {
+            Assert.IsInstanceOf<IPlaceholditFaker>(_fakerContainer.Placeholdit);
+        }
+
+        [Test]
         public void Pokemon_returns_IPokemonFaker()
         {
             Assert.IsInstanceOf<IPokemonFaker>(_fakerContainer.Pokemon);

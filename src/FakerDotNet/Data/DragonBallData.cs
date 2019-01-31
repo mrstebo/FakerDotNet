@@ -4,7 +4,7 @@ namespace FakerDotNet.Data
 {
     internal static class DragonBallData
     {
-        public static readonly IEnumerable<string> Characters = new [] 
+        public static readonly IEnumerable<string> Characters = new[] 
         {
             "Demon King Piccolo",
             "Cooler",

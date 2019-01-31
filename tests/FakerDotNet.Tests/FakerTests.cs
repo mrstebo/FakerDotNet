@@ -96,6 +96,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IDragonBallFaker>(Faker.DragonBall);
         }
+
         [Test]
         public void Fake_returns_IFakeFaker()
         {

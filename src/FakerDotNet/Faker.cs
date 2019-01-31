@@ -20,6 +20,7 @@ namespace FakerDotNet
         public static IColorFaker Color { get; } = Container.Color;
         public static ICompanyFaker Company { get; } = Container.Company;
         public static IDateFaker Date { get; } = Container.Date;
+        public static IDragonBallFaker DragonBall { get; } = Container.DragonBall;
         public static IFakeFaker Fake { get; } = Container.Fake;
         public static IFileFaker File { get; } = Container.File;
         public static IFoodFaker Food { get; } = Container.Food;

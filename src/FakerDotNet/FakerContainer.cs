@@ -18,6 +18,7 @@ namespace FakerDotNet
         IColorFaker Color { get; }
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
+        IDragonBallFaker DragonBall { get; }
         IFakeFaker Fake { get; }
         IFileFaker File { get; }
         IFoodFaker Food { get; }
@@ -64,6 +65,7 @@ namespace FakerDotNet
             Color = new ColorFaker(this);
             Company = new CompanyFaker(this);
             Date = new DateFaker();
+            DragonBall = new DragonBallFaker(this);
             Fake = new FakeFaker(this);
             File = new FileFaker(this);
             Food = new FoodFaker(this);
@@ -106,6 +108,7 @@ namespace FakerDotNet
         public IColorFaker Color { get; }
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }
+        public IDragonBallFaker DragonBall { get; }
         public IFakeFaker Fake { get; }
         public IFileFaker File { get; }
         public IFoodFaker Food { get; }

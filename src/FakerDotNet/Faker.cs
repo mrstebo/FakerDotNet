@@ -23,6 +23,7 @@ namespace FakerDotNet
         public static IDragonBallFaker DragonBall { get; } = Container.DragonBall;
         public static IFakeFaker Fake { get; } = Container.Fake;
         public static IFileFaker File { get; } = Container.File;
+        public static IFillmurrayFaker Fillmurray { get; } = Container.Fillmurray;
         public static IFoodFaker Food { get; } = Container.Food;
         public static IFriendsFaker Friends { get; } = Container.Friends;
         public static IGameOfThronesFaker GameOfThrones { get; } = Container.GameOfThrones;

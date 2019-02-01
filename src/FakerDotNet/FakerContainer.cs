@@ -21,6 +21,7 @@ namespace FakerDotNet
         IDragonBallFaker DragonBall { get; }
         IFakeFaker Fake { get; }
         IFileFaker File { get; }
+        IFillmurrayFaker Fillmurray { get; }
         IFoodFaker Food { get; }
         IFriendsFaker Friends { get; }
         IGameOfThronesFaker GameOfThrones { get; }
@@ -69,6 +70,7 @@ namespace FakerDotNet
             DragonBall = new DragonBallFaker(this);
             Fake = new FakeFaker(this);
             File = new FileFaker(this);
+            Fillmurray = new FillmurrayFaker();
             Food = new FoodFaker(this);
             Friends = new FriendsFaker(this);
             GameOfThrones = new GameOfThronesFaker(this);
@@ -113,6 +115,7 @@ namespace FakerDotNet
         public IDragonBallFaker DragonBall { get; }
         public IFakeFaker Fake { get; }
         public IFileFaker File { get; }
+        public IFillmurrayFaker Fillmurray { get; }
         public IFoodFaker Food { get; }
         public IFriendsFaker Friends { get; }
         public IGameOfThronesFaker GameOfThrones { get; }

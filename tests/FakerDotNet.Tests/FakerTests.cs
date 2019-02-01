@@ -110,6 +110,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Fillmurray_returns_IFillmurrayFaker()
+        {
+            Assert.IsInstanceOf<IFillmurrayFaker>(Faker.Fillmurray);
+        }
+
+        [Test]
         public void Food_returns_IFoodFaker()
         {
             Assert.IsInstanceOf<IFoodFaker>(Faker.Food);

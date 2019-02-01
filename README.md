@@ -27,6 +27,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.DragonBall](doc/dragon_ball.md)
   - [Faker.Fake](doc/fake.md)
   - [Faker.File](doc/file.md)
+  - [Faker.Fillmurray](doc/fillmurray.md)
   - [Faker.Food](doc/food.md)
   - [Faker.GameOfThrones](doc/game_of_thrones.md)
   - [Faker.Hacker](doc/hacker.md)

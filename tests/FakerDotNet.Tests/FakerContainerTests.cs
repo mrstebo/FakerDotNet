@@ -232,6 +232,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Space_returns_ISpaceFaker()
+        {
+            Assert.IsInstanceOf<ISpaceFaker>(_fakerContainer.Space);
+        }
+
+        [Test]
         public void StarWars_returns_IStarWarsFaker()
         {
             Assert.IsInstanceOf<IStarWarsFaker>(_fakerContainer.StarWars);

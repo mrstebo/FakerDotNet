@@ -158,6 +158,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void LordOfTheRings_returns_ILordOfTheRingsFaker()
+        {
+            Assert.IsInstanceOf<ILordOfTheRingsFaker>(Faker.LordOfTheRings);
+        }
+
+        [Test]
         public void Lorem_returns_ILoremFaker()
         {
             Assert.IsInstanceOf<ILoremFaker>(Faker.Lorem);
@@ -234,7 +240,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IStarWarsFaker>(Faker.StarWars);
         }
-        
+
         [Test]
         public void Superhero_returns_ISuperheroFaker()
         {

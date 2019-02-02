@@ -29,6 +29,7 @@ namespace FakerDotNet
         IHackerFaker Hacker { get; }
         IHarryPotterFaker HarryPotter { get; }
         IInternetFaker Internet { get; }
+        ILordOfTheRingsFaker LordOfTheRings { get; }
         ILoremFaker Lorem { get; }
         IMusicFaker Music { get; }
         INameFaker Name { get; }
@@ -80,6 +81,7 @@ namespace FakerDotNet
             Hacker = new HackerFaker(this);
             HarryPotter = new HarryPotterFaker(this);
             Internet = new InternetFaker(this);
+            LordOfTheRings = new LordOfTheRingsFaker(this);
             Lorem = new LoremFaker(this);
             Music = new MusicFaker(this);
             Name = new NameFaker(this);
@@ -127,6 +129,7 @@ namespace FakerDotNet
         public IHackerFaker Hacker { get; }
         public IHarryPotterFaker HarryPotter { get; }
         public IInternetFaker Internet { get; }
+        public ILordOfTheRingsFaker LordOfTheRings { get; }
         public ILoremFaker Lorem { get; }
         public IMusicFaker Music { get; }
         public INameFaker Name { get; }

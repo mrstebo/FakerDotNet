@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class ZeldaData
+    internal static class ZeldaData
     {
-        internal IEnumerable<string> Games => new[]
+        public static readonly IEnumerable<string> Games = new[]
         {
             "A Link to the Past",
             "Breath of the Wild",
@@ -23,7 +21,7 @@ namespace FakerDotNet.Data
             "Zelda II: Adventure of Link"
         };
 
-        internal IEnumerable<string> Characters => new[]
+        public static readonly IEnumerable<string> Characters = new[]
         {
             "Abe",
             "Agahnim",
@@ -415,7 +413,7 @@ namespace FakerDotNet.Data
             "Zunari"
         };
 
-        internal IEnumerable<string> Locations => new[]
+        public static readonly IEnumerable<string> Locations = new[]
         {
             "Akkala Ancient Tech Lab",
             "East Akkala Stable",
@@ -687,7 +685,7 @@ namespace FakerDotNet.Data
             "West Nabi Lake"
         };
 
-        internal IEnumerable<string> Items => new[]
+        public static readonly IEnumerable<string> Items = new[]
         {
             "Blue Ring",
             "Red Ring",

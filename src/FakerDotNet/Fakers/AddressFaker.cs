@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 using FakerDotNet.Data;
 
@@ -31,8 +30,6 @@ namespace FakerDotNet.Fakers
 
     internal class AddressFaker : IAddressFaker
     {
-        private static readonly AddressData Data = new AddressData();
-        
         private readonly IFakerContainer _fakerContainer;
 
         public AddressFaker(IFakerContainer fakerContainer)
@@ -42,41 +39,41 @@ namespace FakerDotNet.Fakers
 
         public string City()
         {
-            return Parse(_fakerContainer.Random.Element(Data.Cities));
+            return Parse(_fakerContainer.Random.Element(AddressData.Cities));
         }
 
         public string StreetName()
         {
-            return Parse(_fakerContainer.Random.Element(Data.StreetNames));
+            return Parse(_fakerContainer.Random.Element(AddressData.StreetNames));
         }
 
         public string StreetAddress()
         {
-            return Parse(_fakerContainer.Random.Element(Data.StreetAddresses));
+            return Parse(_fakerContainer.Random.Element(AddressData.StreetAddresses));
         }
 
         public string SecondaryAddress()
         {
-            return Parse(_fakerContainer.Random.Element(Data.SecondaryAddressPrefixes));
+            return Parse(_fakerContainer.Random.Element(AddressData.SecondaryAddressPrefixes));
         }
 
         public string BuildingNumber()
         {
-            return Parse(_fakerContainer.Random.Element(Data.BuildingNumbers));
+            return Parse(_fakerContainer.Random.Element(AddressData.BuildingNumbers));
         }
 
         public string Community()
         {
             return string.Join(" ",
-                _fakerContainer.Random.Element(Data.CommunityPrefixes),
-                _fakerContainer.Random.Element(Data.CommunitySuffixes));
+                _fakerContainer.Random.Element(AddressData.CommunityPrefixes),
+                _fakerContainer.Random.Element(AddressData.CommunitySuffixes));
         }
 
         public string ZipCode(string stateAbbreviation = null)
         {
             var format = string.IsNullOrEmpty(stateAbbreviation)
-                ? _fakerContainer.Random.Element(Data.Postcodes)
-                : Data.PostcodeByState[stateAbbreviation];
+                ? _fakerContainer.Random.Element(AddressData.Postcodes)
+                : AddressData.PostcodeByState[stateAbbreviation];
             return Parse(format);
         }
 
@@ -92,62 +89,62 @@ namespace FakerDotNet.Fakers
 
         public string TimeZone()
         {
-            return _fakerContainer.Random.Element(Data.TimeZones);
+            return _fakerContainer.Random.Element(AddressData.TimeZones);
         }
 
         public string StreetSuffix()
         {
-            return _fakerContainer.Random.Element(Data.StreetSuffixes);
+            return _fakerContainer.Random.Element(AddressData.StreetSuffixes);
         }
 
         public string CitySuffix()
         {
-            return _fakerContainer.Random.Element(Data.CitySuffixes);
+            return _fakerContainer.Random.Element(AddressData.CitySuffixes);
         }
 
         public string CityPrefix()
         {
-            return _fakerContainer.Random.Element(Data.CityPrefixes);
+            return _fakerContainer.Random.Element(AddressData.CityPrefixes);
         }
 
         public string State()
         {
-            return _fakerContainer.Random.Element(Data.States);
+            return _fakerContainer.Random.Element(AddressData.States);
         }
 
         public string StateAbbr()
         {
-            return _fakerContainer.Random.Element(Data.StateAbbreviations);
+            return _fakerContainer.Random.Element(AddressData.StateAbbreviations);
         }
 
         public string Country()
         {
-            return _fakerContainer.Random.Element(Data.Countries);
+            return _fakerContainer.Random.Element(AddressData.Countries);
         }
 
         public string CountryCode()
         {
-            return _fakerContainer.Random.Element(Data.CountryCodes);
+            return _fakerContainer.Random.Element(AddressData.CountryCodes);
         }
 
         public string CountryCodeLong()
         {
-            return _fakerContainer.Random.Element(Data.LongCountryCodes);
+            return _fakerContainer.Random.Element(AddressData.LongCountryCodes);
         }
 
         public string Latitude()
         {
-            return $"{_fakerContainer.Number.Between(0, 180) - 90:#.##########}";
+            return $"{_fakerContainer.Number.Between(0, 180) - 90}";
         }
 
         public string Longitude()
         {
-            return $"{(_fakerContainer.Number.Between(0, 360) - 180):#.##########}";
+            return $"{_fakerContainer.Number.Between(0, 360) - 180}";
         }
 
         public string FullAddress()
         {
-            return Parse(_fakerContainer.Random.Element(Data.FullAddresses));
+            return Parse(_fakerContainer.Random.Element(AddressData.FullAddresses));
         }
 
         private string Parse(string format)

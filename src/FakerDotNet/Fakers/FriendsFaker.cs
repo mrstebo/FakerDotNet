@@ -11,8 +11,6 @@ namespace FakerDotNet.Fakers
 
     internal class FriendsFaker : IFriendsFaker
     {
-        private static readonly FriendsData Data = new FriendsData();
-
         private readonly IFakerContainer _fakerContainer;
 
         public FriendsFaker(IFakerContainer fakerContainer)
@@ -22,17 +20,17 @@ namespace FakerDotNet.Fakers
 
         public string Character()
         {
-            return _fakerContainer.Random.Element(Data.Characters);
+            return _fakerContainer.Random.Element(FriendsData.Characters);
         }
 
         public string Location()
         {
-            return _fakerContainer.Random.Element(Data.Locations);
+            return _fakerContainer.Random.Element(FriendsData.Locations);
         }
 
         public string Quote()
         {
-            return _fakerContainer.Random.Element(Data.Quotes);
+            return _fakerContainer.Random.Element(FriendsData.Quotes);
         }
     }
 }

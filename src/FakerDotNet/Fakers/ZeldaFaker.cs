@@ -12,7 +12,6 @@ namespace FakerDotNet.Fakers
 
     internal class ZeldaFaker : IZeldaFaker
     {
-        private static readonly ZeldaData Data = new ZeldaData();
         private readonly IFakerContainer _fakerContainer;
 
         public ZeldaFaker(IFakerContainer faker)
@@ -22,22 +21,22 @@ namespace FakerDotNet.Fakers
 
         public string Character()
         {
-            return _fakerContainer.Random.Element(Data.Characters);
+            return _fakerContainer.Random.Element(ZeldaData.Characters);
         }
 
         public string Game()
         {
-            return _fakerContainer.Random.Element(Data.Games);
+            return _fakerContainer.Random.Element(ZeldaData.Games);
         }
 
         public string Item()
         {
-            return _fakerContainer.Random.Element(Data.Items);
+            return _fakerContainer.Random.Element(ZeldaData.Items);
         }
 
         public string Location()
         {
-            return _fakerContainer.Random.Element(Data.Locations);
+            return _fakerContainer.Random.Element(ZeldaData.Locations);
         }
     }
 }

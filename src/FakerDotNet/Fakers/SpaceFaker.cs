@@ -1,5 +1,4 @@
 ﻿using FakerDotNet.Data;
-using System;
 
 namespace FakerDotNet.Fakers
 {
@@ -23,9 +22,6 @@ namespace FakerDotNet.Fakers
 
     internal class SpaceFaker : ISpaceFaker
     {
-        private static readonly SpaceData Data = new SpaceData();
-        private static readonly NumberFaker NumberFaker = new NumberFaker();
-
         private readonly IFakerContainer _fakerContainer;
 
         public SpaceFaker(IFakerContainer fakerContainer)
@@ -35,72 +31,74 @@ namespace FakerDotNet.Fakers
 
         public string Planet()
         {
-            return _fakerContainer.Random.Element(Data.Planets);
+            return _fakerContainer.Random.Element(SpaceData.Planets);
         }
 
         public string Moon()
         {
-            return _fakerContainer.Random.Element(Data.Moons);
+            return _fakerContainer.Random.Element(SpaceData.Moons);
         }
 
         public string Galaxy()
         {
-            return _fakerContainer.Random.Element(Data.Galaxies);
+            return _fakerContainer.Random.Element(SpaceData.Galaxies);
         }
 
         public string Nebula()
         {
-            return _fakerContainer.Random.Element(Data.Nebulas);
+            return _fakerContainer.Random.Element(SpaceData.Nebulas);
         }
 
         public string StarCluster()
         {
-            return _fakerContainer.Random.Element(Data.StarClusters);
+            return _fakerContainer.Random.Element(SpaceData.StarClusters);
         }
 
         public string Constellation()
         {
-            return _fakerContainer.Random.Element(Data.Constellations);
+            return _fakerContainer.Random.Element(SpaceData.Constellations);
         }
 
         public string Star()
         {
-            return _fakerContainer.Random.Element(Data.Stars);
+            return _fakerContainer.Random.Element(SpaceData.Stars);
         }
 
         public string Agency()
         {
-            return _fakerContainer.Random.Element(Data.Agencies);
+            return _fakerContainer.Random.Element(SpaceData.Agencies);
         }
 
         public string AgencyAbv()
         {
-            return _fakerContainer.Random.Element(Data.AgencyAbvs);
+            return _fakerContainer.Random.Element(SpaceData.AgencyAbvs);
         }
 
         public string NasaSpaceCraft()
         {
-            return _fakerContainer.Random.Element(Data.NasaSpaceCraft);
+            return _fakerContainer.Random.Element(SpaceData.NasaSpaceCraft);
         }
 
         public string Company()
         {
-            return _fakerContainer.Random.Element(Data.Companies);
+            return _fakerContainer.Random.Element(SpaceData.Companies);
         }
 
         public string DistanceMeasurement()
         {
-            return $"{NumberFaker.Number(2)} {_fakerContainer.Random.Element(Data.DistanceMeasurements)}";
+            return string.Join(" ",
+                _fakerContainer.Number.Number(2),
+                _fakerContainer.Random.Element(SpaceData.DistanceMeasurements));
         }
 
         public string Meteorite()
         {
-            return _fakerContainer.Random.Element(Data.Meteorites);
+            return _fakerContainer.Random.Element(SpaceData.Meteorites);
         }
 
         public string LaunchVehicle()
         {
-            return _fakerContainer.Random.Element(Data.LaunchVehicles);
+            return _fakerContainer.Random.Element(SpaceData.LaunchVehicles);
         }
     }
 }

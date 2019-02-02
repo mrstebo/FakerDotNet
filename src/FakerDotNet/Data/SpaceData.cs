@@ -2,9 +2,9 @@
 
 namespace FakerDotNet.Data
 {
-    internal class SpaceData
+    internal static class SpaceData
     {
-        public IEnumerable<string> Planets => new[]
+        public static readonly IEnumerable<string> Planets = new[]
         {
             "Mercury",
             "Venus",
@@ -16,7 +16,7 @@ namespace FakerDotNet.Data
             "Neptune"
         };
 
-        public IEnumerable<string> Moons => new[]
+        public static readonly IEnumerable<string> Moons = new[]
         {
             "Moon",
             "Luna",
@@ -40,7 +40,7 @@ namespace FakerDotNet.Data
             "Proteus"
         };
 
-        public IEnumerable<string> Galaxies => new[]
+        public static readonly IEnumerable<string> Galaxies = new[]
         {
             "Milky Way",
             "Andromeda",
@@ -54,7 +54,7 @@ namespace FakerDotNet.Data
             "Messier 83"
         };
 
-        public IEnumerable<string> Nebulas => new[]
+        public static readonly IEnumerable<string> Nebulas = new[]
         {
             "Lagoon Nebula",
             "Eagle Nebula",
@@ -66,7 +66,7 @@ namespace FakerDotNet.Data
             "Owl Nebula"
         };
 
-        public IEnumerable<string> StarClusters => new[]
+        public static readonly IEnumerable<string> StarClusters = new[]
         {
             "Wild Duck",
             "Hyades",
@@ -100,7 +100,7 @@ namespace FakerDotNet.Data
             "Segue 3"
         };
 
-        public IEnumerable<string> Constellations => new[]
+        public static readonly IEnumerable<string> Constellations = new[]
         {
             "Big Dipper",
             "Litte Dipper",
@@ -125,7 +125,7 @@ namespace FakerDotNet.Data
             "Auriga"
         };
 
-        public IEnumerable<string> Stars => new[]
+        public static readonly IEnumerable<string> Stars = new[]
         {
             "Sun",
             "Proxima Centauri",
@@ -148,7 +148,7 @@ namespace FakerDotNet.Data
             "Polaris"
         };
 
-        public IEnumerable<string> Agencies => new[]
+        public static readonly IEnumerable<string> Agencies = new[]
         {
             "National Aeronautics and Space Administration",
             "European Space Agency",
@@ -166,7 +166,7 @@ namespace FakerDotNet.Data
             "Swedish National Space Board"
         };
 
-        public IEnumerable<string> AgencyAbvs => new[]
+        public static readonly IEnumerable<string> AgencyAbvs = new[]
         {
             "NASA",
             "AEM",
@@ -185,7 +185,7 @@ namespace FakerDotNet.Data
             "SNSB"
         };
 
-        public IEnumerable<string> NasaSpaceCraft => new[]
+        public static readonly IEnumerable<string> NasaSpaceCraft = new[]
         {
             "Orion",
             "Mercury",
@@ -199,7 +199,7 @@ namespace FakerDotNet.Data
             "Endeavour"
         };
 
-        public IEnumerable<string> Companies => new[]
+        public static readonly IEnumerable<string> Companies = new[]
         {
             "Rocket Lab",
             "SpaceX",
@@ -212,7 +212,7 @@ namespace FakerDotNet.Data
             "NASA Jet Propulsion Laboratory"
         };
 
-        public IEnumerable<string> DistanceMeasurements => new[]
+        public static readonly IEnumerable<string> DistanceMeasurements = new[]
         {
             "light years",
             "AU",
@@ -221,7 +221,7 @@ namespace FakerDotNet.Data
             "megaparsecs"
         };
 
-        public IEnumerable<string> Meteorites => new[]
+        public static readonly IEnumerable<string> Meteorites = new[]
         {
             "Aarhus",
             "Abee",
@@ -366,7 +366,7 @@ namespace FakerDotNet.Data
             "Zaklodzie"
         };
 
-        public IEnumerable<string> LaunchVehicles => new[]
+        public static readonly IEnumerable<string> LaunchVehicles = new[]
         {
             "Antares",
             "Ariane 5",

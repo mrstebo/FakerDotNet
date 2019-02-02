@@ -91,7 +91,7 @@ namespace FakerDotNet
             RickAndMorty = new RickAndMortyFaker(this);
             RockBand = new RockBandFaker(this);
             SlackEmoji = new SlackEmojiFaker(this);
-            Space = new SpaceFaker();
+            Space = new SpaceFaker(this);
             StarWars = new StarWarsFaker(this);
             Superhero = new SuperheroFaker(this);
             Team = new TeamFaker(this);

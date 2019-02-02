@@ -31,6 +31,7 @@ namespace FakerDotNet
         public static IHackerFaker Hacker { get; } = Container.Hacker;
         public static IHarryPotterFaker HarryPotter { get; } = Container.HarryPotter;
         public static IInternetFaker Internet { get; } = Container.Internet;
+        public static ILordOfTheRingsFaker LordOfTheRings { get; } = Container.LordOfTheRings;
         public static ILoremFaker Lorem { get; } = Container.Lorem;
         public static IMusicFaker Music { get; } = Container.Music;
         public static INameFaker Name { get; } = Container.Name;
@@ -51,6 +52,5 @@ namespace FakerDotNet
         public static IUniversityFaker University { get; } = Container.University;
         public static IVehicleFaker Vehicle {get; } = Container.Vehicle;
         public static IZeldaFaker Zelda { get; } = Container.Zelda;
-        public static ILordOfTheRingsFaker LordOfTheRings { get; } = Container.LordOfTheRings;
     }
 }

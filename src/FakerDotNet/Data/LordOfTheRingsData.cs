@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
-    internal class LordOfTheRingsData
+    internal static class LordOfTheRingsData
     {
-        public IEnumerable<string> Characters => new[]
+        public static readonly IEnumerable<string> Characters = new[]
         {
             "Aragorn",
             "Arwen",
@@ -272,7 +270,7 @@ namespace FakerDotNet.Data
             "Witch-king of Angmar"
         };
 
-        public IEnumerable<string> Locations => new[]
+        public static readonly IEnumerable<string> Locations = new[]
         {
             "Almaren",
             "Amon Hen",

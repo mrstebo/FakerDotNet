@@ -2,9 +2,6 @@
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FakerDotNet.Tests.Fakers
 {
@@ -12,11 +9,6 @@ namespace FakerDotNet.Tests.Fakers
     [Parallelizable]
     public class LordOfTheRingsFakerTests
     {
-
-        private static readonly LordOfTheRingsData Data = new LordOfTheRingsData();
-        private IFakerContainer _fakerContainer;
-        private ILordOfTheRingsFaker _lordOfTheRingsFaker;
-
         [SetUp]
         public void SetUp()
         {
@@ -24,25 +16,25 @@ namespace FakerDotNet.Tests.Fakers
             _lordOfTheRingsFaker = new LordOfTheRingsFaker(_fakerContainer);
         }
 
+        private IFakerContainer _fakerContainer;
+        private ILordOfTheRingsFaker _lordOfTheRingsFaker;
+
         [Test]
         public void Character_Returns_a_Character()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Characters)))
-                .Returns("Kaci");
+            A.CallTo(() => _fakerContainer.Random.Element(LordOfTheRingsData.Characters))
+                .Returns("Legolas");
 
-            Assert.AreEqual("Kaci", _lordOfTheRingsFaker.Character());
+            Assert.AreEqual("Legolas", _lordOfTheRingsFaker.Character());
         }
 
         [Test]
         public void Location_Returns_a_Location()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Locations)))
-                .Returns("Kaci");
+            A.CallTo(() => _fakerContainer.Random.Element(LordOfTheRingsData.Locations))
+                .Returns("Helm's Deep");
 
-            Assert.AreEqual("Kaci", _lordOfTheRingsFaker.Location());
+            Assert.AreEqual("Helm's Deep", _lordOfTheRingsFaker.Location());
         }
-
     }
 }

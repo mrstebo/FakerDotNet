@@ -26,128 +26,128 @@ namespace FakerDotNet.Tests.Fakers
         public void Planet_returns_a_planet()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Planets))
-                .Returns(SpaceData.Planets.First());
+                .Returns("Venus");
 
-            Assert.AreEqual(SpaceData.Planets.First(), _spaceFaker.Planet());
+            Assert.AreEqual("Venus", _spaceFaker.Planet());
         }
 
         [Test]
         public void Moon_returns_a_moon()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Moons))
-                .Returns(SpaceData.Moons.First());
+                .Returns("Europa");
 
-            Assert.AreEqual(SpaceData.Moons.First(), _spaceFaker.Moon());
+            Assert.AreEqual("Europa", _spaceFaker.Moon());
         }
 
         [Test]
         public void Galaxy_returns_a_galaxy()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Galaxies))
-                .Returns(SpaceData.Galaxies.First());
+                .Returns("Andromeda");
 
-            Assert.AreEqual(SpaceData.Galaxies.First(), _spaceFaker.Galaxy());
+            Assert.AreEqual("Andromeda", _spaceFaker.Galaxy());
         }
 
         [Test]
         public void Nebula_returns_a_nebula()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Nebulas))
-                .Returns(SpaceData.Nebulas.First());
+                .Returns("Triffid Nebula");
 
-            Assert.AreEqual(SpaceData.Nebulas.First(), _spaceFaker.Nebula());
+            Assert.AreEqual("Triffid Nebula", _spaceFaker.Nebula());
         }
 
         [Test]
         public void StarCluster_returns_a_star_cluster()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.StarClusters))
-                .Returns(SpaceData.StarClusters.First());
+                .Returns("Messier 70");
 
-            Assert.AreEqual(SpaceData.StarClusters.First(), _spaceFaker.StarCluster());
+            Assert.AreEqual("Messier 70", _spaceFaker.StarCluster());
         }
 
         [Test]
         public void Constellation_returns_a_constellation()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Constellations))
-                .Returns(SpaceData.Constellations.First());
+                .Returns("Orion");
 
-            Assert.AreEqual(SpaceData.Constellations.First(), _spaceFaker.Constellation());
+            Assert.AreEqual("Orion", _spaceFaker.Constellation());
         }
 
         [Test]
         public void Star_returns_a_star()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Stars))
-                .Returns(SpaceData.Stars.First());
+                .Returns("Proxima Centauri");
 
-            Assert.AreEqual(SpaceData.Stars.First(), _spaceFaker.Star());
+            Assert.AreEqual("Proxima Centauri", _spaceFaker.Star());
         }
 
         [Test]
         public void Agency_returns_an_agency()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Agencies))
-                .Returns(SpaceData.Agencies.First());
+                .Returns("Japan Aerospace Exploration Agency");
 
-            Assert.AreEqual(SpaceData.Agencies.First(), _spaceFaker.Agency());
+            Assert.AreEqual("Japan Aerospace Exploration Agency", _spaceFaker.Agency());
         }
 
         [Test]
-        public void AgencyAbv_returns_an_agency_abreviation()
+        public void AgencyAbv_returns_an_agency_abbreviation()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.AgencyAbvs))
-                .Returns(SpaceData.AgencyAbvs.First());
+                .Returns("NASA");
 
-            Assert.AreEqual(SpaceData.AgencyAbvs.First(), _spaceFaker.AgencyAbv());
+            Assert.AreEqual("NASA", _spaceFaker.AgencyAbv());
         }
 
         [Test]
         public void NasaSpaceCraft_returns_a_nasa_spacecraft()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.NasaSpaceCraft))
-                .Returns(SpaceData.NasaSpaceCraft.First());
+                .Returns("Endeavour");
 
-            Assert.AreEqual(SpaceData.NasaSpaceCraft.First(), _spaceFaker.NasaSpaceCraft());
+            Assert.AreEqual("Endeavour", _spaceFaker.NasaSpaceCraft());
         }
 
         [Test]
         public void Company_returns_a_company()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Companies))
-                .Returns(SpaceData.Companies.First());
+                .Returns("SpaceX");
 
-            Assert.AreEqual(SpaceData.Companies.First(), _spaceFaker.Company());
+            Assert.AreEqual("SpaceX", _spaceFaker.Company());
         }
 
         [Test]
         public void DistanceMeasurement_returns_a_distance_measurement_with_two_digit_number()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(SpaceData.DistanceMeasurements))
-                .Returns(SpaceData.DistanceMeasurements.First());
             A.CallTo(() => _fakerContainer.Number.Number(2))
                 .Returns("15");
+            A.CallTo(() => _fakerContainer.Random.Element(SpaceData.DistanceMeasurements))
+                .Returns("parsecs");
 
-            Assert.AreEqual($"15 {SpaceData.DistanceMeasurements.First()}", _spaceFaker.DistanceMeasurement());
+            Assert.AreEqual($"15 parsecs", _spaceFaker.DistanceMeasurement());
         }
 
         [Test]
         public void Meteorite_returns_a_meteorite()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.Meteorites))
-                .Returns(SpaceData.Meteorites.First());
+                .Returns("Ensisheim");
 
-            Assert.AreEqual(SpaceData.Meteorites.First(), _spaceFaker.Meteorite());
+            Assert.AreEqual("Ensisheim", _spaceFaker.Meteorite());
         }
 
         [Test]
         public void LaunchVehicle_returns_a_launch_vehicle()
         {
             A.CallTo(() => _fakerContainer.Random.Element(SpaceData.LaunchVehicles))
-                .Returns(SpaceData.LaunchVehicles.First());
+                .Returns("Saturn IV");
 
-            Assert.AreEqual(SpaceData.LaunchVehicles.First(), _spaceFaker.LaunchVehicle());
+            Assert.AreEqual("Saturn IV", _spaceFaker.LaunchVehicle());
         }
     }
 }

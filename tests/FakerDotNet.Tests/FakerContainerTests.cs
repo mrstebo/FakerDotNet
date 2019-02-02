@@ -106,6 +106,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Educator_returns_IEducatorFaker()
+        {
+            Assert.IsInstanceOf<IEducatorFaker>(_fakerContainer.Educator);
+        }
+
+        [Test]
         public void Fake_returns_IFakeFaker()
         {
             Assert.IsInstanceOf<IFakeFaker>(_fakerContainer.Fake);

@@ -19,6 +19,7 @@ namespace FakerDotNet
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
         IDragonBallFaker DragonBall { get; }
+        IEducatorFaker Educator { get; }
         IFakeFaker Fake { get; }
         IFileFaker File { get; }
         IFillmurrayFaker Fillmurray { get; }
@@ -68,6 +69,7 @@ namespace FakerDotNet
             Company = new CompanyFaker(this);
             Date = new DateFaker();
             DragonBall = new DragonBallFaker(this);
+            Educator = new EducatorFaker(this);
             Fake = new FakeFaker(this);
             File = new FileFaker(this);
             Fillmurray = new FillmurrayFaker();
@@ -113,6 +115,7 @@ namespace FakerDotNet
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }
         public IDragonBallFaker DragonBall { get; }
+        public IEducatorFaker Educator { get; }
         public IFakeFaker Fake { get; }
         public IFileFaker File { get; }
         public IFillmurrayFaker Fillmurray { get; }

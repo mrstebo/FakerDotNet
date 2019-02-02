@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FakeItEasy;
 using FakerDotNet.Data;
 using FakerDotNet.Fakers;
@@ -17,16 +16,13 @@ namespace FakerDotNet.Tests.Fakers
             _bookFaker = new BookFaker(_fakerContainer);
         }
 
-        private static readonly BookData Data = new BookData();
-
         private IFakerContainer _fakerContainer;
         private IBookFaker _bookFaker;
 
         [Test]
         public void Title_returns_a_title()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Titles)))
+            A.CallTo(() => _fakerContainer.Random.Element(BookData.Titles))
                 .Returns("The Odd Sister");
 
             Assert.AreEqual("The Odd Sister", _bookFaker.Title());
@@ -44,8 +40,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Publisher_returns_a_publisher()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Publishers)))
+            A.CallTo(() => _fakerContainer.Random.Element(BookData.Publishers))
                 .Returns("Opus Reader");
 
             Assert.AreEqual("Opus Reader", _bookFaker.Publisher());
@@ -54,8 +49,7 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Genre_returns_a_genre()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(Data.Genres)))
+            A.CallTo(() => _fakerContainer.Random.Element(BookData.Genres))
                 .Returns("Mystery");
 
             Assert.AreEqual("Mystery", _bookFaker.Genre());

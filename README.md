@@ -22,6 +22,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.ChuckNorris](doc/chuck_norris.md)
   - [Faker.Coffee](doc/coffee.md)
   - [Faker.Color](doc/color.md)
+  - [Faker.Commerce](doc/commerce.md)
   - [Faker.Company](doc/company.md)
   - [Faker.Date](doc/date.md)
   - [Faker.DragonBall](doc/dragon_ball.md)

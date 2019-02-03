@@ -32,6 +32,7 @@ namespace FakerDotNet
         IInternetFaker Internet { get; }
         ILordOfTheRingsFaker LordOfTheRings { get; }
         ILoremFaker Lorem { get; }
+        IMatzFaker Matz { get; }
         IMusicFaker Music { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
@@ -85,6 +86,7 @@ namespace FakerDotNet
             Internet = new InternetFaker(this);
             LordOfTheRings = new LordOfTheRingsFaker(this);
             Lorem = new LoremFaker(this);
+            Matz = new MatzFaker(this);
             Music = new MusicFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
@@ -134,6 +136,7 @@ namespace FakerDotNet
         public IInternetFaker Internet { get; }
         public ILordOfTheRingsFaker LordOfTheRings { get; }
         public ILoremFaker Lorem { get; }
+        public IMatzFaker Matz { get; }
         public IMusicFaker Music { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }

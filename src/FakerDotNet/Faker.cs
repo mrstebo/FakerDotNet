@@ -34,6 +34,7 @@ namespace FakerDotNet
         public static IInternetFaker Internet { get; } = Container.Internet;
         public static ILordOfTheRingsFaker LordOfTheRings { get; } = Container.LordOfTheRings;
         public static ILoremFaker Lorem { get; } = Container.Lorem;
+        public static IMatzFaker Matz { get; } = Container.Matz;
         public static IMusicFaker Music { get; } = Container.Music;
         public static INameFaker Name { get; } = Container.Name;
         public static INumberFaker Number { get; } = Container.Number;

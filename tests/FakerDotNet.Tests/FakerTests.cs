@@ -176,6 +176,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Matz_returns_IMatzFaker()
+        {
+            Assert.IsInstanceOf<IMatzFaker>(Faker.Matz);
+        }
+
+        [Test]
         public void Music_returns_IMusicFaker()
         {
             Assert.IsInstanceOf<IMusicFaker>(Faker.Music);

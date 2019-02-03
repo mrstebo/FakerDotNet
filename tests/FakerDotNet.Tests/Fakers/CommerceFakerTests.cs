@@ -60,6 +60,15 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
+        public void Department_returns_single_department_if_only_one_department_requested()
+        {
+            A.CallTo(() => _fakerContainer.Random.Assortment(CommerceData.Departments, 1))
+                .Returns(new[] {"Health"});
+
+            Assert.AreEqual("Health", _commerceFaker.Department(1, true));
+        }
+
+        [Test]
         public void Material_returns_a_material()
         {
             A.CallTo(() => _fakerContainer.Random.Element(CommerceData.Materials))

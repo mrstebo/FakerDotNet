@@ -32,10 +32,9 @@ namespace FakerDotNet.Fakers
         public string Department(int max = 3, bool fixedAmount = false)
         {
             var num = fixedAmount ? max : Convert.ToInt32(_fakerContainer.Number.Between(1, max));
-            
-            if (num <= 1) return _fakerContainer.Random.Element(CommerceData.Departments);
-
             var departments = _fakerContainer.Random.Assortment(CommerceData.Departments, num).ToArray();
+
+            if (num == 1) return departments[0];
 
             return string.Join(" & ",
                 string.Join(", ", departments.Take(departments.Length - 1)),

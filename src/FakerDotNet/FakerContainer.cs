@@ -41,6 +41,7 @@ namespace FakerDotNet
         IRandomFaker Random { get; }
         IRickAndMortyFaker RickAndMorty { get; }
         IRockBandFaker RockBand { get; }
+        IRuPaulFaker RuPaul { get; }
         ISlackEmojiFaker SlackEmoji { get; }
         ISpaceFaker Space { get; }
         IStarWarsFaker StarWars { get; }
@@ -94,6 +95,7 @@ namespace FakerDotNet
             Random = new RandomFaker();
             RickAndMorty = new RickAndMortyFaker(this);
             RockBand = new RockBandFaker(this);
+            RuPaul = new RuPaulFaker(this);
             SlackEmoji = new SlackEmojiFaker(this);
             Space = new SpaceFaker(this);
             StarWars = new StarWarsFaker(this);
@@ -143,6 +145,7 @@ namespace FakerDotNet
         public IRandomFaker Random { get; }
         public IRickAndMortyFaker RickAndMorty { get; }
         public IRockBandFaker RockBand { get; }
+        public IRuPaulFaker RuPaul { get; }
         public ISlackEmojiFaker SlackEmoji { get; }
         public ISpaceFaker Space { get; }
         public IStarWarsFaker StarWars { get; }

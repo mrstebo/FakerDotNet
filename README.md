@@ -46,6 +46,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.Random](doc/random.md)
   - [Faker.RickAndMorty](doc/rick_and_morty.md)
   - [Faker.RockBand](doc/rockband.md)
+  - [Faker.RuPaul](doc/rupaul.md)
   - [Faker.SlackEmoji](doc/slackemoji.md)
   - [Faker.Space](doc/space.md)
   - [Faker.StarWars](doc/star_wars.md)

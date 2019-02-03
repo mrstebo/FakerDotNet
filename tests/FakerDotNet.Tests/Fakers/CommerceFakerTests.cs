@@ -47,7 +47,7 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _fakerContainer.Random.Assortment(CommerceData.Departments, 4))
                 .Returns(new[] {"Grocery", "Books", "Health", "Beauty"});
 
-            Assert.AreEqual("Grocery, Books, Health & Beauty & Tools", _commerceFaker.Department(5));
+            Assert.AreEqual("Grocery, Books, Health & Beauty", _commerceFaker.Department(5));
         }
 
         [Test]

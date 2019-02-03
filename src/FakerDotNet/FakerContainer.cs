@@ -16,6 +16,7 @@ namespace FakerDotNet
         IChuckNorrisFaker ChuckNorris { get; }
         ICoffeeFaker Coffee { get; }
         IColorFaker Color { get; }
+        ICommerceFaker Commerce { get; }
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
         IDragonBallFaker DragonBall { get; }
@@ -68,6 +69,7 @@ namespace FakerDotNet
             ChuckNorris = new ChuckNorrisFaker(this);
             Coffee = new CoffeeFaker(this);
             Color = new ColorFaker(this);
+            Commerce = new CommerceFaker(this);
             Company = new CompanyFaker(this);
             Date = new DateFaker();
             DragonBall = new DragonBallFaker(this);
@@ -116,6 +118,7 @@ namespace FakerDotNet
         public IChuckNorrisFaker ChuckNorris { get; }
         public ICoffeeFaker Coffee { get; }
         public IColorFaker Color { get; }
+        public ICommerceFaker Commerce { get; }
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }
         public IDragonBallFaker DragonBall { get; }

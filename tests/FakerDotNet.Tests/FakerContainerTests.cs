@@ -88,6 +88,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Commerce_returns_ICommerceFaker()
+        {
+            Assert.IsInstanceOf<ICommerceFaker>(_fakerContainer.Commerce);
+        }
+
+        [Test]
         public void Company_returns_ICompanyFaker()
         {
             Assert.IsInstanceOf<ICompanyFaker>(_fakerContainer.Company);

@@ -230,6 +230,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void RuPaul_returns_IRuPaulFaker()
+        {
+            Assert.IsInstanceOf<IRuPaulFaker>(Faker.RuPaul);
+        }
+
+        [Test]
         public void SlackEmoji_returns_ISlackEmoji()
         {
             Assert.IsInstanceOf<ISlackEmojiFaker>(Faker.SlackEmoji);

@@ -176,6 +176,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void LoremFlickr_returns_ILoremFlickrFaker()
+        {
+            Assert.IsInstanceOf<ILoremFlickrFaker>(Faker.LoremFlickr);
+        }
+
+        [Test]
         public void Matz_returns_IMatzFaker()
         {
             Assert.IsInstanceOf<IMatzFaker>(Faker.Matz);

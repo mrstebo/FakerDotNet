@@ -38,6 +38,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
   - [Faker.LordOfTheRings](doc/lord_of_the_rings.md)
   - [Faker.Lorem](doc/lorem.md)
   - [Faker.LoremFlickr](doc/lorem_flickr.md)
+  - [Faker.LoremPixel](doc/lorem_pixel.md)
   - [Faker.Matz](doc/matz.md)
   - [Faker.Music](doc/music.md)
   - [Faker.Name](doc/name.md)

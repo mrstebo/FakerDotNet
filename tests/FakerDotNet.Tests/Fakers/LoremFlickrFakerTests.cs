@@ -1,3 +1,4 @@
+using System;
 using FakeItEasy;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
@@ -32,6 +33,15 @@ namespace FakerDotNet.Tests.Fakers
             Assert.AreEqual(
                 "https://loremflickr.com/50/60",
                 _loremflickrFaker.Image("50x60"));
+        }
+
+        [Test]
+        public void Image_throws_ArgumentException_when_size_is_not_in_a_valid_format()
+        {
+            var ex = Assert.Throws<ArgumentException>(() =>
+                _loremflickrFaker.Image("ABCxDEF"));
+
+            Assert.That(ex.Message.StartsWith("Size should be specified in format 300x300"));
         }
 
         [Test]

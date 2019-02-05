@@ -33,6 +33,7 @@ namespace FakerDotNet
         ILordOfTheRingsFaker LordOfTheRings { get; }
         ILoremFaker Lorem { get; }
         ILoremFlickrFaker LoremFlickr { get; }
+        ILoremPixelFaker LoremPixel { get; }
         IMatzFaker Matz { get; }
         IMusicFaker Music { get; }
         INameFaker Name { get; }
@@ -89,6 +90,7 @@ namespace FakerDotNet
             LordOfTheRings = new LordOfTheRingsFaker(this);
             Lorem = new LoremFaker(this);
             LoremFlickr = new LoremFlickrFaker(this);
+            LoremPixel = new LoremPixelFaker(this);
             Matz = new MatzFaker(this);
             Music = new MusicFaker(this);
             Name = new NameFaker(this);
@@ -141,6 +143,7 @@ namespace FakerDotNet
         public ILordOfTheRingsFaker LordOfTheRings { get; }
         public ILoremFaker Lorem { get; }
         public ILoremFlickrFaker LoremFlickr { get; }
+        public ILoremPixelFaker LoremPixel { get; }
         public IMatzFaker Matz { get; }
         public IMusicFaker Music { get; }
         public INameFaker Name { get; }

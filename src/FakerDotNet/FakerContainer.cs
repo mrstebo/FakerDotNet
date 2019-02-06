@@ -19,6 +19,7 @@ namespace FakerDotNet
         ICommerceFaker Commerce { get; }
         ICompanyFaker Company { get; }
         IDateFaker Date { get; }
+        IDemographicFaker Demographic { get; }
         IDragonBallFaker DragonBall { get; }
         IEducatorFaker Educator { get; }
         IFakeFaker Fake { get; }
@@ -76,6 +77,7 @@ namespace FakerDotNet
             Commerce = new CommerceFaker(this);
             Company = new CompanyFaker(this);
             Date = new DateFaker();
+            Demographic = new DemographicFaker(this);
             DragonBall = new DragonBallFaker(this);
             Educator = new EducatorFaker(this);
             Fake = new FakeFaker(this);
@@ -129,6 +131,7 @@ namespace FakerDotNet
         public ICommerceFaker Commerce { get; }
         public ICompanyFaker Company { get; }
         public IDateFaker Date { get; }
+        public IDemographicFaker Demographic { get; }
         public IDragonBallFaker DragonBall { get; }
         public IEducatorFaker Educator { get; }
         public IFakeFaker Fake { get; }

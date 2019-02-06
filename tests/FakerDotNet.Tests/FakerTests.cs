@@ -98,6 +98,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Demographic_returns_IDemographicFaker()
+        {
+            Assert.IsInstanceOf<IDemographicFaker>(Faker.Demographic);
+        }
+
+        [Test]
         public void DragonBall_returns_IDragonBallFaker()
         {
             Assert.IsInstanceOf<IDragonBallFaker>(Faker.DragonBall);

@@ -172,6 +172,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Hipster_returns_IHipsterFaker()
+        {
+            Assert.IsInstanceOf<IHipsterFaker>(_fakerContainer.Hipster);
+        }
+
+        [Test]
         public void Internet_returns_IInternetFaker()
         {
             Assert.IsInstanceOf<IInternetFaker>(_fakerContainer.Internet);

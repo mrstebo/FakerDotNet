@@ -9,25 +9,28 @@ namespace FakerDotNet.Tests.Fakers
 {
     [TestFixture]
     [Parallelizable]
-    public class LoremFakerTests
+    public class HipsterFakerTests
     {
+        private static readonly IEnumerable<string> WordsWithoutSpaces = HipsterData.Words
+            .Where(word => !word.Contains(" ")); 
+        
         [SetUp]
         public void SetUp()
         {
             _fakerContainer = A.Fake<IFakerContainer>();
-            _loremFaker = new LoremFaker(_fakerContainer);
+            _hipsterFaker = new HipsterFaker(_fakerContainer);
         }
 
         private IFakerContainer _fakerContainer;
-        private ILoremFaker _loremFaker;
+        private IHipsterFaker _hipsterFaker;
 
         [Test]
         public void Word_returns_a_word()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(LoremData.Words))
+            A.CallTo(() => _fakerContainer.Random.Element(HipsterData.Words))
                 .Returns("word");
 
-            Assert.AreEqual("word", _loremFaker.Word());
+            Assert.AreEqual("word", _hipsterFaker.Word());
         }
 
         [Test]
@@ -35,10 +38,11 @@ namespace FakerDotNet.Tests.Fakers
         {
             var words = new[] {"word1", "word2", "word3"};
             
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(words.AsEnumerable());
 
-            CollectionAssert.AreEqual(words, _loremFaker.Words());
+            CollectionAssert.AreEqual(words, _hipsterFaker.Words());
         }
 
         [Test]
@@ -49,10 +53,11 @@ namespace FakerDotNet.Tests.Fakers
         {
             var words = Enumerable.Range(0, count).Select(i => $"word{i}").ToArray();
             
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, count))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), count))
                 .ReturnsNextFromSequence(words.AsEnumerable());
 
-            CollectionAssert.AreEqual(words, _loremFaker.Words(count));
+            CollectionAssert.AreEqual(words, _hipsterFaker.Words(count));
         }
 
         [Test]
@@ -61,81 +66,51 @@ namespace FakerDotNet.Tests.Fakers
             var words = new[] {"word1", "word2", "word3"};
 
             A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 3))
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces.Concat(HipsterData.Supplemental)), 3))
                 .Returns(words);
             
-            CollectionAssert.AreEqual(words, _loremFaker.Words(3, true));
+            CollectionAssert.AreEqual(words, _hipsterFaker.Words(3, true));
         }
 
         [Test]
-        public void Multibyte_returns_a_utf8_encoded_string()
+        public void Words_returns_words_with_spaces_when_specified()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(LoremData.Multibytes))
-                .Returns(new byte[] {240, 159, 152, 128});
+            var words = new[] {"qui", "magni", "craft beer", "est"};
 
-            Assert.AreEqual("😀", _loremFaker.Multibyte());
+            A.CallTo(() => _fakerContainer.Random.Assortment(HipsterData.Words, 3))
+                .Returns(words);
+
+            CollectionAssert.AreEqual(words, _hipsterFaker.Words(3, false, true));
         }
 
         [Test]
-        public void Character_returns_a_character()
+        public void Words_returns_an_empty_array_when_number_of_words_is_less_than_one()
         {
-            A.CallTo(() => _fakerContainer.Random.Element(LoremData.Characters))
-                .Returns("x");
-            
-            Assert.AreEqual("x", _loremFaker.Character());
-        }
-
-        [Test]
-        public void Characters_returns_a_string_of_characters()
-        {
-            A.CallTo(() => _fakerContainer.Random.Element(LoremData.Characters))
-                .Returns("x");
-
-            var expected = string.Join("", Enumerable.Range(0, 255).Select(_ => "x"));
-            
-            Assert.AreEqual(expected, _loremFaker.Characters());
-        }
-
-        [Test]
-        [TestCase(5)]
-        [TestCase(17)]
-        [TestCase(1423)]
-        public void Characters_returns_a_string_with_the_specified_number_of_characters(int count)
-        {
-            A.CallTo(() => _fakerContainer.Random.Element(LoremData.Characters))
-                .Returns("x");
-
-            var expected = string.Join("", Enumerable.Range(0, count).Select(_ => "x"));
-            
-            Assert.AreEqual(expected, _loremFaker.Characters(count));
-        }
-
-        [Test]
-        public void Characters_returns_an_empty_string_when_number_of_characters_is_less_than_one()
-        {
-            Assert.AreEqual("", _loremFaker.Characters(-1));
+            CollectionAssert.IsEmpty(_hipsterFaker.Words(-1));
         }
 
         [Test]
         public void Sentence_returns_a_string_of_words()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 4))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 4))
                 .Returns(new[] {"this", "is", "a", "test"});
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
 
-            Assert.AreEqual("This is a test.", _loremFaker.Sentence());
+            Assert.AreEqual("This is a test.", _hipsterFaker.Sentence());
         }
 
         [Test]
         public void Sentence_returns_a_sentence_with_the_specified_number_of_words()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 5))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 5))
                 .Returns(new[] {"this", "is", "a", "longer", "sentence"});
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
 
-            Assert.AreEqual("This is a longer sentence.", _loremFaker.Sentence(5));
+            Assert.AreEqual("This is a longer sentence.", _hipsterFaker.Sentence(5));
 
         }
 
@@ -143,38 +118,40 @@ namespace FakerDotNet.Tests.Fakers
         public void Sentence_returns_supplemental_words_when_specified()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 4))
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces.Concat(HipsterData.Supplemental)), 4))
                 .Returns(new[] {"this", "is", "a", "test"});
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
 
-            Assert.AreEqual("This is a test.", _loremFaker.Sentence(4, true));
+            Assert.AreEqual("This is a test.", _hipsterFaker.Sentence(4, true));
         }
 
         [Test]
         public void Sentence_includes_random_words_when_specified()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 5))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 5))
                 .Returns(new[] {"this", "is", "a", "longer", "sentence"});
             A.CallTo(() => _fakerContainer.Number.Between(0, 3))
                 .Returns(1);
 
-            Assert.AreEqual("This is a longer sentence.", _loremFaker.Sentence(4, false, 3));
+            Assert.AreEqual("This is a longer sentence.", _hipsterFaker.Sentence(4, false, 3));
         }
 
         [Test]
         public void Sentence_returns_an_empty_string_when_number_of_words_is_less_than_one()
         {
-            Assert.AreEqual("", _loremFaker.Sentence(-1));
+            Assert.AreEqual("", _hipsterFaker.Sentence(-1));
         }
 
         [Test]
         public void Sentences_returns_an_array_of_sentences()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
-                    new[] {"small", "tiny", "micro"},
+                    new[] {"small", "tiny", "micro",},
                     new[] {"alright", "sometimes", "maybe"});
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
@@ -183,14 +160,15 @@ namespace FakerDotNet.Tests.Fakers
             {
                 "Big bad boo.",
                 "Small tiny micro.",
-                "Alright sometimes maybe."
-            }, _loremFaker.Sentences());
+                "Alright sometimes maybe.",
+            }, _hipsterFaker.Sentences());
         }
 
         [Test]
         public void Sentences_returns_an_array_with_the_specified_number_of_sentences()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"});
@@ -201,14 +179,14 @@ namespace FakerDotNet.Tests.Fakers
             {
                 "Big bad boo.",
                 "Small tiny micro."
-            }, _loremFaker.Sentences(2));
+            }, _hipsterFaker.Sentences(2));
         }
 
         [Test]
         public void Sentences_returns_supplemental_words_when_specified()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 3))
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces.Concat(HipsterData.Supplemental)), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"},
@@ -221,19 +199,20 @@ namespace FakerDotNet.Tests.Fakers
                 "Big bad boo.",
                 "Small tiny micro.",
                 "Alright sometimes maybe."
-            }, _loremFaker.Sentences(3, true));
+            }, _hipsterFaker.Sentences(3, true));
         }
 
         [Test]
         public void Sentences_returns_an_empty_array_when_number_of_sentences_is_less_than_one()
         {
-            CollectionAssert.IsEmpty(_loremFaker.Sentences(-1));
+            CollectionAssert.IsEmpty(_hipsterFaker.Sentences(-1));
         }
         
         [Test]
         public void Paragraph_returns_a_string_of_sentences()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"},
@@ -241,27 +220,28 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
 
-            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", _loremFaker.Paragraph());
+            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", _hipsterFaker.Paragraph());
         }
 
         [Test]
         public void Paragraph_returns_a_paragraph_with_the_specified_number_of_sentences()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"});
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
 
-            Assert.AreEqual("Big bad boo. Small tiny micro.", _loremFaker.Paragraph(2));
+            Assert.AreEqual("Big bad boo. Small tiny micro.", _hipsterFaker.Paragraph(2));
         }
 
         [Test]
         public void Paragraph_returns_supplemental_words_when_specified()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 3))
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces.Concat(HipsterData.Supplemental)), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"},
@@ -269,13 +249,14 @@ namespace FakerDotNet.Tests.Fakers
             A.CallTo(() => _fakerContainer.Number.Between(0, 6))
                 .Returns(0);
             
-            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", _loremFaker.Paragraph(3, true));
+            Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", _hipsterFaker.Paragraph(3, true));
         }
 
         [Test]
         public void Paragraph_includes_random_sentences_when_specified()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"big", "bad", "boo"},
                     new[] {"small", "tiny", "micro"},
@@ -286,19 +267,20 @@ namespace FakerDotNet.Tests.Fakers
                 .Returns(1);
 
             Assert.AreEqual("Big bad boo. Small tiny micro. Alright sometimes maybe.", 
-                _loremFaker.Paragraph(2, false, 5));
+                _hipsterFaker.Paragraph(2, false, 5));
         }
 
         [Test]
         public void Paragraph_returns_an_empty_string_when_number_of_sentences_is_less_than_one()
         {
-            Assert.AreEqual("", _loremFaker.Paragraph(-1));
+            Assert.AreEqual("", _hipsterFaker.Paragraph(-1));
         }
 
         [Test]
         public void Paragraphs_returns_an_array_of_paragraphs()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"one", "x", "y"},
                     new[] {"two", "x", "y"},
@@ -317,13 +299,14 @@ namespace FakerDotNet.Tests.Fakers
                 "One x y. Two x y. Three x y.",
                 "Four x y. Five x y. Six x y.",
                 "Seven x y. Eight x y. Nine x y."
-            }, _loremFaker.Paragraphs());
+            }, _hipsterFaker.Paragraphs());
         }
 
         [Test]
         public void Paragraphs_returns_an_array_with_the_specified_number_of_paragraphs()
         {
-            A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
                 .ReturnsNextFromSequence(
                     new[] {"one", "x", "y"},
                     new[] {"two", "x", "y"},
@@ -338,14 +321,14 @@ namespace FakerDotNet.Tests.Fakers
             {
                 "One x y. Two x y. Three x y.",
                 "Four x y. Five x y. Six x y."
-            }, _loremFaker.Paragraphs(2));
+            }, _hipsterFaker.Paragraphs(2));
         }
         
         [Test]
         public void Paragraphs_returns_supplemental_words_when_specified()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(
-                    A<IEnumerable<string>>.That.IsSameSequenceAs(LoremData.Words.Concat(LoremData.Supplemental)), 3))
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces.Concat(HipsterData.Supplemental)), 3))
                 .ReturnsNextFromSequence(
                     new[] {"one", "x", "y"},
                     new[] {"two", "x", "y"},
@@ -364,13 +347,45 @@ namespace FakerDotNet.Tests.Fakers
                 "One x y. Two x y. Three x y.",
                 "Four x y. Five x y. Six x y.",
                 "Seven x y. Eight x y. Nine x y."
-            }, _loremFaker.Paragraphs(3, true));
+            }, _hipsterFaker.Paragraphs(3, true));
         }
         
         [Test]
         public void Paragraphs_returns_an_empty_array_when_number_of_paragraphs_is_less_than_one()
         {
-            CollectionAssert.IsEmpty(_loremFaker.Paragraphs(-1));
+            CollectionAssert.IsEmpty(_hipsterFaker.Paragraphs(-1));
+        }
+
+        [Test]
+        public void ParagraphByChars_returns_a_paragraph()
+        {
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
+                .ReturnsNextFromSequence(
+                    new[] {"one", "x", "y"},
+                    new[] {"two", "x", "y"},
+                    new[] {"three", "x", "y"},
+                    new[] {"four", "x", "y"});
+            A.CallTo(() => _fakerContainer.Number.Between(A<double>.Ignored, A<double>.Ignored))
+                .Returns(0);
+
+            Assert.AreEqual("One x y. Two x y. Three x y.", _hipsterFaker.ParagraphByChars(28));
+        }
+        
+        [Test]
+        public void ParagraphByChars_will_trim_off_the_end()
+        {
+            A.CallTo(() => _fakerContainer.Random.Assortment(
+                    A<IEnumerable<string>>.That.IsSameSequenceAs(WordsWithoutSpaces), 3))
+                .ReturnsNextFromSequence(
+                    new[] {"one", "x", "y"},
+                    new[] {"two", "x", "y"},
+                    new[] {"three", "x", "y"},
+                    new[] {"four", "x", "y"});
+            A.CallTo(() => _fakerContainer.Number.Between(A<double>.Ignored, A<double>.Ignored))
+                .Returns(0);
+
+            Assert.AreEqual("One x y. Two x y. Thre.", _hipsterFaker.ParagraphByChars(23));
         }
     }
 }

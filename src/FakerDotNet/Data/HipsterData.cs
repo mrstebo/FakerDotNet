@@ -210,5 +210,7 @@ namespace FakerDotNet.Data
             "muggle magic",
             "phlogiston"
         };
+
+        public static readonly IEnumerable<string> Supplemental = LoremData.Supplemental;
     }
 }

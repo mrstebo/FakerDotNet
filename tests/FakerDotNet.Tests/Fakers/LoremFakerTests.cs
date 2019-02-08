@@ -169,7 +169,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Sentences_returns_a_collection_of_sentences()
+        public void Sentences_returns_an_array_of_sentences()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
                 .ReturnsNextFromSequence(
@@ -188,7 +188,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Sentences_returns_a_collection_with_the_specified_number_of_sentences()
+        public void Sentences_returns_an_array_with_the_specified_number_of_sentences()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
                 .ReturnsNextFromSequence(
@@ -225,7 +225,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Sentences_returns_an_empty_collection_when_number_of_sentences_is_less_than_one()
+        public void Sentences_returns_an_empty_array_when_number_of_sentences_is_less_than_one()
         {
             CollectionAssert.IsEmpty(_loremFaker.Sentences(-1));
         }
@@ -296,7 +296,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Paragraphs_returns_a_collection_of_paragraphs()
+        public void Paragraphs_returns_an_array_of_paragraphs()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
                 .ReturnsNextFromSequence(
@@ -321,7 +321,7 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void Paragraphs_returns_a_collection_with_the_specified_number_of_paragraphs()
+        public void Paragraphs_returns_an_array_with_the_specified_number_of_paragraphs()
         {
             A.CallTo(() => _fakerContainer.Random.Assortment(LoremData.Words, 3))
                 .ReturnsNextFromSequence(
@@ -368,7 +368,7 @@ namespace FakerDotNet.Tests.Fakers
         }
         
         [Test]
-        public void Paragraphs_returns_an_empty_collection_when_number_of_paragraphs_is_less_than_one()
+        public void Paragraphs_returns_an_empty_array_when_number_of_paragraphs_is_less_than_one()
         {
             CollectionAssert.IsEmpty(_loremFaker.Paragraphs(-1));
         }

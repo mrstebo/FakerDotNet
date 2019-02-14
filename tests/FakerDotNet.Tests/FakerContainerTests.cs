@@ -214,6 +214,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void MichaelScott_returns_IMichaelScottFaker()
+        {
+            Assert.IsInstanceOf<IMichaelScottFaker>(_fakerContainer.MichaelScott);
+        }
+
+        [Test]
         public void Music_returns_IMusicFaker()
         {
             Assert.IsInstanceOf<IMusicFaker>(_fakerContainer.Music);

@@ -37,6 +37,7 @@ namespace FakerDotNet
         ILoremFlickrFaker LoremFlickr { get; }
         ILoremPixelFaker LoremPixel { get; }
         IMatzFaker Matz { get; }
+        IMichaelScottFaker MichaelScott { get; }
         IMusicFaker Music { get; }
         INameFaker Name { get; }
         INumberFaker Number { get; }
@@ -96,6 +97,7 @@ namespace FakerDotNet
             LoremFlickr = new LoremFlickrFaker(this);
             LoremPixel = new LoremPixelFaker(this);
             Matz = new MatzFaker(this);
+            MichaelScott = new MichaelScottFaker(this);
             Music = new MusicFaker(this);
             Name = new NameFaker(this);
             Number = new NumberFaker();
@@ -151,6 +153,7 @@ namespace FakerDotNet
         public ILoremFlickrFaker LoremFlickr { get; }
         public ILoremPixelFaker LoremPixel { get; }
         public IMatzFaker Matz { get; }
+        public IMichaelScottFaker MichaelScott { get; }
         public IMusicFaker Music { get; }
         public INameFaker Name { get; }
         public INumberFaker Number { get; }

@@ -39,6 +39,7 @@ namespace FakerDotNet
         public static ILoremFlickrFaker LoremFlickr { get; } = Container.LoremFlickr;
         public static ILoremPixelFaker LoremPixel { get; } = Container.LoremPixel;
         public static IMatzFaker Matz { get; } = Container.Matz;
+        public static IMichaelScottFaker MichaelScott { get; } = Container.MichaelScott;
         public static IMusicFaker Music { get; } = Container.Music;
         public static INameFaker Name { get; } = Container.Name;
         public static INumberFaker Number { get; } = Container.Number;

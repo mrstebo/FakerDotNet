@@ -27,11 +27,13 @@ namespace FakerDotNet.Fakers
             Match match;
             while ((match = ExtractMatchFrom(result)).Success)
             {
-                var matchData = ExtractMatchDataFrom(match);
-                var faker = GetFaker(matchData.faker);
-                var value = GetValue(faker, matchData.method);
+                var (name, method) = ExtractMatchDataFrom(match);
+                var faker = GetFaker(name);
+                var value = GetValue(faker, method);
+                var start = result.Substring(0, match.Index);
+                var end = result.Substring(match.Index + match.Length);
 
-                result = $"{result.Substring(0, match.Index)}{value}{result.Substring(match.Index + match.Length)}";
+                result = $"{start}{value}{end}";
             }
 
             return result;
@@ -43,7 +45,7 @@ namespace FakerDotNet.Fakers
             return Regex.Match(input, pattern);
         }
         
-        private static (string faker, string method) ExtractMatchDataFrom(Match match)
+        private static (string name, string method) ExtractMatchDataFrom(Match match)
         {
             var className = match.Groups[1].Value;
             var methodName = match.Groups[2].Value;

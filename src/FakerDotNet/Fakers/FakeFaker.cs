@@ -65,14 +65,14 @@ namespace FakerDotNet.Fakers
 
         private string GetValue(PropertyInfo propertyInfo, string methodName)
         {
-            var method = propertyInfo.PropertyType
-                .GetMethod(methodName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-
-            if (method == null) throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
-
+            const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
+            var method = propertyInfo.PropertyType.GetMethod(methodName, flags)
+                ?? throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
+            
             var parameters = method.GetParameters().Select(DefaultValue).ToArray();
+            var value = method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters);
 
-            return Convert.ToString(method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters));
+            return Convert.ToString(value);
         }
 
         private static object DefaultValue(ParameterInfo parameterInfo)

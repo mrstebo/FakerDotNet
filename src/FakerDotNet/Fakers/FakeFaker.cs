@@ -24,12 +24,11 @@ namespace FakerDotNet.Fakers
             if (string.IsNullOrEmpty(format)) return string.Empty;
 
             var result = format;
-            Match match;
+            FakerMatch match;
             while ((match = ExtractMatchFrom(result)).Success)
             {
-                var (name, method) = ExtractMatchDataFrom(match);
-                var faker = GetFaker(name);
-                var value = GetValue(faker, method);
+                var faker = GetFaker(match.Name);
+                var value = GetValue(faker, match.Method);
                 var start = result.Substring(0, match.Index);
                 var end = result.Substring(match.Index + match.Length);
 
@@ -39,18 +38,21 @@ namespace FakerDotNet.Fakers
             return result;
         }
 
-        private static Match ExtractMatchFrom(string input)
+        private static FakerMatch ExtractMatchFrom(string input)
         {
             const string pattern = @"\{(\w+).(\w+)\}";
-            return Regex.Match(input, pattern);
-        }
-        
-        private static (string name, string method) ExtractMatchDataFrom(Match match)
-        {
-            var className = match.Groups[1].Value;
-            var methodName = match.Groups[2].Value;
+            var match = Regex.Match(input, pattern);
 
-            return (className, methodName);
+            return match.Success
+                ? new FakerMatch
+                {
+                    Success = true,
+                    Index = match.Index,
+                    Length = match.Length,
+                    Name = match.Groups[1].Value,
+                    Method = match.Groups[2].Value
+                }
+                : new FakerMatch();
         }
 
         private PropertyInfo GetFaker(string name)
@@ -78,6 +80,15 @@ namespace FakerDotNet.Fakers
             return parameterInfo.ParameterType.IsValueType
                 ? Activator.CreateInstance(parameterInfo.ParameterType)
                 : null;
+        }
+
+        struct FakerMatch
+        {
+            public bool Success;
+            public int Index;
+            public int Length;
+            public string Name;
+            public string Method;
         }
     }
 }

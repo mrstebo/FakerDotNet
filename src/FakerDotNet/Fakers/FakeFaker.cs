@@ -57,10 +57,10 @@ namespace FakerDotNet.Fakers
 
         private PropertyInfo GetFaker(string name)
         {
-            var propertyInfo = _fakerContainer.GetType()
-                .GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-
-            return propertyInfo ?? throw new FormatException($"Invalid module: {name}");
+            const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
+            
+            return _fakerContainer.GetType().GetProperty(name, flags)
+                ?? throw new FormatException($"Invalid module: {name}");
         }
 
         private string GetValue(PropertyInfo propertyInfo, string methodName)

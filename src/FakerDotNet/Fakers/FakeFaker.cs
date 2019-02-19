@@ -82,7 +82,7 @@ namespace FakerDotNet.Fakers
                 : null;
         }
 
-        struct FakerMatch
+        private struct FakerMatch
         {
             public bool Success;
             public int Index;

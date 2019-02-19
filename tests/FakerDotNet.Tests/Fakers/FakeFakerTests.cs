@@ -52,13 +52,11 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void F_with_empty_string_throws_FormatException()
+        public void F_with_empty_string_returns_back_the_empty_string()
         {
             const string format = "";
-
-            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
-
-            Assert.AreEqual("A string must be specified", ex.Message);
+            
+            Assert.AreEqual(format, _fakeFaker.F(format));
         }
 
         [Test]
@@ -82,11 +80,9 @@ namespace FakerDotNet.Tests.Fakers
         }
 
         [Test]
-        public void F_with_null_throws_FormatException()
+        public void F_with_null_returns_an_empty_string()
         {
-            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(null));
-
-            Assert.AreEqual("A string must be specified", ex.Message);
+            Assert.AreEqual(string.Empty, _fakeFaker.F(null));
         }
     }
 }

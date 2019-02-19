@@ -21,48 +21,58 @@ namespace FakerDotNet.Fakers
 
         public string F(string format)
         {
-            if (string.IsNullOrEmpty(format)) throw new FormatException("A string must be specified");
+            if (string.IsNullOrEmpty(format)) return string.Empty;
 
             var result = format;
-            Match match;
-            while ((match = Regex.Match(result, @"\{(\w+).(\w+)\}")).Success)
+            FakerMatch match;
+            while ((match = ExtractMatchFrom(result)).Success)
             {
-                var matchData = ExtractMatchDataFrom(match);
-                var faker = GetFaker(matchData.faker);
-                var value = GetValue(faker, matchData.method);
+                var faker = GetFaker(match.Name);
+                var value = GetValue(faker, match.Method);
+                var start = result.Substring(0, match.Index);
+                var end = result.Substring(match.Index + match.Length);
 
-                result = $"{result.Substring(0, match.Index)}{value}{result.Substring(match.Index + match.Length)}";
+                result = $"{start}{value}{end}";
             }
 
             return result;
         }
-        
-        private static (string faker, string method) ExtractMatchDataFrom(Match match)
-        {
-            var className = match.Groups[1].Value;
-            var methodName = match.Groups[2].Value;
 
-            return (className, methodName);
+        private static FakerMatch ExtractMatchFrom(string input)
+        {
+            const string pattern = @"\{(\w+).(\w+)\}";
+            var match = Regex.Match(input, pattern);
+
+            return match.Success
+                ? new FakerMatch
+                {
+                    Success = true,
+                    Index = match.Index,
+                    Length = match.Length,
+                    Name = match.Groups[1].Value,
+                    Method = match.Groups[2].Value
+                }
+                : new FakerMatch();
         }
 
         private PropertyInfo GetFaker(string name)
         {
-            var propertyInfo = _fakerContainer.GetType()
-                .GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-
-            return propertyInfo ?? throw new FormatException($"Invalid module: {name}");
+            const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
+            
+            return _fakerContainer.GetType().GetProperty(name, flags)
+                ?? throw new FormatException($"Invalid module: {name}");
         }
 
         private string GetValue(PropertyInfo propertyInfo, string methodName)
         {
-            var method = propertyInfo.PropertyType
-                .GetMethod(methodName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-
-            if (method == null) throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
-
+            const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
+            var method = propertyInfo.PropertyType.GetMethod(methodName, flags)
+                ?? throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
+            
             var parameters = method.GetParameters().Select(DefaultValue).ToArray();
+            var value = method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters);
 
-            return Convert.ToString(method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters));
+            return Convert.ToString(value);
         }
 
         private static object DefaultValue(ParameterInfo parameterInfo)
@@ -70,6 +80,15 @@ namespace FakerDotNet.Fakers
             return parameterInfo.ParameterType.IsValueType
                 ? Activator.CreateInstance(parameterInfo.ParameterType)
                 : null;
+        }
+
+        private struct FakerMatch
+        {
+            public bool Success;
+            public int Index;
+            public int Length;
+            public string Name;
+            public string Method;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace FakerDotNet
         IColorFaker Color { get; }
         ICommerceFaker Commerce { get; }
         ICompanyFaker Company { get; }
+        ICompassFaker Compass { get; }
         IDateFaker Date { get; }
         IDemographicFaker Demographic { get; }
         IDragonBallFaker DragonBall { get; }
@@ -78,6 +79,7 @@ namespace FakerDotNet
             Color = new ColorFaker(this);
             Commerce = new CommerceFaker(this);
             Company = new CompanyFaker(this);
+            Compass = new CompassFaker(this);
             Date = new DateFaker();
             Demographic = new DemographicFaker(this);
             DragonBall = new DragonBallFaker(this);
@@ -134,6 +136,7 @@ namespace FakerDotNet
         public IColorFaker Color { get; }
         public ICommerceFaker Commerce { get; }
         public ICompanyFaker Company { get; }
+        public ICompassFaker Compass { get; }
         public IDateFaker Date { get; }
         public IDemographicFaker Demographic { get; }
         public IDragonBallFaker DragonBall { get; }

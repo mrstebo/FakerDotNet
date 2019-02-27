@@ -92,6 +92,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Compass_returns_ICompassFaker()
+        {
+            Assert.IsInstanceOf<ICompassFaker>(Faker.Compass);
+        }
+
+        [Test]
         public void Date_returns_IDateFaker()
         {
             Assert.IsInstanceOf<IDateFaker>(Faker.Date);

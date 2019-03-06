@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -23,19 +24,38 @@ namespace FakerDotNet.Fakers
         {
             if (string.IsNullOrEmpty(format)) return string.Empty;
 
+            var calleeFaker = new StackTrace().GetFrame(1).GetMethod().ReflectedType?.Name;
             var result = format;
             FakerMatch match;
+
+            while ((match = ExtractMatchFrom(calleeFaker, result)).Success)
+            {
+                result = Parse(result, match);
+            }
+            
             while ((match = ExtractMatchFrom(result)).Success)
             {
-                var faker = GetFaker(match.Name);
-                var value = GetValue(faker, match.Method);
-                var start = result.Substring(0, match.Index);
-                var end = result.Substring(match.Index + match.Length);
-
-                result = $"{start}{value}{end}";
+                result = Parse(result, match);
             }
 
             return result;
+        }
+
+        private static FakerMatch ExtractMatchFrom(string calleeFaker, string input)
+        {
+            const string pattern = @"\{(\w+)\}";
+            var match = Regex.Match(input, pattern);
+
+            return match.Success
+                ? new FakerMatch
+                {
+                    Success = true,
+                    Index = match.Index,
+                    Length = match.Length,
+                    Name = calleeFaker,
+                    Method = match.Groups[1].Value
+                }
+                : new FakerMatch();
         }
 
         private static FakerMatch ExtractMatchFrom(string input)
@@ -55,6 +75,16 @@ namespace FakerDotNet.Fakers
                 : new FakerMatch();
         }
 
+        private string Parse(string input, FakerMatch match)
+        {
+            var faker = GetFaker(match.Name);
+            var value = GetValue(faker, match.Method);
+            var start = input.Substring(0, match.Index);
+            var end = input.Substring(match.Index + match.Length);
+
+            return $"{start}{value}{end}";
+        }
+        
         private PropertyInfo GetFaker(string name)
         {
             const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;

@@ -84,5 +84,15 @@ namespace FakerDotNet.Tests.Fakers
         {
             Assert.AreEqual(string.Empty, _fakeFaker.F(null));
         }
+
+        [Test]
+        public void F_with_only_method_name_calls_method_from_callee_module()
+        {
+            const string format = "{FirstName}";
+
+            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
+
+            Assert.AreEqual("Invalid module: FakeFakerTests", ex.Message);
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace FakerDotNet.Fakers
 
         private static FakerMatch ExtractMatchFrom(string input)
         {
-            const string pattern = @"\{(\w+).(\w+)\}";
+            const string pattern = @"\{(\w+)\.(\w+)\}";
             var match = Regex.Match(input, pattern);
 
             return match.Success

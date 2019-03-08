@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -33,18 +33,9 @@ namespace FakerDotNet.Fakers
             if (string.IsNullOrEmpty(format)) return string.Empty;
 
             var calleeFaker = GetCalleeFaker();
-            var result = format;
-            FakerMatch match;
-
-            while ((match = ExtractMatchFrom(calleeFaker, result)).Success)
-            {
-                result = Parse(result, match);
-            }
-            
-            while ((match = ExtractMatchFrom(result)).Success)
-            {
-                result = Parse(result, match);
-            }
+            var placeholders = GetPlaceholders(format).ToArray();
+            var result = placeholders.Aggregate(format,
+                (current, placeholder) => Parse(current, GetFakerMatch(calleeFaker, placeholder, current)));
 
             return result;
         }
@@ -56,48 +47,54 @@ namespace FakerDotNet.Fakers
             return Regex.Replace(callee, @"Faker$", "");
         }
 
-        private static FakerMatch ExtractMatchFrom(string calleeFaker, string input)
+        private static IEnumerable<string> GetPlaceholders(string input)
         {
-            const string pattern = @"\{(\w+)\}";
-            var match = Regex.Match(input, pattern);
+            const string pattern = @"\{(\w+)\}|\{(\w+)\.(\w+)\}";
 
-            return match.Success
-                ? new FakerMatch
-                {
-                    Success = true,
-                    Index = match.Index,
-                    Length = match.Length,
-                    Name = calleeFaker,
-                    Method = match.Groups[1].Value
-                }
-                : new FakerMatch();
+            return Regex.Matches(input, pattern)
+                .Cast<Match>()
+                .Where(x => x.Success)
+                .Select(x => x.Value);
         }
-
-        private static FakerMatch ExtractMatchFrom(string input)
+        
+        private static FakerMatch GetFakerMatch(string calleeFaker, string placeholder, string input)
         {
-            const string pattern = @"\{(\w+)\.(\w+)\}";
+            var pattern = Regex.Escape(placeholder);
             var match = Regex.Match(input, pattern);
+            
+            if (!match.Success) return new FakerMatch();
 
-            return match.Success
-                ? new FakerMatch
-                {
-                    Success = true,
-                    Index = match.Index,
-                    Length = match.Length,
-                    Name = match.Groups[1].Value,
-                    Method = match.Groups[2].Value
-                }
-                : new FakerMatch();
+            var split = match.Value.Replace("{", "").Replace("}", "").Split('.');
+            var name = split.Length > 1 ? split[0] : calleeFaker;
+            var method = split.Length > 1 ? split[1] : split[0];
+
+            return new FakerMatch
+            {
+                Success = true,
+                Index = match.Index,
+                Length = match.Length,
+                Name = name,
+                Method = method
+            };
         }
 
         private string Parse(string input, FakerMatch match)
         {
-            var faker = GetFaker(match.Name);
-            var value = GetValue(faker, match.Method);
-            var start = input.Substring(0, match.Index);
-            var end = input.Substring(match.Index + match.Length);
+            try
+            {
+                if (!match.Success) return input;
 
-            return $"{start}{value}{end}";
+                var faker = GetFaker(match.Name);
+                var value = GetValue(faker, match.Method);
+                var start = input.Substring(0, match.Index);
+                var end = input.Substring(match.Index + match.Length);
+
+                return $"{start}{value}{end}";
+            }
+            catch
+            {
+                return input;
+            }
         }
         
         private PropertyInfo GetFaker(string name)

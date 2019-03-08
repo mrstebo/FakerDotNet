@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using FakerDotNet.Wrappers;
 
 namespace FakerDotNet.Fakers
 {
@@ -14,17 +15,24 @@ namespace FakerDotNet.Fakers
     internal class FakeFaker : IFakeFaker
     {
         private readonly IFakerContainer _fakerContainer;
+        private readonly IStackTraceWrapper _stackTraceWrapper;
 
         public FakeFaker(IFakerContainer fakerContainer)
+            : this(fakerContainer, new StackTraceWrapper())
+        {
+        }
+
+        internal FakeFaker(IFakerContainer fakerContainer, IStackTraceWrapper stackTraceWrapper)
         {
             _fakerContainer = fakerContainer;
+            _stackTraceWrapper = stackTraceWrapper;
         }
 
         public string F(string format)
         {
             if (string.IsNullOrEmpty(format)) return string.Empty;
 
-            var calleeFaker = new StackTrace().GetFrame(1).GetMethod().ReflectedType?.Name;
+            var calleeFaker = GetCalleeFaker();
             var result = format;
             FakerMatch match;
 
@@ -39,6 +47,13 @@ namespace FakerDotNet.Fakers
             }
 
             return result;
+        }
+
+        private string GetCalleeFaker()
+        {
+            var callee = _stackTraceWrapper.GetClassAtFrame(2) ?? "";
+
+            return Regex.Replace(callee, @"Faker$", "");
         }
 
         private static FakerMatch ExtractMatchFrom(string calleeFaker, string input)

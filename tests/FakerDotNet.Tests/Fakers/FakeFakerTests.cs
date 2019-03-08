@@ -1,6 +1,7 @@
 using System;
 using FakeItEasy;
 using FakerDotNet.Fakers;
+using FakerDotNet.Wrappers;
 using NUnit.Framework;
 
 namespace FakerDotNet.Tests.Fakers
@@ -13,10 +14,12 @@ namespace FakerDotNet.Tests.Fakers
         public void SetUp()
         {
             _fakerContainer = A.Fake<IFakerContainer>();
-            _fakeFaker = new FakeFaker(_fakerContainer);
+            _stackTraceWrapper = A.Fake<IStackTraceWrapper>();
+            _fakeFaker = new FakeFaker(_fakerContainer, _stackTraceWrapper);
         }
 
         private IFakerContainer _fakerContainer;
+        private IStackTraceWrapper _stackTraceWrapper;
         private IFakeFaker _fakeFaker;
 
         [Test]
@@ -55,7 +58,7 @@ namespace FakerDotNet.Tests.Fakers
         public void F_with_empty_string_returns_back_the_empty_string()
         {
             const string format = "";
-            
+
             Assert.AreEqual(format, _fakeFaker.F(format));
         }
 
@@ -90,9 +93,38 @@ namespace FakerDotNet.Tests.Fakers
         {
             const string format = "{FirstName}";
 
+            A.CallTo(() => _stackTraceWrapper.GetClassAtFrame(2))
+                .Returns("Name");
+            A.CallTo(() => _fakerContainer.Name.FirstName())
+                .Returns("John");
+
+            Assert.AreEqual("John", _fakeFaker.F(format));
+        }
+
+        [Test]
+        public void F_with_only_method_name_throws_when_module_not_found()
+        {
+            const string format = "{FirstName}";
+
+            A.CallTo(() => _stackTraceWrapper.GetClassAtFrame(2))
+                .Returns("NonExistentFaker");
+
             var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
 
-            Assert.AreEqual("Invalid module: FakeFakerTests", ex.Message);
+            Assert.AreEqual("Invalid module: NonExistent", ex.Message);
+        }
+        
+        [Test]
+        public void F_with_only_method_name_throws_when_method_not_found_in_module()
+        {
+            const string format = "{BadMethod}";
+
+            A.CallTo(() => _stackTraceWrapper.GetClassAtFrame(2))
+                .Returns("Name");
+
+            var ex = Assert.Throws<FormatException>(() => _fakeFaker.F(format));
+
+            Assert.AreEqual("Invalid method: Name.BadMethod", ex.Message);
         }
     }
 }

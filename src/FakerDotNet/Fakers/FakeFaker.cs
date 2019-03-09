@@ -80,8 +80,8 @@ namespace FakerDotNet.Fakers
 
         private string Parse(string input, FakerMatch match)
         {
-            try
-            {
+            // try
+            // {
                 if (!match.Success) return input;
 
                 var faker = GetFaker(match.Name);
@@ -90,11 +90,11 @@ namespace FakerDotNet.Fakers
                 var end = input.Substring(match.Index + match.Length);
 
                 return $"{start}{value}{end}";
-            }
-            catch
-            {
-                return input;
-            }
+            // }
+            // catch
+            // {
+            //     return input;
+            // }
         }
         
         private PropertyInfo GetFaker(string name)

@@ -44,7 +44,7 @@ namespace FakerDotNet.Fakers
         {
             var callee = _stackTraceWrapper.GetClassAtFrame(2) ?? "";
 
-            return Regex.Replace(callee, @"Faker$", "");
+            return Regex.Replace(callee, @"(Faker|FakerTests)$", "");
         }
 
         private static IEnumerable<string> GetPlaceholders(string input)
@@ -61,9 +61,6 @@ namespace FakerDotNet.Fakers
         {
             var pattern = Regex.Escape(placeholder);
             var match = Regex.Match(input, pattern);
-            
-            if (!match.Success) return new FakerMatch();
-
             var split = match.Value.Replace("{", "").Replace("}", "").Split('.');
             var name = split.Length > 1 ? split[0] : calleeFaker;
             var method = split.Length > 1 ? split[1] : split[0];
@@ -82,8 +79,6 @@ namespace FakerDotNet.Fakers
         {
             try
             {
-                if (!match.Success) return input;
-
                 var faker = GetFaker(match.Name);
                 var value = GetValue(faker, match.Method);
                 var start = input.Substring(0, match.Index);

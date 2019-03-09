@@ -37,7 +37,7 @@ namespace FakerDotNet.Fakers
             var result = placeholders.Aggregate(format,
                 (current, placeholder) => Parse(current, GetFakerMatch(calleeFaker, placeholder, current)));
 
-            return result;
+            return Numerify(result);
         }
 
         private string GetCalleeFaker()
@@ -124,6 +124,11 @@ namespace FakerDotNet.Fakers
                 : null;
         }
 
+        private string Numerify(string input)
+        {
+            return Regex.Replace(input, "#", m => _fakerContainer.Number.NonZeroDigit());
+        }
+        
         private struct FakerMatch
         {
             public bool Success;

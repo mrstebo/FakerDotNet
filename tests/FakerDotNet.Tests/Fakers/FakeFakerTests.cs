@@ -132,5 +132,16 @@ namespace FakerDotNet.Tests.Fakers
 
             Assert.AreEqual("John Smith", _fakeFaker.F(format));
         }
+
+        [Test]
+        public void F_converts_hashes_to_numbers()
+        {
+            const string format = "My Number is ####";
+
+            A.CallTo(() => _fakerContainer.Number.NonZeroDigit())
+                .ReturnsNextFromSequence("5", "3", "1", "8");
+
+            Assert.AreEqual("My Number is 5318", _fakeFaker.F(format));
+        }
     }
 }

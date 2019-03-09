@@ -190,9 +190,7 @@ namespace FakerDotNet.Fakers
         
         private string Parse(string format)
         {
-            var text = Regex.Replace(format, @"\{(\w+)\}", @"{Company.$1}");
-
-            return _fakerContainer.Fake.F(text);
+            return _fakerContainer.Fake.F(format);
         }
     }
 }

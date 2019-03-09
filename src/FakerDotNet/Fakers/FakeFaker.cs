@@ -44,7 +44,7 @@ namespace FakerDotNet.Fakers
         {
             var callee = _stackTraceWrapper.GetClassAtFrame(2) ?? "";
 
-            return Regex.Replace(callee, @"Faker$", "");
+            return Regex.Replace(callee, @"(Faker|FakerTests)$", "");
         }
 
         private static IEnumerable<string> GetPlaceholders(string input)

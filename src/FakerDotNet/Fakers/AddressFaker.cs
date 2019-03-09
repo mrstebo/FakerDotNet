@@ -149,11 +149,7 @@ namespace FakerDotNet.Fakers
 
         private string Parse(string format)
         {
-            var text = Regex.Replace(format, @"\{(\w+)\}", @"{Address.$1}");
-
-            text = Regex.Replace(text, "#", m => _fakerContainer.Number.NonZeroDigit());
-
-            return _fakerContainer.Fake.F(text);
+            return _fakerContainer.Fake.F(format);
         }
     }
 }

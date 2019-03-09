@@ -61,9 +61,6 @@ namespace FakerDotNet.Fakers
         {
             var pattern = Regex.Escape(placeholder);
             var match = Regex.Match(input, pattern);
-            
-            if (!match.Success) return new FakerMatch();
-
             var split = match.Value.Replace("{", "").Replace("}", "").Split('.');
             var name = split.Length > 1 ? split[0] : calleeFaker;
             var method = split.Length > 1 ? split[1] : split[0];
@@ -80,21 +77,19 @@ namespace FakerDotNet.Fakers
 
         private string Parse(string input, FakerMatch match)
         {
-            try
-            {
-                if (!match.Success) return input;
-
+            // try
+            // {
                 var faker = GetFaker(match.Name);
                 var value = GetValue(faker, match.Method);
                 var start = input.Substring(0, match.Index);
                 var end = input.Substring(match.Index + match.Length);
 
                 return $"{start}{value}{end}";
-            }
-            catch
-            {
-                return input;
-            }
+            // }
+            // catch
+            // {
+            //     return input;
+            // }
         }
         
         private PropertyInfo GetFaker(string name)

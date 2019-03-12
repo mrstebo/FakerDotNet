@@ -56,7 +56,7 @@ namespace FakerDotNet.Fakers
                 .Where(x => x.Success)
                 .Select(x => x.Value);
         }
-        
+
         private static FakerMatch GetFakerMatch(string calleeFaker, string placeholder, string input)
         {
             var pattern = Regex.Escape(placeholder);
@@ -91,11 +91,11 @@ namespace FakerDotNet.Fakers
                 return input;
             }
         }
-        
+
         private PropertyInfo GetFaker(string name)
         {
             const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
-            
+
             return _fakerContainer.GetType().GetProperty(name, flags)
                 ?? throw new FormatException($"Invalid module: {name}");
         }
@@ -105,7 +105,7 @@ namespace FakerDotNet.Fakers
             const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
             var method = propertyInfo.PropertyType.GetMethod(methodName, flags)
                 ?? throw new FormatException($"Invalid method: {propertyInfo.Name}.{methodName}");
-            
+
             var parameters = method.GetParameters().Select(DefaultValue).ToArray();
             var value = method.Invoke(propertyInfo.GetValue(_fakerContainer, null), parameters);
 
@@ -123,7 +123,7 @@ namespace FakerDotNet.Fakers
         {
             return Regex.Replace(input, "#", m => _fakerContainer.Number.NonZeroDigit());
         }
-        
+
         private struct FakerMatch
         {
             public bool Success;

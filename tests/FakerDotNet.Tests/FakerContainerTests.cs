@@ -40,6 +40,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void Bank_returns_IBankFaker()
+        {
+            Assert.IsInstanceOf<IBankFaker>(_fakerContainer.Bank);
+        }
+
+        [Test]
         public void Beer_returns_IBeerFaker()
         {
             Assert.IsInstanceOf<IBeerFaker>(_fakerContainer.Beer);

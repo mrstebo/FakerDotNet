@@ -8,6 +8,7 @@ namespace FakerDotNet
         IAncientFaker Ancient { get; }
         IAppFaker App { get; }
         IAvatarFaker Avatar { get; }
+        IBankFaker Bank { get; }
         IBeerFaker Beer { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
@@ -69,6 +70,7 @@ namespace FakerDotNet
             Ancient = new AncientFaker(this);
             App = new AppFaker(this);
             Avatar = new AvatarFaker(this);
+            Bank = new BankFaker(this);
             Beer = new BeerFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
@@ -126,6 +128,7 @@ namespace FakerDotNet
         public IAncientFaker Ancient { get; }
         public IAppFaker App { get; }
         public IAvatarFaker Avatar { get; }
+        public IBankFaker Bank { get; }
         public IBeerFaker Beer { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }

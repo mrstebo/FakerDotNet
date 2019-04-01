@@ -10,6 +10,7 @@ namespace FakerDotNet
         public static IAncientFaker Ancient { get; } = Container.Ancient;
         public static IAppFaker App { get; } = Container.App;
         public static IAvatarFaker Avatar { get; } = Container.Avatar;
+        public static IBankFaker Bank { get; } = Container.Bank;
         public static IBeerFaker Beer { get; } = Container.Beer;
         public static IBookFaker Book { get; } = Container.Book;
         public static IBooleanFaker Boolean { get; } = Container.Boolean;

@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace FakerDotNet.FakerUtils.RegexifyReplacers
+namespace FakerDotNet.FakerUtils.RegexifyParsers
 {
-    internal class DitchAnchors : IRegexifyReplacer
+    internal class DitchAnchors : IRegexifyParser
     {
         public string Run(string pattern)
         {

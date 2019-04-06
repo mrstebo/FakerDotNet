@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace FakerDotNet.FakerUtils.RegexifyReplacers
+namespace FakerDotNet.FakerUtils.RegexifyParsers
 {
-    internal class ParseNumbers : IRegexifyReplacer
+    internal class ParseNumbers : IRegexifyParser
     {
         private readonly IFakerContainer _fakerContainer;
 
@@ -13,7 +13,7 @@ namespace FakerDotNet.FakerUtils.RegexifyReplacers
 
         public string Run(string pattern)
         {
-            return Regex.Replace(pattern, @"\d", _ => _fakerContainer.Number.Digit());
+            return Regex.Replace(pattern, @"\\d", _ => _fakerContainer.Number.Digit());
         }
     }
 }

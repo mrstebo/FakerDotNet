@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FakerDotNet.FakerUtils.RegexifyReplacers;
+using FakerDotNet.FakerUtils.RegexifyParsers;
 
 namespace FakerDotNet.FakerUtils
 {
@@ -11,11 +11,11 @@ namespace FakerDotNet.FakerUtils
     
     internal class Regexify : IRegexify
     {
-        private readonly IList<IRegexifyReplacer> _regexifyReplacers;
+        private readonly IList<IRegexifyParser> _parsers;
 
         public Regexify(IFakerContainer fakerContainer)
         {
-            _regexifyReplacers = new IRegexifyReplacer[]
+            _parsers = new IRegexifyParser[]
             {
                 new DitchAnchors(),
                 new NumberPatternToRange(),
@@ -30,7 +30,7 @@ namespace FakerDotNet.FakerUtils
 
         public string Parse(string pattern)
         {
-            return _regexifyReplacers.Aggregate(pattern ?? "", (result, replacer) => replacer.Run(result));
+            return _parsers.Aggregate(pattern ?? "", (result, replacer) => replacer.Run(result));
         }
     }
 }

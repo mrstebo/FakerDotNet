@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace FakerDotNet.FakerUtils.RegexifyReplacers
+namespace FakerDotNet.FakerUtils.RegexifyParsers
 {
-    internal class ParseLetters : IRegexifyReplacer
+    internal class ParseLetters : IRegexifyParser
     {
         private readonly IFakerContainer _fakerContainer;
 
@@ -13,7 +13,7 @@ namespace FakerDotNet.FakerUtils.RegexifyReplacers
 
         public string Run(string pattern)
         {
-            return Regex.Replace(pattern, @"\w", _ => _fakerContainer.Lorem.Character());
+            return Regex.Replace(pattern, @"\\w", _ => _fakerContainer.Lorem.Character());
         }
     }
 }

@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace FakerDotNet.FakerUtils.RegexifyReplacers
+namespace FakerDotNet.FakerUtils.RegexifyParsers
 {
-    internal class ReplaceOneOfWordsWithWord : IRegexifyReplacer
+    internal class ReplaceOneOfWordsWithWord : IRegexifyParser
     {
         private readonly IFakerContainer _fakerContainer;
 

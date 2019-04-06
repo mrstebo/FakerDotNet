@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace FakerDotNet.FakerUtils.RegexifyReplacers
+namespace FakerDotNet.FakerUtils.RegexifyParsers
 {
-    internal class ReplaceOneOfRangeWithLetter : IRegexifyReplacer
+    internal class ReplaceOneOfRangeWithLetter : IRegexifyParser
     {
         private readonly IFakerContainer _fakerContainer;
 
@@ -22,7 +22,8 @@ namespace FakerDotNet.FakerUtils.RegexifyReplacers
                     var v = range.Value.Split('-');
                     var min = v[0];
                     var max = v[1];
-                    return _fakerContainer.Random.Element(BuildRange(min, max));
+                    var elements = BuildRange(min, max);
+                    return _fakerContainer.Random.Element(elements);
                 });
             }); // All A-Z inside of [] become C (or X, or whatever)
         }
@@ -31,7 +32,9 @@ namespace FakerDotNet.FakerUtils.RegexifyReplacers
         {
             var minChar = char.Parse(min);
             var maxChar = char.Parse(max);
-            return Enumerable.Range(minChar, maxChar - minChar).Select(c => c.ToString());
+            return Enumerable.Range(minChar, maxChar - minChar + 1)
+                .Select(c => new string((char) c, 1))
+                .ToArray();
         }
     }
 }

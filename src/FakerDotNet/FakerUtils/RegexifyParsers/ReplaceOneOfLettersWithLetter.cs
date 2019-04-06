@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using FakerDotNet.Extensions;
 
-namespace FakerDotNet.FakerUtils.RegexifyReplacers
+namespace FakerDotNet.FakerUtils.RegexifyParsers
 {
-    internal class ReplaceOneOfLettersWithLetter : IRegexifyReplacer
+    internal class ReplaceOneOfLettersWithLetter : IRegexifyParser
     {
         private readonly IFakerContainer _fakerContainer;
 

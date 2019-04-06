@@ -1,4 +1,5 @@
 using FakerDotNet.Fakers;
+using FakerDotNet.FakerUtils;
 using NUnit.Framework;
 
 namespace FakerDotNet.Tests
@@ -349,6 +350,12 @@ namespace FakerDotNet.Tests
         public void Zelda_returns_IZeldaFaker()
         {
             Assert.IsInstanceOf<IZeldaFaker>(_fakerContainer.Zelda);
+        }
+
+        [Test]
+        public void Regexify_returns_IRegexify()
+        {
+            Assert.IsInstanceOf<IRegexify>(_fakerContainer.Regexify);
         }
     }
 }

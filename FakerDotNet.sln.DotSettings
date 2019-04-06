@@ -2,4 +2,5 @@
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=IP/@EntryIndexedValue">IP</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=RNG/@EntryIndexedValue">RNG</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=grayscale/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Regexify/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Ukelele/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

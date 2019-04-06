@@ -1,4 +1,5 @@
-﻿using FakerDotNet.Fakers;
+using FakerDotNet.Fakers;
+using FakerDotNet.FakerUtils;
 
 namespace FakerDotNet
 {
@@ -60,6 +61,8 @@ namespace FakerDotNet
         IUniversityFaker University { get; }
         IVehicleFaker Vehicle { get; }
         IZeldaFaker Zelda { get; }
+
+        IRegexify Regexify { get; }
     }
 
     internal class FakerContainer : IFakerContainer
@@ -122,6 +125,8 @@ namespace FakerDotNet
             University = new UniversityFaker(this);
             Vehicle = new VehicleFaker(this);
             Zelda = new ZeldaFaker(this);
+
+            Regexify = new Regexify(this);
         }
 
         public IAddressFaker Address { get; }
@@ -180,5 +185,7 @@ namespace FakerDotNet
         public IUniversityFaker University { get; }
         public IVehicleFaker Vehicle { get; }
         public IZeldaFaker Zelda { get; }
+
+        public IRegexify Regexify { get; }
     }
 }

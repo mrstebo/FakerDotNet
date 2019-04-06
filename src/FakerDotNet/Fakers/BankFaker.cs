@@ -1,4 +1,6 @@
 using System;
+using FakerDotNet.Data;
+using FakerDotNet.Extensions;
 
 namespace FakerDotNet.Fakers
 {
@@ -23,17 +25,28 @@ namespace FakerDotNet.Fakers
 
         public string AccountNumber(int digits = 10)
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Number.Number(digits);
         }
 
         public string Iban(string countryCode = "GB")
         {
-            throw new NotImplementedException();
+            var key = (countryCode ?? "").ToLowerInvariant();
+
+            if (countryCode == null || !BankData.IbanDetails.ContainsKey(key))
+            {
+                throw new ArgumentException($"Could not find iban details for {countryCode}");
+            }
+
+            var (_, pattern) = BankData.IbanDetails[key];
+            var account = _fakerContainer.Regexify.Parse(pattern);
+            var checksum = IbanChecksum(countryCode, account);
+
+            return $"{countryCode.ToUpperInvariant()}{checksum}{account}";
         }
 
         public string Name()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(BankData.Names);
         }
 
         public string RoutingNumber()
@@ -49,6 +62,11 @@ namespace FakerDotNet.Fakers
         public string SwiftBic()
         {
             throw new NotImplementedException();
+        }
+
+        private string IbanChecksum(string countryCode, string account)
+        {
+            return "";
         }
     }
 }

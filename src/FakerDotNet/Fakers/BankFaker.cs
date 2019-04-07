@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Numerics;
 using FakerDotNet.Data;
 using FakerDotNet.Extensions;
 
@@ -25,7 +27,7 @@ namespace FakerDotNet.Fakers
 
         public string AccountNumber(int digits = 10)
         {
-            return _fakerContainer.Number.Number(digits);
+            return string.Join("", Enumerable.Range(0, digits).Select(_ => _fakerContainer.Number.Digit()));
         }
 
         public string Iban(string countryCode = "GB")
@@ -64,9 +66,17 @@ namespace FakerDotNet.Fakers
             throw new NotImplementedException();
         }
 
-        private string IbanChecksum(string countryCode, string account)
+        private static string IbanChecksum(string countryCode, string account)
         {
-            return "";
+            var accountToNumberValues = $"{account}{countryCode}00"
+                .ToUpperInvariant()
+                .Characters()
+                .Select(c => char.IsLetter(c, 0) ? char.Parse(c) - 55 : int.Parse(c))
+                .ToArray();
+            var accountToNumber = BigInteger.Parse(string.Join("", accountToNumberValues));
+            var checksum = 98 - (accountToNumber % 97);
+            var result = checksum.ToString().PadLeft(2, '0');
+            return result;
         }
     }
 }

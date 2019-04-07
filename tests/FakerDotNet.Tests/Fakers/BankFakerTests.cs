@@ -1,4 +1,5 @@
 using FakeItEasy;
+using FakerDotNet.Data;
 using FakerDotNet.Fakers;
 using NUnit.Framework;
 
@@ -39,13 +40,23 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Iban_returns_an_iban()
         {
-            Assert.AreEqual("GB76DZJM33188515981979", _bankFaker.Iban());
+            var ibanDetails = BankData.IbanDetails["gb"];
+
+            A.CallTo(() => _fakerContainer.Regexify.Parse(ibanDetails.pattern))
+                .Returns("DZJM33188515981979");
+
+            Assert.AreEqual("GB19DZJM33188515981979", _bankFaker.Iban());
         }
 
         [Test]
         public void Iban_with_country_code_returns_an_iban()
         {
-            Assert.AreEqual("BE6375388567752043", _bankFaker.Iban("be"));
+            var ibanDetails = BankData.IbanDetails["be"];
+
+            A.CallTo(() => _fakerContainer.Regexify.Parse(ibanDetails.pattern))
+                .Returns("75388567752043");
+
+            Assert.AreEqual("BE8975388567752043", _bankFaker.Iban("be"));
         }
 
         [Test]

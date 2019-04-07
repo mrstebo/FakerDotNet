@@ -21,12 +21,18 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void AccountNumber_returns_an_account_number()
         {
+            A.CallTo(() => _fakerContainer.Number.Digit())
+                .ReturnsNextFromSequence("6", "7", "3", "8", "5", "8", "2", "3", "7", "9");
+
             Assert.AreEqual("6738582379", _bankFaker.AccountNumber());
         }
 
         [Test]
         public void AccountNumber_with_digits_returns_an_account_number()
         {
+            A.CallTo(() => _fakerContainer.Number.Digit())
+                .ReturnsNextFromSequence("6", "7", "3", "8", "5", "8", "2", "3", "7", "9", "0", "2");
+
             Assert.AreEqual("673858237902", _bankFaker.AccountNumber(13));
         }
 

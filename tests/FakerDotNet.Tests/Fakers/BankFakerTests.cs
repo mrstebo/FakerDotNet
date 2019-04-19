@@ -62,24 +62,18 @@ namespace FakerDotNet.Tests.Fakers
         [Test]
         public void Name_returns_a_name()
         {
+            A.CallTo(() => _fakerContainer.Random.Element(BankData.Names))
+                .Returns("ABN AMRO CORPORATE FINANCE LIMITED");
+
             Assert.AreEqual("ABN AMRO CORPORATE FINANCE LIMITED", _bankFaker.Name());
-        }
-
-        [Test]
-        public void RoutingNumber_a_routing_number()
-        {
-            Assert.AreEqual("729343831", _bankFaker.RoutingNumber());
-        }
-
-        [Test]
-        public void RoutingNumberWithFormat_returns_a_formatted_routing_number()
-        {
-            Assert.AreEqual("22-3833/64805", _bankFaker.RoutingNumberWithFormat());
         }
 
         [Test]
         public void SwiftBic_returns_a_swift_bic()
         {
+            A.CallTo(() => _fakerContainer.Random.Element(BankData.SwiftBics))
+                .Returns("AAFMGB21");
+
             Assert.AreEqual("AAFMGB21", _bankFaker.SwiftBic());
         }
     }

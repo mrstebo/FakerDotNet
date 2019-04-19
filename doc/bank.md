@@ -14,9 +14,5 @@ Faker.Bank.Iban("be") //=> "BE8975388567752043"
 
 Faker.Bank.Name() //=> "ABN AMRO CORPORATE FINANCE LIMITED"
 
-Faker.Bank.RoutingNumber() //=> "729343831"
-
-Faker.Bank.RoutingNumberWithFormat() //=> "22-3833/64805"
-
 Faker.Bank.SwiftBic() //=> "AAFMGB21"
 ```

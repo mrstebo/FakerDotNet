@@ -11,8 +11,6 @@ namespace FakerDotNet.Fakers
         string AccountNumber(int digits = 10);
         string Iban(string countryCode = "GB");
         string Name();
-        string RoutingNumber();
-        string RoutingNumberWithFormat();
         string SwiftBic();
     }
 
@@ -51,19 +49,9 @@ namespace FakerDotNet.Fakers
             return _fakerContainer.Random.Element(BankData.Names);
         }
 
-        public string RoutingNumber()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string RoutingNumberWithFormat()
-        {
-            throw new NotImplementedException();
-        }
-
         public string SwiftBic()
         {
-            throw new NotImplementedException();
+            return _fakerContainer.Random.Element(BankData.SwiftBics);
         }
 
         private static string IbanChecksum(string countryCode, string account)

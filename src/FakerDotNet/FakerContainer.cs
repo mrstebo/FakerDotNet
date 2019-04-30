@@ -1,4 +1,5 @@
-﻿using FakerDotNet.Fakers;
+using FakerDotNet.Fakers;
+using FakerDotNet.FakerUtils;
 
 namespace FakerDotNet
 {
@@ -8,6 +9,7 @@ namespace FakerDotNet
         IAncientFaker Ancient { get; }
         IAppFaker App { get; }
         IAvatarFaker Avatar { get; }
+        IBankFaker Bank { get; }
         IBeerFaker Beer { get; }
         IBookFaker Book { get; }
         IBooleanFaker Boolean { get; }
@@ -59,6 +61,8 @@ namespace FakerDotNet
         IUniversityFaker University { get; }
         IVehicleFaker Vehicle { get; }
         IZeldaFaker Zelda { get; }
+
+        IRegexify Regexify { get; }
     }
 
     internal class FakerContainer : IFakerContainer
@@ -69,6 +73,7 @@ namespace FakerDotNet
             Ancient = new AncientFaker(this);
             App = new AppFaker(this);
             Avatar = new AvatarFaker(this);
+            Bank = new BankFaker(this);
             Beer = new BeerFaker(this);
             Book = new BookFaker(this);
             Boolean = new BooleanFaker();
@@ -120,12 +125,15 @@ namespace FakerDotNet
             University = new UniversityFaker(this);
             Vehicle = new VehicleFaker(this);
             Zelda = new ZeldaFaker(this);
+
+            Regexify = new Regexify(this);
         }
 
         public IAddressFaker Address { get; }
         public IAncientFaker Ancient { get; }
         public IAppFaker App { get; }
         public IAvatarFaker Avatar { get; }
+        public IBankFaker Bank { get; }
         public IBeerFaker Beer { get; }
         public IBookFaker Book { get; }
         public IBooleanFaker Boolean { get; }
@@ -177,5 +185,7 @@ namespace FakerDotNet
         public IUniversityFaker University { get; }
         public IVehicleFaker Vehicle { get; }
         public IZeldaFaker Zelda { get; }
+
+        public IRegexify Regexify { get; }
     }
 }

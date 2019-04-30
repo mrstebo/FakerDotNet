@@ -9,7 +9,62 @@
                 "build",
                 "${workspaceFolder}/tests/FakerDotNet.Tests/FakerDotNet.Tests.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/tests/FakerDotNet.Tests/FakerDotNet.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "test with coverage",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=lcov",
+                "/p:CoverletOutput=${workspaceFolder}/lcov.info",
+                "${workspaceFolder}/tests/FakerDotNet.Tests/FakerDotNet.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "watch test with coverage",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "--project",
+                "${workspaceFolder}/src/FakerDotNet/FakerDotNet.csproj",
+                "test",
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=lcov",
+                "/p:CoverletOutput=${workspaceFolder}/lcov.info",
+                "${workspaceFolder}/tests/FakerDotNet.Tests/FakerDotNet.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         }
     ]
 }

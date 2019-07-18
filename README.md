@@ -12,6 +12,7 @@ A .NET port of the Ruby [faker](https://github.com/stympy/faker) gem
 - [Usage](#usage)
 - [Generators](#generators)
   - [Default](#default)
+  - [Blockchain](#blockchain)
 - [Contributing](#contributing)
 - [Copyright](#copyright)
 - [License](#license)
@@ -88,6 +89,10 @@ var lastName = Faker.Name.LastName(); // Smith
 - [Faker.University](doc/default/university.md)
 - [Faker.Vehicle](doc/default/vehicle.md)
 - [Faker.Zelda](doc/default/zelda.md)
+
+### Blockchain
+
+- [Faker.Blockchain.Bitcoin](doc/blockchain/bitcoin.md)
 
 ## Contributing
 

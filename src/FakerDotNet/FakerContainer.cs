@@ -21,6 +21,7 @@ namespace FakerDotNet
         ICommerceFaker Commerce { get; }
         ICompanyFaker Company { get; }
         ICompassFaker Compass { get; }
+        ICreditCardFaker CreditCard { get; }
         IDateFaker Date { get; }
         IDemographicFaker Demographic { get; }
         IDragonBallFaker DragonBall { get; }
@@ -85,6 +86,7 @@ namespace FakerDotNet
             Commerce = new CommerceFaker(this);
             Company = new CompanyFaker(this);
             Compass = new CompassFaker(this);
+            CreditCard = new CreditCardFaker(this);
             Date = new DateFaker();
             Demographic = new DemographicFaker(this);
             DragonBall = new DragonBallFaker(this);
@@ -128,7 +130,7 @@ namespace FakerDotNet
 
             Regexify = new Regexify(this);
         }
-
+       
         public IAddressFaker Address { get; }
         public IAncientFaker Ancient { get; }
         public IAppFaker App { get; }
@@ -145,6 +147,7 @@ namespace FakerDotNet
         public ICommerceFaker Commerce { get; }
         public ICompanyFaker Company { get; }
         public ICompassFaker Compass { get; }
+        public ICreditCardFaker CreditCard { get; set; }
         public IDateFaker Date { get; }
         public IDemographicFaker Demographic { get; }
         public IDragonBallFaker DragonBall { get; }

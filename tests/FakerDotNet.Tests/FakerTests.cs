@@ -104,6 +104,12 @@ namespace FakerDotNet.Tests
         }
 
         [Test]
+        public void CreditCard_returns_ICreditCardFaker()
+        {
+            Assert.IsInstanceOf<ICreditCardFaker>(Faker.creditCard);
+        }
+
+        [Test]
         public void Date_returns_IDateFaker()
         {
             Assert.IsInstanceOf<IDateFaker>(Faker.Date);

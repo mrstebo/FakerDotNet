@@ -8,7 +8,7 @@ namespace FakerDotNet.Data
     {
 
 
-        public static readonly IEnumerable<string> CountryISOCoddes = new[]
+        public static readonly IEnumerable<string> CountryISOCodes = new[]
         {
             "004",
             "008",

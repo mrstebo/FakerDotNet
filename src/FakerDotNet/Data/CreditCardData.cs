@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FakerDotNet.Data
 {
     internal static class CreditCardData
     {
-
-
-        public static readonly IEnumerable<string> CountryISOCoddes = new[]
+        public static readonly IEnumerable<string> CountryISOCodes = new[]
         {
             "004",
             "008",

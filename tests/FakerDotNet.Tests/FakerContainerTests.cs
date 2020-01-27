@@ -69,7 +69,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IBusinessFaker>(_fakerContainer.Business);
         }
-      
+
         [Test]
         public void Cat_returns_ICatFaker()
         {

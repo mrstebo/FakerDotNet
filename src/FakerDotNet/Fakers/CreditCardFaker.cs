@@ -10,7 +10,7 @@ namespace FakerDotNet.Fakers
 
         string Brand();
 
-        int CVV();
+        string CVV();
     }
 
     internal class CreditCardFaker : ICreditCardFaker
@@ -29,26 +29,38 @@ namespace FakerDotNet.Fakers
 
         public string ExpiryDate()
         {
-            int month = (int)_fakerContainer.Number.Between(1, 12);
-            int year = (int)_fakerContainer.Number.Between(1, 99);
+            var month = _fakerContainer.Number.Between(1, 12);
+            var year = _fakerContainer.Number.Between(1, 99);
+            
             return month.ToString().PadLeft(2, '0') + "/" + year.ToString().PadLeft(2, '0');
         }
 
         public string Number()
         {
-            int mii = (int)_fakerContainer.Number.Between(1, 12);
-            string countryISO = _fakerContainer.Random.Element(CreditCardData.CountryISOCodes);
-            string bin = mii.ToString() + countryISO;
+            var cardNumber = "";
+            var mii = _fakerContainer.Number.Between(1, 12);
+            var countryISO = _fakerContainer.Random.Element(CreditCardData.CountryISOCodes);
+            var bin = mii.ToString() + countryISO;            
+            var accountNumber = _fakerContainer.Number.Between(100000000, 999999999)
+                .ToString();
+            var checkSum = _fakerContainer.Number.Between(1, 9);
             while (bin.Length < 6)
                 bin += _fakerContainer.Number.Between(1, 9);
-            string accountNumber = _fakerContainer.Number.Between(1000000, 9999999).ToString();
-            var checkSum = _fakerContainer.Number.Between(1, 9);
-            return bin + accountNumber + checkSum;
+            var rawNumber = bin + accountNumber + checkSum;         
+            for(int i=0;i<rawNumber.Length;i++)
+            {
+                if ((i+1) % 4 == 0 && i != 0 && i != rawNumber.Length-1)
+                    cardNumber += rawNumber[i] + "-";
+                else
+                    cardNumber += rawNumber[i];
+            }          
+            
+            return cardNumber;
         }
 
-        public int CVV()
+        public string CVV()
         {
-            return (int)_fakerContainer.Number.Between(100, 999);
+            return _fakerContainer.Number.Between(100, 999).ToString();
         }
     }
 }

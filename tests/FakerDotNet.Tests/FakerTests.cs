@@ -60,7 +60,7 @@ namespace FakerDotNet.Tests
         {
             Assert.IsInstanceOf<IBusinessFaker>(Faker.Business);
         }
-      
+
         [Test]
         public void Cat_returns_ICatFaker()
         {
@@ -101,6 +101,12 @@ namespace FakerDotNet.Tests
         public void Compass_returns_ICompassFaker()
         {
             Assert.IsInstanceOf<ICompassFaker>(Faker.Compass);
+        }
+
+        [Test]
+        public void CreditCard_returns_ICreditCardFaker()
+        {
+            Assert.IsInstanceOf<ICreditCardFaker>(Faker.CreditCard);
         }
 
         [Test]

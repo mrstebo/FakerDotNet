@@ -5,7 +5,6 @@ namespace FakerDotNet
     public static class Faker
     {
         private static readonly IFakerContainer Container = new FakerContainer();
-
         public static IAddressFaker Address { get; } = Container.Address;
         public static IAncientFaker Ancient { get; } = Container.Ancient;
         public static IAppFaker App { get; } = Container.App;
@@ -22,6 +21,7 @@ namespace FakerDotNet
         public static ICommerceFaker Commerce { get; } = Container.Commerce;
         public static ICompanyFaker Company { get; } = Container.Company;
         public static ICompassFaker Compass { get; } = Container.Compass;
+        public static ICreditCardFaker CreditCard { get; } = Container.CreditCard;
         public static IDateFaker Date { get; } = Container.Date;
         public static IDemographicFaker Demographic { get; } = Container.Demographic;
         public static IDragonBallFaker DragonBall { get; } = Container.DragonBall;
@@ -60,7 +60,7 @@ namespace FakerDotNet
         public static ITimeFaker Time { get; } = Container.Time;
         public static ITwinPeaksFaker TwinPeaks { get; } = Container.TwinPeaks;
         public static IUniversityFaker University { get; } = Container.University;
-        public static IVehicleFaker Vehicle {get; } = Container.Vehicle;
+        public static IVehicleFaker Vehicle { get; } = Container.Vehicle;
         public static IZeldaFaker Zelda { get; } = Container.Zelda;
     }
 }

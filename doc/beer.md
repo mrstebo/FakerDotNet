@@ -15,7 +15,7 @@ Faker.Beer.Malts() //=> "Rye malt"
 
 Faker.Beer.Ibu() //=> "40 IBU"
 
-Faker.Book.Beer.Alcohol() //=> "6.3%"
+Faker.Beer.Alcohol() //=> "6.3%"
 
 Faker.Beer.Blg() //=> "18.5°Blg"
 ```

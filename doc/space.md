@@ -29,7 +29,7 @@ Faker.Space.Agency() //=> "Japan Aerospace Exploration Agency"
 Faker.Space.AgencyAbv() //=> "NASA"
 
 // Random spacecraft name (limited to NASA)
-Faker.Space.NaseSpaceCraft() //=> "Endeavour"
+Faker.Space.NasaSpaceCraft() //=> "Endeavour"
 
 // Random private space company title
 Faker.Space.Company() //=> "SpaceX"

@@ -1,4 +1,4 @@
-# Faker.Company
+# Faker.SlackEmoji
 
 ```cs
 # Random Slack Emoji from people category

@@ -74,18 +74,11 @@ namespace FakerDotNet.Fakers
 
         private string Parse(string input, FakerMatch match)
         {
-            try
-            {
-                var value = GetValue(match.Name, match.Method) ?? input;
-                var start = input.Substring(0, match.Index);
-                var end = input.Substring(match.Index + match.Length);
+            var value = GetValue(match.Name, match.Method) ?? input;
+            var start = input.Substring(0, match.Index);
+            var end = input.Substring(match.Index + match.Length);
 
-                return $"{start}{value}{end}";
-            }
-            catch
-            {
-                return input;
-            }
+            return $"{start}{value}{end}";
         }
 
         private object GetValue(string faker, string method)
